@@ -20,5 +20,10 @@
 }
 
 .texto{
-  font-size: 1.35em;
+  font-size: 1.2em;
+  font-weight: ;
+}
+
+#logo_texto.hover{
+  background-color: #ffffff;
 }
