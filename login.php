@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Inicio</title>
     <link rel="stylesheet" href="css/materialize.min.css">
-	<link rel="stylesheet" href="css/estilos.css">
+	  <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/icon.css">
 </head>
 <body>
@@ -33,35 +33,11 @@
       include ('archivosmaestros/slider.php')
     ?>
   </section>
-    <div class="section white">
-    <div class="row container">
-       <ul class="collapsible " data-collapsible="accordion">
-        <li>
-            <div class="collapsible-header #00838f cyan darken-3"><i class="material-icons white-text text-darken-2">question_answer</i><a class="white-text text-darken-2 tipografia texto">Preguntas Frecuentes</a></div>
-            <div class="collapsible-body #006064 cyan darken-4"><span>
-                <h4>Preguntas Frecuentes</h4>
-                <p>
-                    Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet
-                </p>
-            
-            </span></div>
-        </li>
-        <li>
-            <div class="collapsible-header #00838f cyan darken-3"><i class="material-icons white-text text-darken-2">headset_mic</i><a class="white-text text-darken-2 tipografia texto">Asistencia técnica</a></div>
-            <div class="collapsible-body #006064 cyan darken-4"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-            <div class="collapsible-header #00838f cyan darken-3"><i class="material-icons white-text text-darken-2">help</i><a class="white-text text-darken-2 tipografia texto">Centro de ayuda</a></div>
-            <div class="collapsible-body #006064 cyan darken-4"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-    </ul>
-    </div>
-    </div>
-  <?php
+    <?php
     include('archivosmaestros/footer.php')
   ?>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/main.js"></script>
-</body>    
-</html>
+  </body>
+  </html>
