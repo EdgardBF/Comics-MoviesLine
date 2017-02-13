@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <title>Inicio</title>
     <link rel="stylesheet" href="css/materialize.min.css">
-	<link rel="stylesheet" href="css/estilos.css">
+	  <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/icon.css">
 </head>
 <body>
-    <div class="navbar-fixed">
-    <nav class="tipografia">
-        <div class="nav-wrapper #00838f cyan darken-3">
-            <a href="#!" class="brand-logo logo"><img src="img/logo.png"></a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="contactos.html" class="texto">Contactos</a></li>
-                <li><a href="instalaciones.html" class="texto">Instalaciones</a></li>
-                <li><a href="ofertas-academicas.html" class="texto">Ofertas Academicas</a></li>
-                <li><a href="cursos-verano.html" class="texto">Cursos de verano</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="navbar-fixed" id="menu">
+        <nav class="tipografia">
+            <div class="nav-wrapper #00838f cyan darken-3">
+                <a href="#!" class="brand-logo logo"><img src="img/logo.png"></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="contactos.html" class="texto">Contactos</a></li>
+                    <li><a href="instalaciones.html" class="texto">Instalaciones</a></li>
+                    <li><a href="ofertas-academicas.html" class="texto">Ofertas Academicas</a></li>
+                    <li><a href="cursos-verano.html" class="texto">Cursos de verano</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
     <ul class="side-nav" id="mobile-demo">
         <li><a href="contactos.html">Contactos</a></li>
@@ -29,38 +29,9 @@
         <li><a href="cursos-verano.html">Cursos de verano</a></li>
     </ul>
     <section>
-    <div class="slider">
-    <ul class="slides">
-      <li>
-        <img src="img/jaja.jpg"> <!-- random image -->
-        <div class="caption center-align">
-          <h3>This is our big Tagline!</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-      <li>
-        <img src="img/jaja.jpg"> <!-- random image -->
-        <div class="caption left-align">
-          <h3>Left Aligned Caption</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-      <li>
-        <img src="img/jaja.jpg"> <!-- random image -->
-        <div class="caption right-align">
-          <h3>Right Aligned Caption</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-      <li>
-        <img src="img/jaja.jpg"> <!-- random image -->
-        <div class="caption center-align">
-          <h3>This is our big Tagline!</h3>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
-    </ul>
-  </div>
+    <?php
+      include ('archivosmaestros/slider.php')
+    ?>
   </section>
   <section>
     <div class="col s12 m6">
@@ -111,31 +82,9 @@
         </div>
       </div>
   </section>
-  <footer class="page-footer tipografia #00838f cyan darken-3">
-            <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-                </div>
-                <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                </ul>
-                </div>
-            </div>
-            </div>
-            <div class="footer-copyright">
-            <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-            </div>
- </footer>
+<?php
+  include('archivosmaestros/footer.php')
+?>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/main.js"></script>
