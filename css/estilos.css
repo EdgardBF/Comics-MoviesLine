@@ -12,3 +12,13 @@
 .slider .indicators .indicator-item.active {
   background-color: #00838f;
 }
+.logo img{
+  margin-top: 5%;
+  width: 100px;
+  height: 15%;
+  margin-left: 10%;
+}
+
+.texto{
+  font-size: 1.35em;
+}
