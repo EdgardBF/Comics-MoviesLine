@@ -22,3 +22,40 @@
 .texto{
   font-size: 1.35em;
 }
+
+.icono{
+  font-size: 100px  !important;
+  color: #006064;
+  
+}
+.contenedor{
+  width: 50%;
+  height: 400px;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  border-style: inset;
+  border-color: #00838f;
+  box-shadow: 0px 0px 10px #006064;
+}
+.boton{
+  margin-top: 200px;
+}
+      #map {
+        height: 200px;
+        width: 400px;
+      }
+
+ @media screen and (max-width: 1000px){
+  .contenedor{
+    width: 80%;
+  }
+  
+ }  
+ @media screen and (max-width: 300px){
+  .contenedor{
+    width: 94%;
+  }
+ }  
+
+ 
+
