@@ -29,27 +29,39 @@
         <li><a href="ofertas-academicas.html">Ofertas Academicas</a></li>
         <li><a href="cursos-verano.html">Cursos de verano</a></li>
     </ul>
-  <section class="container contenedor">
-  <div class="row">
-    <form class="col s12">
-        <div class="center-align">
-        <i class="material-icons"><a class="icono">person_pin</a></i>
-        </div>
-        <div class="input-field col s12">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name" class="cyan-text text-darken-3">Usuario</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password" class="cyan-text text-darken-3">Contraseña</label>
-        </div>
-        <div class="center-align  boton">
-        <a class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">play_arrow</i>Ingresar</a>
-        </div>
-        <div class="center-align boton2">
-        <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="#!"><i class="material-icons right">face</i> Registrate!</a>
-        </div>
-    </form>
+    <section class="container contenedor2">
+    <div class="row">
+        <form class="col s12">
+            <div class="center-align">
+            <i class="material-icons"><a class="icono">note_add</a></i>
+            </div>
+            <div class="input-field col s12">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name" class="cyan-text text-darken-3">Nombre completo</label>
+            </div>
+            <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email" class="cyan-text text-darken-3">Email</label>
+            </div>
+            <div class="input-field col s12">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name" class="cyan-text text-darken-3">Usuario</label>
+            </div>
+            <div class="input-field col s12">
+            <input id="password" type="password" class="validate">
+            <label for="password" class="cyan-text text-darken-3">Contraseña</label>
+            </div>
+             <div class="input-field col s12">
+            <input id="password" type="password" class="validate">
+            <label for="password" class="cyan-text text-darken-3">Verificar Contraseña</label>
+            </div>
+            <div class="center-align  boton">
+            <a class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">create</i>Crear</a>
+            </div>
+            <div class="center-align boton2">
+            <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="#!"><i class="material-icons right">face</i> Ya existo!</a>
+            </div>
+        </form>
   </div>
   </section>
     <?php

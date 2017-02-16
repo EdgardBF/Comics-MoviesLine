@@ -30,9 +30,19 @@
 }
 .contenedor{
   width: 50%;
-  height: 400px;
+  height: 450px;
   margin-bottom: 3%;
   margin-top: 3%;
+  border-style: inset;
+  border-color: #00838f;
+  box-shadow: 0px 0px 10px #006064;
+}
+.contenedor2{
+  width: 50%;
+  height: 650px;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  border-radius: 1em;
   border-style: inset;
   border-color: #00838f;
   box-shadow: 0px 0px 10px #006064;
@@ -40,20 +50,53 @@
 .boton{
   margin-top: 200px;
 }
-      #map {
-        height: 200px;
-        width: 400px;
-      }
+.boton2{
+  margin-top: 30px;
+}
+#map {
+  height: 200px;
+}
+.fb-like{
+bottom: 6px;
+}
+p.justificar{
+    text-align: justify;
+}
+.ig-b- { 
+    display: inline-block; 
+    }
+.ig-b- img { 
+    visibility: hidden; 
+    }
+.ig-b-:hover { 
+    background-position: 0 -60px; 
+    } 
+.ig-b-:active { 
+    background-position: 0 -120px; 
+    }
+.ig-b-v-24 { 
+    width: 137px; height: 24px; background: url(../img/intagram3.png) no-repeat 0 0; 
+    }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+.ig-b-v-24 { 
+    background-image: url(../img/intagram2.png); background-size: 160px 178px; } 
+    }
 
  @media screen and (max-width: 1000px){
   .contenedor{
     width: 80%;
   }
+  .contenedor2{
+    width: 80%;
+}
   
  }  
  @media screen and (max-width: 300px){
   .contenedor{
-    width: 94%;
+    width: 100%;
+  }
+  .contenedor2{
+    width: 100%;
   }
  }  
 
