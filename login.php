@@ -2,6 +2,7 @@
 <html lang = "es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximun-scale=1, minimun-scale=1">
     <title>Inicio</title>
     <link rel="stylesheet" href="css/materialize.min.css">
 	  <link rel="stylesheet" href="css/estilos.css">
