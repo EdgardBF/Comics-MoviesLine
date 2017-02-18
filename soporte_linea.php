@@ -46,7 +46,6 @@
       ?>
     </section>
     <!--se crea una seccion de acordeon-->
-  </section>
     <div class="section white"><!--Uso de una seccion blanca de materialize-->
     <div class="row container"><!--Uso del contenedor de materialize-->
        <ul class="collapsible " data-collapsible="accordion"><!--Este es la parte de acordeon donde se mostrara de primero el titulo y luego al darle click la demas informacion-->
@@ -106,9 +105,52 @@
                 </p>    
             </span></div>
         </li>
+        <li>
+            <!--Titulo del tercero -->
+            <div class="collapsible-header #00838f cyan darken-3"><i class="material-icons white-text text-darken-2">comment</i><a class="white-text text-darken-2 texto">Comentarios</a></div>
+            <div class="collapsible-body #006064 cyan darken-4 white-text text-darken-2"><span>
+                <!--contenido del tercero -->
+                <h4>Comentarios</h4>
+                <br>
+                <h5>Nombre_Usuario</h5>
+                <p class="justificar">
+                    En esta seccion se colocaran los comentarioa de los clientes
+                </p>
+                <hr>
+                <h5>Nombre_Usuario</h5>
+                <p class="justificar">
+                    En esta seccion se colocaran los comentarioa de los clientes
+                </p>
+                <hr>
+            </span></div>
+        </li>
     </ul>
     </div>
     </div>
+    <!--contenedor de comentario-->
+    <section class="container contenedor">
+        <div class="row">
+            <form class="col s12">
+                <div class="center-align">
+                    <i class="material-icons"><a class="icono">mode_comment</a></i><!--Icono de la parte superior del formulario-->
+                </div>
+                <div class="input-field col s12">
+                    <input id="disabled"  disabled value="" type="text" class="validate">
+                    <label for="disabled" class="cyan-text text-darken-3">Usuario_Nombre</label><!--El cuadro de texto donde se pondra el nombre de usuario-->
+                </div>
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password" class="cyan-text text-darken-3">Comentario</label><!--El cuadro de texto donde se colocara el comentario-->
+                </div>
+                    <div class="center-align  boton">
+                    <a class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">cloud_upload</i>Enviar</a> <!--Boton con el cual se enviara el commentraio-->
+                </div>
+                    <div class="center-align boton2">
+                    <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="registro.php"><i class="material-icons right">face</i> Registrate!</a><!--boton para rederigirse a registro-->
+                </div>
+            </form>
+        </div>
+    </section>
     <!--Uso de archivo maestro para el footer-->
   <?php
     include('archivosmaestros/footer.php')
