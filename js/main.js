@@ -5,6 +5,8 @@ $( document ).ready(function(){
         //Se le cambia el alto al Slider
         height: 400
     });
+    $('.materialboxed').materialbox();
+    $('ul.tabs').tabs();
+    $('.modal').modal();
 })
-
 

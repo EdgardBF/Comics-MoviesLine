@@ -34,7 +34,7 @@
                     <a href="productos.php" class="texto">
                         <img src="img/slider4.png"> <!-- Cuarta Imagens -->
                         <div class="caption center-align">
-                            <h3  class="black-text tipografia">Snoopy and Charlie Brown.</h3>
+                            <h3  class="black-text tipografia">Snoopy & Charlie Brown: Peanuts.</h3>
                             <h5  class="black-text">Una aventura que te demuestra que todo es posible si te lo propones.</h5>
                         </div>
                     </a>

@@ -5,6 +5,7 @@
   <head>
       <!--La siguiente linea de codigo sirve para poner las tildes-->
       <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximun-scale=1, minimun-scale=1">
       <title>Inicio</title>
       <!--Se llaman los archivos CSS-->
       <link rel="stylesheet" href="css/materialize.min.css">
@@ -21,10 +22,10 @@
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li class="active"><a href="#!" class="texto waves-effect waves-teal"><i class="material-icons left">home</i>INICIO</a></li>
-                    <li><a href="productos.php waves-effect waves-teal" class="texto"><i class="material-icons left">extension</i>PRODUCTOS</a></li>
-                    <li><a href="soporte_linea.php waves-effect waves-teal" class="texto"><i class="material-icons left">question_answer</i>SOPORTE EN LÍNEA</a></li>
-                    <li><a href="iniciar_sesion.php waves-effect waves-teal" class="texto"><i class="material-icons left">person</i>INICIAR SESIÓN</a></li>
-                    <li><a href="compras.php waves-effect waves-teal" class="texto"><i class="material-icons">shopping_cart</i></a></li>
+                    <li><a href="productos.php" class="waves-effect waves-teal texto"><i class="material-icons left">extension</i>PRODUCTOS</a></li>
+                    <li><a href="soporte_linea.php" class="waves-effect waves-teal texto"><i class="material-icons left">question_answer</i>SOPORTE EN LÍNEA</a></li>
+                    <li><a href="iniciar_sesion.php" class="waves-effect waves-teal texto"><i class="material-icons left">person</i>INICIAR SESIÓN</a></li>
+                    <li><a href="compras.php" class="waves-effect waves-teal texto"><i class="material-icons">shopping_cart</i></a></li>
                 </ul>
             </div>
         </nav>
@@ -42,22 +43,22 @@
       <?php
         include ('archivosmaestros/slider.php')
       ?>
-  </section>
-  <section>
-     <div class="row">
-       <!--Se dice que tamaño del grid se usara-->
-    <div class="col s12 m12 l12" >
-      <div class="card blue-grey darken-1 z-depth-4">
-        <div class="card-content black-text">
-            <span class="card-title center tipografia t">Quienes Somos</span>
-        <p class="texto-mayor center-align">Comics & Movies Line es una Tienda destinada para la compra online sobre diferentes tipos de peliculas, <br>
-            con su respectivo comic en el que este basada, permitiendo al usuario un mayor conocimiento sobre esta, y de donde fue basada para su produccion.</p>
+    </section>
+    <section>
+      <div class="row">
+        <!--Se dice que tamaño del grid se usara-->
+        <div class="col s12 m12 l12" >
+          <div class="card blue-grey darken-1 z-depth-4">
+            <div class="card-content black-text">
+              <span class="card-title center tipografia">Quienes Somos</span>
+               <p class="texto-mayor center-align">Comics & Movies Line es una Tienda destinada para la compra online sobre diferentes tipos de peliculas, <br>
+                con su respectivo comic en el que este basada, permitiendo al usuario un mayor conocimiento sobre esta, y de donde fue basada para su produccion.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
-    <div class="row">
-      <!--Se dice que tamaño del grid se usara-->
+      <div class="row">
+        <!--Se dice que tamaño del grid se usara-->
         <div class="col s12 m6">
           <div class="card blue-grey darken-1 z-depth-4">
             <div class="card-content black-text center-align">
@@ -97,10 +98,10 @@
           </div>
         </div>
       </div>
-  </section>
-  <?php
-    include('archivosmaestros/footer.php')
-  ?>
+      </section>
+      <?php
+        include('archivosmaestros/footer.php')
+       ?>
       <script src="js/jquery-3.1.1.min.js"></script>
       <script src="js/materialize.min.js"></script>
       <script src="js/main.js"></script>
