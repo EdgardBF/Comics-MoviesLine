@@ -11,6 +11,8 @@
       <link rel="stylesheet" href="css/materialize.min.css">
       <link rel="stylesheet" href="css/estilos.css">
       <link rel="stylesheet" href="css/icon.css">
+      <link rel="shortcut icon" href="img/logo.png">
+      <div id="fb-root"></div>
   </head>
   <!--Aqui comienza el body-->
   <body>
@@ -35,7 +37,7 @@
       <li class="active"><a href="#!" class="texto white-text waves-effect waves-teal"><i class="material-icons left white-text">home</i>INICIO</a></li>
       <li><a href="productos.php" class="texto white-text waves-effect waves-teal"><i class="material-icons left white-text">extension</i>PRODUCTOS</a></li>
       <li><a href="soporte_linea.php" class="texto white-text waves-effect waves-teal"><i class="material-icons left white-text">question_answer</i>SOPORTE EN LÍNEA</a></li>
-      <li><a href="iniciar_sesion.php" class="texto white-text waves-effect waves-teal"><i class="material-icons left white-text">person</i>INICIAR SESIÓN</a></li>
+      <li><a href="login.php" class="texto white-text waves-effect waves-teal"><i class="material-icons left white-text">person</i>INICIAR SESIÓN</a></li>
       <li><a href="compras.php" class="texto white-text waves-effect waves-teal"><i class="material-icons white-text">shopping_cart</i>COMPRAS</a></li>
     </ul>
     <!--Se manda a llamar un archivo maestro del Slider-->
@@ -99,11 +101,16 @@
         </div>
       </div>
       </section>
+      <!--Uso de archivo maestro para el footer-->
       <?php
         include('archivosmaestros/footer.php')
        ?>
-      <script src="js/jquery-3.1.1.min.js"></script>
-      <script src="js/materialize.min.js"></script>
-      <script src="js/main.js"></script>
+       <!--archivos javascrip utilizados-->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/mapa.js" async defer></script>
+    <script async src="js/tweet.js" charset="utf-8"></script>
+    <script src="js/youtube.js"></script>
   </body>
 </html>

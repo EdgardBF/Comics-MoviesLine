@@ -1,12 +1,13 @@
+/*llamar a una clase para colocar un font*/
 @font-face{
     font-family:ARDESTINE;
     src: url(../fonts/ARDESTINE.ttf);
 }
-
+/*clase con la que mandamos a llamar al font*/
 .tipografia{
     font-family:ARDESTINE;
 }
-
+/*se camvio de color los punteros del slider*/
 .slider .indicators .indicator-item {
   background-color: #006064;
 }
@@ -14,23 +15,24 @@
 .slider .indicators .indicator-item.active {
   background-color: #01579b;
 }
-
+/*se redimensiono el logo*/
 .logo img{
   margin-top: 5%;
   width: 100px;
   height: 15%;
   margin-left: 10%;
 }
-
+/*se coloco un tamaño al texto del menu*/
 .texto{
   font-size: 1.35em;
 }
-
+/*icono de las paginas de registro y login*/
 .icono{
   font-size: 100px  !important;
   color: #006064;
   
 }
+/*contenedor de login*/
 .contenedor{
   width: 50%;
   height: 450px;
@@ -40,6 +42,7 @@
   border-color: #00838f;
   box-shadow: 0px 0px 10px #006064;
 }
+/*contenedot de registro*/
 .contenedor2{
   width: 50%;
   height: 650px;
@@ -50,21 +53,27 @@
   border-color: #00838f;
   box-shadow: 0px 0px 10px #006064;
 }
+/*boton que esta en login de ingresar*/
 .boton{
   margin-top: 200px;
 }
+/*se coloca un margen del otro boton en login*/
 .boton2{
   margin-top: 30px;
 }
+/*las dimensiones del mapa*/
 #map {
   height: 200px;
 }
+/*un margen del boton de facebook*/
 .fb-like{
 bottom: 6px;
 }
+/*clase para justificar */
 p.justificar{
     text-align: justify;
 }
+/*clases del boton de instagram*/
 .ig-b- { 
     display: inline-block; 
     }
@@ -84,7 +93,7 @@ p.justificar{
 .ig-b-v-24 { 
     background-image: url(../img/intagram2.png); background-size: 160px 178px; } 
     }
-
+/*responsive para los contenedores*/
  @media screen and (max-width: 1000px){
   .contenedor{
     width: 80%;

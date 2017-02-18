@@ -11,6 +11,8 @@
       <link rel="stylesheet" href="css/materialize.min.css">
       <link rel="stylesheet" href="css/estilos.css">
       <link rel="stylesheet" href="css/icon.css">
+      <link rel="shortcut icon" href="img/logo.png">
+      <div id="fb-root"></div>
   </head>
   <!--Aqui comienza el body-->
   <body>
@@ -178,12 +180,16 @@
         <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
     </ul>
   </section>
-           
+  <!--Uso de archivo maestro para el footer-->         
   <?php
     include('archivosmaestros/footer.php')
   ?>
-      <script src="js/jquery-3.1.1.min.js"></script>
-      <script src="js/materialize.min.js"></script>
-      <script src="js/main.js"></script>
+  <!--archivos javascrip utilizados-->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/mapa.js" async defer></script>
+    <script async src="js/tweet.js" charset="utf-8"></script>
+    <script src="js/youtube.js"></script>
   </body>
 </html>

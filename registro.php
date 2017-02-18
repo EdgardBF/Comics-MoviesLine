@@ -1,12 +1,17 @@
 <!DOCTYPE html>
+<!--Con la siguiente linea de codigo se le dice al navegador que la pagina esta en idioma español-->
 <html lang = "es">
+<!--Aqui inicia el Head-->
 <head>
+     <!--La siguiente linea de codigo sirve para poner las tildes-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximun-scale=1, minimun-scale=1">
     <title>Registro</title>
+    <!--Se llaman los archivos CSS-->
     <link rel="stylesheet" href="css/materialize.min.css">
-	  <link rel="stylesheet" href="css/estilos.css">
+	<link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/icon.css">
+    <link rel="shortcut icon" href="img/logo.png">
     <div id="fb-root"></div>
 </head>
 <body>
@@ -34,44 +39,47 @@
       <li><a href="login.php" class="texto white-text waves-effect waves-teal"><i class="material-icons left white-text">person</i>INICIAR SESIÓN</a></li>
       <li><a href="compras.php" class="texto white-text waves-effect waves-teal"><i class="material-icons white-text">shopping_cart</i>COMPRAS</a></li>
     </ul>
+    <!--Uso de un contenedor para colocar los datos y de una clase para el cambio de colores-->
     <section class="container contenedor2">
     <div class="row">
         <form class="col s12">
             <div class="center-align">
-            <i class="material-icons"><a class="icono">note_add</a></i>
+            <i class="material-icons"><a class="icono">note_add</a></i><!--Icono de la parte superior-->
             </div>
             <div class="input-field col s12">
                 <input id="last_name" type="text" class="validate">
-                <label for="last_name" class="cyan-text text-darken-3">Nombre completo</label>
+                <label for="last_name" class="cyan-text text-darken-3">Nombre completo</label><!--El cuadro de texto donde se pondra el nombre completo-->
             </div>
             <div class="input-field col s12">
                 <input id="email" type="email" class="validate">
-                <label for="email" class="cyan-text text-darken-3">Email</label>
+                <label for="email" class="cyan-text text-darken-3">Email</label><!--El cuadro de texto donde se pondra el Email-->
             </div>
             <div class="input-field col s12">
                 <input id="last_name" type="text" class="validate">
-                <label for="last_name" class="cyan-text text-darken-3">Usuario</label>
+                <label for="last_name" class="cyan-text text-darken-3">Usuario</label><!--El cuadro de texto donde se pondra el nombre de usuario-->
             </div>
             <div class="input-field col s12">
                 <input id="password" type="password" class="validate">
-                <label for="password" class="cyan-text text-darken-3">Contraseña</label>
+                <label for="password" class="cyan-text text-darken-3">Contraseña</label><!--El cuadro de texto donde se pondra la contraseña-->
             </div>
              <div class="input-field col s12">
                 <input id="password" type="password" class="validate">
-                <label for="password" class="cyan-text text-darken-3">Verificar Contraseña</label>
+                <label for="password" class="cyan-text text-darken-3">Verificar Contraseña</label><!--El cuadro de texto donde se pondra para verificar la contraseña-->
             </div>
             <div class="center-align  boton">
-                <a class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">create</i>Crear</a>
+                <a class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">create</i>Crear</a><!--boton para poner guardar-->
             </div>
             <div class="center-align boton2">
-                <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="#!"><i class="material-icons right">face</i> Ya existo!</a>
+                <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="login.php"><i class="material-icons right">face</i> Ya existo!</a><!--boton para redirigirse de un solo-->
             </div>
         </form>
   </div>
   </section>
+   <!--Uso de archivo maestro para el footer-->
     <?php
     include('archivosmaestros/footer.php')
   ?>
+  <!--archivos javascrip utilizados-->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/main.js"></script>

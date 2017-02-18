@@ -1,12 +1,18 @@
 <!DOCTYPE html>
+<!--Con la siguiente linea de codigo se le dice al navegador que la pagina esta en idioma español-->
 <html lang = "es">
+<!--Aqui inicia el Head-->
 <head>
+     <!--La siguiente linea de codigo sirve para poner las tildes-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximun-scale=1, minimun-scale=1">
     <title>Soporte en Linea</title>
+    <!--Se llaman los archivos CSS-->
     <link rel="stylesheet" href="css/materialize.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/icon.css">
+    <link rel="shortcut icon" href="img/logo.png">
+    <div id="fb-root"></div>
 </head>
 <body>
        <!--El menu para PC-->
@@ -39,13 +45,16 @@
         include ('archivosmaestros/slider.php')
       ?>
     </section>
+    <!--se crea una seccion de acordeon-->
   </section>
-    <div class="section white">
-    <div class="row container">
-       <ul class="collapsible " data-collapsible="accordion">
+    <div class="section white"><!--Uso de una seccion blanca de materialize-->
+    <div class="row container"><!--Uso del contenedor de materialize-->
+       <ul class="collapsible " data-collapsible="accordion"><!--Este es la parte de acordeon donde se mostrara de primero el titulo y luego al darle click la demas informacion-->
         <li>
+            <!--Titulo del primero -->
             <div class="collapsible-header #00838f cyan darken-3"><i class="material-icons white-text text-darken-2">question_answer</i><a class="white-text text-darken-2 texto">Preguntas Frecuentes</a></div>
             <div class="collapsible-body #006064 cyan darken-4 white-text text-darken-2"><span>
+                <!--contenido del primero -->
                 <h4>Preguntas Frecuentes</h4>
                 <br>
                 <h5>¿Metodo de compra?</h5>
@@ -66,8 +75,10 @@
             </span></div>
         </li>
         <li>
+            <!--Titulo del segundo -->
             <div class="collapsible-header #00838f cyan darken-3"><i class="material-icons white-text text-darken-2">headset_mic</i><a class="white-text text-darken-2 texto">Asistencia técnica</a></div>
             <div class="collapsible-body #006064 cyan darken-4 white-text text-darken-2"><span>
+                <!--contenido del segundo -->
                 <h4>Asistencia técnica</h4>
                 <br>
                 <h5>¿Donde contactar?</h5>
@@ -88,8 +99,10 @@
             </span></div>
         </li>
         <li>
+            <!--Titulo del tercero -->
             <div class="collapsible-header #00838f cyan darken-3"><i class="material-icons white-text text-darken-2">help</i><a class="white-text text-darken-2 texto">Centro de ayuda</a></div>
             <div class="collapsible-body #006064 cyan darken-4 white-text text-darken-2"><span>
+                <!--contenido del tercero -->
                 <h4>Centro de ayuda</h4>
                 <br>
                 <h5>¿Tienes problemas?</h5>
@@ -105,16 +118,17 @@
                     Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet
                     Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet
                     Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet
-
                 </p>    
             </span></div>
         </li>
     </ul>
     </div>
     </div>
+    <!--Uso de archivo maestro para el footer-->
   <?php
     include('archivosmaestros/footer.php')
   ?>
+  <!--archivos javascrip utilizados-->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/main.js"></script>
