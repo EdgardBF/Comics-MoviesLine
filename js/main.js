@@ -1,8 +1,15 @@
 $( document ).ready(function(){
+    //Se inicializan los componentes
     $(".button-collapse").sideNav();
-    $('.slider').slider();
     $('.collapsible').collapsible();
   
+    $('.slider').slider({
+        //Se le cambia el alto al Slider
+        height: 400
+    });
+    $('.materialboxed').materialbox();
+    $('ul.tabs').tabs();
+    $('.modal').modal();
 })
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {zoom: 16});
