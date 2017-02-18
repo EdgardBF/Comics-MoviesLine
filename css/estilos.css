@@ -6,12 +6,15 @@
 .tipografia{
     font-family:ARDESTINE;
 }
+
 .slider .indicators .indicator-item {
-  background-color: #006064 ;
+  background-color: #006064;
 }
+
 .slider .indicators .indicator-item.active {
-  background-color: #00838f;
+  background-color: #01579b;
 }
+
 .logo img{
   margin-top: 5%;
   width: 100px;
@@ -99,6 +102,10 @@ p.justificar{
     width: 100%;
   }
  }  
+#logo_texto.hover{
+  background-color: #ffffff;
+}
 
- 
-
+#titulo-slider {
+  padding-top: 23%;
+}
