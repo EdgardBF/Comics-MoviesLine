@@ -81,6 +81,11 @@
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Doctor Strange $59.00<i class="material-icons right">keyboard_arrow_down</i></span>
                                 <p><a onclick="Materialize.toast('Agregado al Carrito', 4000)">Agregar al Carrito</a></p>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_half</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_border</i></a>
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">Doctor Strange  $39.00<i class="material-icons right">close</i></span>
@@ -96,6 +101,11 @@
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Batman vs Superman: Dawn of Justice $47.00<i class="material-icons right">keyboard_arrow_down</i></span>
                                 <p><a onclick="Materialize.toast('Agregado al Carrito', 4000)">Agregar al Carrito</a></p>
+                                <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_half</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_border</i></a>
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">Batman vs Superman: Dawn of Justice $47.00<i class="material-icons right">close</i></span>
@@ -111,6 +121,11 @@
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">The Peanuts $25.00<i class="material-icons right">keyboard_arrow_down</i></span>
                                 <p><a onclick="Materialize.toast('Agregado al Carrito', 4000)">Agregar al Carrito</a></p>
+                                <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_half</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_border</i></a>
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">Snoopy & Charlie Brown: Peanuts $25.00<i class="material-icons right">close</i></span>
@@ -128,6 +143,11 @@
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Star Wars: The Force Awakens $46.00<i class="material-icons right">keyboard_arrow_down</i></span>
                                 <p><a onclick="Materialize.toast('Agregado al Carrito', 4000)">Agregar al Carrito</a></p>
+                                <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_half</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_border</i></a>
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">Star Wars: The Force Awakens $46.00<i class="material-icons right">close</i></span>
@@ -143,6 +163,11 @@
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Capitán América: Civil War $57.00<i class="material-icons right">keyboard_arrow_down</i></span>
                                 <p><a onclick="Materialize.toast('Agregado al Carrito', 4000)">Agregar al Carrito</a></p>
+                                <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_half</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_border</i></a>
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">Capitán América: Civil War $57.00<i class="material-icons right">close</i></span>
@@ -158,6 +183,11 @@
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">The Amazing Spider-Man 2: el poder de Electro $37.00<i class="material-icons right">keyboard_arrow_down</i></span>
                                 <p><a onclick="Materialize.toast('Agregado al Carrito', 4000)">Agregar al Carrito</a></p>
+                                <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_half</i></a>
+                                    <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_border</i></a>
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">The Amazing Spider-Man 2: el poder de Electro $37.00<i class="material-icons right">close</i></span>
