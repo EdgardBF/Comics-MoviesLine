@@ -14,9 +14,10 @@
                 </li>
                 <li>
                     <!--Direccion hacia otras paginas en el slider-->
-                    <a href="productos.php" class="texto"><img src="img/slider2.png"> <!-- Segunda Imagen-->
+                    <a href="productos.php" class="texto">
+                    <img src="img/slider2.png"> <!-- Segunda Imagen-->
                         <div class="caption center-align">
-                            <h3 id="titulo-slider" class="tipografia">Doctor Strange Arriva al mercado.</h3>
+                            <h3 class="tipografia">Doctor Strange Arriva al mercado.</h3>
                             <h5 class="light grey-text text-lighten-3">Haciendo volar tu imaginacion, hasta limites irreconocibles.</h5>
                         </div>
                     </a>
