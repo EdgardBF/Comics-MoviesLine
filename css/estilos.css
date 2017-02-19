@@ -30,7 +30,9 @@
 .icono{
   font-size: 100px  !important;
   color: #006064;
-  
+}
+.icono-boton{
+  display: none;
 }
 /*contenedor de login*/
 .contenedor{
@@ -93,22 +95,44 @@ p.justificar{
 .ig-b-v-24 { 
     background-image: url(../img/intagram2.png); background-size: 160px 178px; } 
     }
-/*responsive para los contenedores*/
+/*responsive para los contenedores ylos botones de comentario*/
  @media screen and (max-width: 1000px){
   .contenedor{
     width: 80%;
   }
   .contenedor2{
     width: 80%;
-}
+  }
   
  }  
+@media screen and (max-width: 700px){
+    .separar{
+      margin-left: -15%;
+    }
+    .reponsivo{
+    display: none;
+  }
+  .icono-boton{
+    display: flex;
+    }
+  }
  @media screen and (max-width: 300px){
   .contenedor{
     width: 100%;
   }
   .contenedor2{
     width: 100%;
+  }
+  .separar{
+    margin-left: -15%;
+    width: 120%;
+    font-size: 8px;
+  }
+  .reponsivo{
+    display: none;
+  }
+  .icono-boton{
+    display: flex;
   }
  }  
 #logo_texto.hover{

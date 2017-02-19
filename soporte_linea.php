@@ -139,13 +139,13 @@
                     <label for="disabled" class="cyan-text text-darken-3">Usuario_Nombre</label><!--El cuadro de texto donde se pondra el nombre de usuario-->
                 </div>
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password" class="cyan-text text-darken-3">Comentario</label><!--El cuadro de texto donde se colocara el comentario-->
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name" class="cyan-text text-darken-3">Comentario</label><!--El cuadro de texto donde se colocara el comentario-->
                 </div>
-                    <div class="center-align  boton">
+                <div class="center-align  boton">
                     <a class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">cloud_upload</i>Enviar</a> <!--Boton con el cual se enviara el commentraio-->
                 </div>
-                    <div class="center-align boton2">
+                <div class="center-align boton2">
                     <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="registro.php"><i class="material-icons right">face</i> Registrate!</a><!--boton para rederigirse a registro-->
                 </div>
             </form>
