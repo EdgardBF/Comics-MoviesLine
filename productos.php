@@ -93,42 +93,42 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
-                                     <!-- Caja de comentarios de los productos -->
-                                    <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
-                                        <div class="modal-content">
-                                        <h4>Comentarios</h4>
-                                        <div class="input-field col s12">
-                                            <input id="last_name" type="text" class="validate">
-                                            <label for="last_name" class="cyan-text text-darken-3">Comentario</label><!--El cuadro de texto donde se colocara el comentario-->
-                                        </div>
-                                        <h5>Nombre_usaurio</h5>
-                                        <p>
-                                            Lugar donde ira el comentario de los clientes
-                                        </p>
-                                        <hr>
-                                        <h5>Nombre_usaurio</h5>
-                                        <p>
-                                            Lugar donde ira el comentario de los clientes
-                                        </p>
-                                        <hr>
-                                        <h5>Nombre_usaurio</h5>
-                                        <p>
-                                            Lugar donde ira el comentario de los clientes
-                                        </p>
-                                        <hr>
-                                        <h5>Nombre_usaurio</h5>
-                                        <p>
-                                            Lugar donde ira el comentario de los clientes
-                                        </p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4">Enviar</a>
-                                            <a href="registro.php" class=" modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4">Registrate</a>
-                                       </div>
-                                  </div>
-                             </div>
+                                <!-- Modal Structure -->
+                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
+                                    <div class="modal-content">
+                                    <h4>Comentarios</h4>
+                                    <div class="input-field col s12">
+                                        <input id="last_name" type="text" class="validate">
+                                        <label for="last_name" class="cyan-text text-darken-3">Comentario</label><!--El cuadro de texto donde se colocara el comentario-->
+                                    </div>
+                                    <h5>Nombre_usaurio</h5>
+                                    <p>
+                                        Lugar donde ira el comentario de los clientes
+                                    </p>
+                                    <hr>
+                                    <h5>Nombre_usaurio</h5>
+                                    <p>
+                                        Lugar donde ira el comentario de los clientes
+                                    </p>
+                                    <hr>
+                                    <h5>Nombre_usaurio</h5>
+                                    <p>
+                                        Lugar donde ira el comentario de los clientes
+                                    </p>
+                                    <hr>
+                                    <h5>Nombre_usaurio</h5>
+                                    <p>
+                                        Lugar donde ira el comentario de los clientes
+                                    </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4">Enviar</a>
+                                        <a href="registro.php" class=" modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4">Registrate</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col s12 m4">
@@ -151,10 +151,10 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal2"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
-                                 <!-- Caja de comentarios de los productos -->
-                                <div id="modal2" class="modal bottom-sheet modal-fixed-footer">
+                                <!-- Modal Structure -->
+                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
                                     <div class="modal-content">
                                     <h4>Comentarios</h4>
                                     <div class="input-field col s12">
@@ -209,10 +209,10 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal3"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
-                                 <!-- Caja de comentarios de los productos -->
-                                <div id="modal3" class="modal bottom-sheet modal-fixed-footer">
+                                <!-- Modal Structure -->
+                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
                                     <div class="modal-content">
                                     <h4>Comentarios</h4>
                                     <div class="input-field col s12">
@@ -247,6 +247,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 <div class="row">
                     <div class="col s12 m4">
                         <div class="card">
@@ -268,10 +269,10 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal4"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
-                                 <!-- Caja de comentarios de los productos -->
-                                <div id="modal4" class="modal bottom-sheet modal-fixed-footer">
+                                <!-- Modal Structure -->
+                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
                                     <div class="modal-content">
                                     <h4>Comentarios</h4>
                                     <div class="input-field col s12">
@@ -326,10 +327,10 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal5"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
-                                 <!-- Caja de comentarios de los productos -->
-                                <div id="modal5" class="modal bottom-sheet modal-fixed-footer">
+                                <!-- Modal Structure -->
+                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
                                     <div class="modal-content">
                                     <h4>Comentarios</h4>
                                     <div class="input-field col s12">
@@ -358,7 +359,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4">Enviar</a>
-                                        <a href="registro.php" class=" modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4">Registrate</a>
+                                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4">Registrate</a>
                                     </div>
                                 </div>
                             </div>
@@ -384,10 +385,10 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal6"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
-                                <!-- Caja de comentarios de los productos -->
-                                <div id="modal6" class="modal bottom-sheet modal-fixed-footer">
+                                <!-- Modal Structure -->
+                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
                                     <div class="modal-content">
                                     <h4>Comentarios</h4>
                                     <div class="input-field col s12">
