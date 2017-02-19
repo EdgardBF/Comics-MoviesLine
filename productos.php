@@ -88,7 +88,7 @@
                                     <a class="btn-floating btn-small waves-effect cyan darken-3"><i class="material-icons">star_border</i></a>
                             </div>
                             <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">Doctor Strange  $39.00<i class="material-icons right">close</i></span>
+                                <span class="card-title grey-text text-darken-4">Doctor Strange  $59.00<i class="material-icons right">close</i></span>
                                 <p>La adquisición de este producto lleva consigo una copia original de la película estrenada el 2016 de Doctor Strange, con su respectivo comic en el que fue basado denominado Doctor Strange: The Oath, a un precio de $59.00.</p>
                             </div>
                             <div class="card-action">
@@ -151,10 +151,10 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal2"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
                                 <!-- Modal Structure -->
-                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
+                                <div id="modal2" class="modal bottom-sheet modal-fixed-footer">
                                     <div class="modal-content">
                                     <h4>Comentarios</h4>
                                     <div class="input-field col s12">
@@ -209,10 +209,10 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal3"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
                                 <!-- Modal Structure -->
-                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
+                                <div id="modal3" class="modal bottom-sheet modal-fixed-footer">
                                     <div class="modal-content">
                                     <h4>Comentarios</h4>
                                     <div class="input-field col s12">
@@ -269,10 +269,10 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal4"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
                                 <!-- Modal Structure -->
-                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
+                                <div id="modal4" class="modal bottom-sheet modal-fixed-footer">
                                     <div class="modal-content">
                                     <h4>Comentarios</h4>
                                     <div class="input-field col s12">
@@ -327,10 +327,10 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal5"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
                                 <!-- Modal Structure -->
-                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
+                                <div id="modal5" class="modal bottom-sheet modal-fixed-footer">
                                     <div class="modal-content">
                                     <h4>Comentarios</h4>
                                     <div class="input-field col s12">
@@ -385,10 +385,10 @@
                             </div>
                             <div class="card-action">
                                 <div class="center-align">
-                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal1"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
+                                    <a class="waves-effect waves-light btn cyan darken-3 separar" href="#modal6"> <span class="reponsivo">comentarios</span> <i class="material-icons"><span class="icono-boton">comment</span></i></a>
                                 </div>
                                 <!-- Modal Structure -->
-                                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
+                                <div id="modal6" class="modal bottom-sheet modal-fixed-footer">
                                     <div class="modal-content">
                                     <h4>Comentarios</h4>
                                     <div class="input-field col s12">
