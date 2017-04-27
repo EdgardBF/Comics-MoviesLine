@@ -1,7 +1,5 @@
 <?php
 require('database.php');
-$documento = basename($_SERVER['PHP_SELF']);
-
 class master
 {
     public static function header($title){
@@ -19,7 +17,9 @@ class master
                 <!--Se llaman los archivos CSS-->
                 <link type='text/css' rel='stylesheet' href='../css/materialize.min.css'>
                 <link type='text/css' rel='stylesheet' href='../css/estilos.css'>
+                <link type='text/css' rel='stylesheet' href='../css/sweetalert2.min.css'/>
                 <link type='text/css' rel='stylesheet' href='../css/icon.css'>
+                <script type='text/javascript' src='../js/sweetalert2.min.js'></script>
                 <link rel='shortcut icon' href='../img/logo.png'>
                 <div id='fb-root'></div>
             </head>
@@ -58,6 +58,47 @@ class master
         }
         else
         {
+            $documento = basename($_SERVER['PHP_SELF']);
+            $activo1 = null;
+            $activo2 = null;
+            $activo3 = null;
+            $activo4 = null;
+            $activo5 = null;
+            if ($documento=="index.php"){
+                $activo1='active';
+                $activo2 = null;
+                $activo3 = null;
+                $activo4 = null;
+                $activo5 = null;
+            }
+            else if ($documento=="productos.php"){
+                $activo1=null;
+                $activo2 = 'active';
+                $activo3 = null;
+                $activo4 = null;
+                $activo5 = null;
+            }
+            else if($documento=="soporte_linea.php"){
+                $activo1=null;
+                $activo2 = null;
+                $activo3 = 'active';
+                $activo4 = null;
+                $activo5 = null;
+            }
+            else if($documento=="login.php"){
+                $activo1=null;
+                $activo2 = null;
+                $activo3 = null;
+                $activo4 = 'active';
+                $activo5 = null;
+            }
+            else if($documento=="compras.php"){
+                $activo1=null;
+                $activo2 = null;
+                $activo3 = null;
+                $activo4 = null;
+                $activo5 = 'active';  
+            }
             print("
                 <div class='navbar-fixed z-depth-4' id='menu'>
                     <nav class='tipografia'>
@@ -65,25 +106,34 @@ class master
                             <a href='#!' class='brand-logo logo'><img src='../img/logo.png'></a>
                             <a href='#' data-activates='mobile-demo' class='button-collapse'><i class='material-icons'>menu</i></a>
                             <ul class='right hide-on-med-and-down'>
-                                <li><a href='index.php' class='texto waves-effect waves-teal'><i class='material-icons left'>home</i>INICIO</a></li>
-                                <li><a href='productos.php' class='waves-effect waves-teal texto'><i class='material-icons left'>extension</i>PRODUCTOS</a></li>
-                                <li><a href='soporte_linea.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>SOPORTE EN LÍNEA</a></li>
-                                <li class='active'><a href='login.php' class='waves-effect waves-teal texto'><i class='material-icons left'>person</i>INICIAR SESIÓN</a></li>
-                                <li><a href='compras.php' class='waves-effect waves-teal texto'><i class='material-icons'>shopping_cart</i></a></li>
+                                <li class='$activo1'><a href='../public/index.php' class='texto waves-effect waves-teal'><i class='material-icons left'>home</i>INICIO</a></li>
+                                <li class='$activo2'><a href='../public/productos.php' class='waves-effect waves-teal texto'><i class='material-icons left'>extension</i>PRODUCTOS</a></li>
+                                <li class='$activo3'><a href='../public/soporte_linea.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>SOPORTE EN LÍNEA</a></li>
+                                <li class='$activo4'><a href='../dashboard/login.php' class='waves-effect waves-teal texto'><i class='material-icons left'>person</i>INICIAR SESIÓN</a></li>
+                                <li class='$activo5'><a href='../dashboard/compras.php' class='waves-effect waves-teal texto'><i class='material-icons'>shopping_cart</i></a></li>
                             </ul>
                         </div>
                     </nav>
                 </div>
                 <!--Menu para el Mobil-->
                 <ul class='side-nav cyan darken-4 z-depth-4' id='mobile-demo'>
-                <li><a href='#!' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>home</i>INICIO</a></li>
-                <li><a href='productos.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>extension</i>PRODUCTOS</a></li>
-                <li><a href='soporte_linea.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>question_answer</i>SOPORTE EN LÍNEA</a></li>
-                <li class='active'><a href='#!' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>person</i>INICIAR SESIÓN</a></li>
-                <li><a href='compras.php' class='texto white-text waves-effect waves-teal'><i class='material-icons white-text'>shopping_cart</i>COMPRAS</a></li>
+                <li class='$activo1'><a href='../public/index.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>home</i>INICIO</a></li>
+                <li class='$activo2'><a href='../public/productos.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>extension</i>PRODUCTOS</a></li>
+                <li class='$activo3'><a href='../public/soporte_linea.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>question_answer</i>SOPORTE EN LÍNEA</a></li>
+                <li class='$activo4'><a href='../dashboard/login.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>person</i>INICIAR SESIÓN</a></li>
+                <li class='$activo5'><a href='../dashboard/compras.php' class='texto white-text waves-effect waves-teal'><i class='material-icons white-text'>shopping_cart</i>COMPRAS</a></li>
                 </ul>
             
             ");
+            if($documento == "main.php")
+			{
+				self::showMessage(3, "¡Debe iniciar sesión!", "../dashboard/login.php");
+				self::footer();
+				exit;
+			}
+			else
+			{
+			}
 
         }
 
@@ -136,6 +186,36 @@ class master
         ");
 
     }
+    	public static function showMessage($type, $message, $url)
+	{
+		$text = addslashes($message);
+		switch($type)
+		{
+			case 1:
+				$title = "Éxito";
+				$icon = "success";
+				break;
+			case 2:
+				$title = "Error";
+				$icon = "error";
+				break;
+			case 3:
+				$title = "Advertencia";
+				$icon = "warning";
+				break;
+			case 4:
+				$title = "Aviso";
+				$icon = "info";
+		}
+		if($url != null)
+		{
+			print("<script>swal({title: '$title', text: '$text', type: '$icon', confirmButtonText: 'Aceptar', allowOutsideClick: false, allowEscapeKey: false}).then(function(){location.href = '$url'})</script>");
+		}
+		else
+		{
+			print("<script>swal({title: '$title', text: '$text', type: '$icon', confirmButtonText: 'Aceptar', allowOutsideClick: false, allowEscapeKey: false})</script>");
+		}
+	}
 
 }
 ?>
