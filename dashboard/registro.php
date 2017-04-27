@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximun-scale=1, minimun-scale=1">
     <title>Registro</title>
     <!--Se llaman los archivos CSS-->
-    <link rel="stylesheet" href="css/materialize.min.css">
-	<link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="css/icon.css">
-    <link rel="shortcut icon" href="img/logo.png">
+      <link rel="stylesheet" href="../css/materialize.min.css">
+      <link rel="stylesheet" href="../css/estilos.css">
+      <link rel="stylesheet" href="../css/icon.css">
+      <link rel="shortcut icon" href="../img/logo.png">
     <div id="fb-root"></div>
 </head>
 <body>
@@ -19,7 +19,7 @@
     <div class="navbar-fixed z-depth-4" id="menu">
         <nav class="tipografia">
             <div class="nav-wrapper #00838f cyan darken-3">
-                <a href="#!" class="brand-logo logo"><img src="img/logo.png"></a>
+                <a href="#!" class="brand-logo logo"><img src="../img/logo.png"></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="index.php" class="texto waves-effect waves-teal"><i class="material-icons left">home</i>INICIO</a></li>
@@ -77,14 +77,14 @@
   </section>
    <!--Uso de archivo maestro para el footer-->
     <?php
-    include('archivosmaestros/footer.php')
+    include('../archivosmaestros/footer.php')
   ?>
   <!--archivos javascrip utilizados-->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/mapa.js" async defer></script>
-    <script async src="js/tweet.js" charset="utf-8"></script>
-    <script src="js/youtube.js"></script>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/materialize.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/mapa.js" async defer></script>
+    <script async src="../js/tweet.js" charset="utf-8"></script>
+    <script src="../js/youtube.js"></script>
   </body>
   </html>

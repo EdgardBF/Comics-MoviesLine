@@ -8,10 +8,10 @@
       <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximun-scale=1, minimun-scale=1">
       <title>Productos</title>
       <!--Se llaman los archivos CSS-->
-      <link rel="stylesheet" href="css/materialize.min.css">
-      <link rel="stylesheet" href="css/estilos.css">
-      <link rel="stylesheet" href="css/icon.css">
-      <link rel="shortcut icon" href="img/logo.png">
+      <link rel="stylesheet" href="../css/materialize.min.css">
+      <link rel="stylesheet" href="../css/estilos.css">
+      <link rel="stylesheet" href="../css/icon.css">
+      <link rel="shortcut icon" href="../img/logo.png">
       <div id="fb-root"></div>
   </head>
   <!--Aqui comienza el body-->
@@ -20,7 +20,7 @@
     <div class="navbar-fixed z-depth-4" id="menu">
         <nav class="tipografia">
             <div class="nav-wrapper cyan darken-3">
-                <a href="index.php" class="brand-logo logo"><img src="img/logo.png"></a>
+                <a href="index.php" class="brand-logo logo"><img src="../img/logo.png"></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="index.php" class="texto waves-effect waves-teal"><i class="material-icons left">home</i>INICIO</a></li>
@@ -43,7 +43,7 @@
     <!--Se manda a llamar un archivo maestro del Slider-->
     <section>
       <?php
-        include ('archivosmaestros/slider.php')
+        include ('../archivosmaestros/slider.php')
       ?>
   </section>
   <section>
@@ -76,7 +76,7 @@
                     <div class="col s12 m4">
                         <div class="card">
                             <div class="card-image ">
-                                <img class="materialboxed" src="img/slider2.png">
+                                <img class="materialboxed" src="../img/slider2.png">
                             </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Doctor Strange $59.00<i class="material-icons right">keyboard_arrow_down</i></span>
@@ -134,7 +134,7 @@
                     <div class="col s12 m4">
                         <div class="card">
                             <div class="card-image ">
-                                <img class="materialboxed" src="img/slider3.png">
+                                <img class="materialboxed" src="../img/slider3.png">
                             </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Batman vs Superman: Dawn of Justice $47.00<i class="material-icons right">keyboard_arrow_down</i></span>
@@ -192,7 +192,7 @@
                     <div class="col s12 m4">
                         <div class="card">
                             <div class="card-image ">
-                                <img class="materialboxed" src="img/slider4.png">
+                                <img class="materialboxed" src="../img/slider4.png">
                             </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">The Peanuts $25.00<i class="material-icons right">keyboard_arrow_down</i></span>
@@ -252,7 +252,7 @@
                     <div class="col s12 m4">
                         <div class="card">
                             <div class="card-image ">
-                                <img class="materialboxed" src="img/producto1.png">
+                                <img class="materialboxed" src="../img/producto1.png">
                             </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Star Wars: The Force Awakens $46.00<i class="material-icons right">keyboard_arrow_down</i></span>
@@ -310,7 +310,7 @@
                     <div class="col s12 m4">
                         <div class="card">
                             <div class="card-image ">
-                                <img class="materialboxed" src="img/producto2.png">
+                                <img class="materialboxed" src="../img/producto2.png">
                             </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Capitán América: Civil War $57.00<i class="material-icons right">keyboard_arrow_down</i></span>
@@ -368,7 +368,7 @@
                     <div class="col s12 m4">
                         <div class="card">
                             <div class="card-image ">
-                                <img class="materialboxed" src="img/producto3.png">
+                                <img class="materialboxed" src="../img/producto3.png">
                             </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">The Amazing Spider-Man 2: el poder de Electro $37.00<i class="material-icons right">keyboard_arrow_down</i></span>
@@ -439,14 +439,14 @@
   </section>
   <!--Uso de archivo maestro para el footer-->         
   <?php
-    include('archivosmaestros/footer.php')
+    include('../archivosmaestros/footer.php')
   ?>
   <!--archivos javascrip utilizados-->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/mapa.js" async defer></script>
-    <script async src="js/tweet.js" charset="utf-8"></script>
-    <script src="js/youtube.js"></script>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/materialize.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/mapa.js" async defer></script>
+    <script async src="../js/tweet.js" charset="utf-8"></script>
+    <script src="../js/youtube.js"></script>
   </body>
 </html>

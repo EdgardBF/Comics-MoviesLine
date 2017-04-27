@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximun-scale=1, minimun-scale=1">
     <title>Soporte en Linea</title>
     <!--Se llaman los archivos CSS-->
-    <link rel="stylesheet" href="css/materialize.min.css">
-	<link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="css/icon.css">
-    <link rel="shortcut icon" href="img/logo.png">
+      <link rel="stylesheet" href="../css/materialize.min.css">
+      <link rel="stylesheet" href="../css/estilos.css">
+      <link rel="stylesheet" href="../css/icon.css">
+      <link rel="shortcut icon" href="../img/logo.png">
     <div id="fb-root"></div>
 </head>
 <body>
@@ -19,14 +19,14 @@
     <div class="navbar-fixed z-depth-4" id="menu">
         <nav class="tipografia">
             <div class="nav-wrapper #00838f cyan darken-3">
-                <a href="#!" class="brand-logo logo"><img src="img/logo.png"></a>
+                <a href="#!" class="brand-logo logo"><img src="../img/logo.png"></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#!" class="texto waves-effect waves-teal"><i class="material-icons left">home</i>INICIO</a></li>
                     <li><a href="productos.php" class="waves-effect waves-teal texto"><i class="material-icons left">extension</i>PRODUCTOS</a></li>
                     <li class="active"><a href="#!" class="waves-effect waves-teal texto"><i class="material-icons left">question_answer</i>SOPORTE EN LÍNEA</a></li>
-                    <li><a href="login.php" class="waves-effect waves-teal texto"><i class="material-icons left">person</i>INICIAR SESIÓN</a></li>
-                    <li><a href="compras.php" class="waves-effect waves-teal texto"><i class="material-icons">shopping_cart</i></a></li>
+                    <li><a href="../dashboard/login.php" class="waves-effect waves-teal texto"><i class="material-icons left">person</i>INICIAR SESIÓN</a></li>
+                    <li><a href="../dashboard/compras.php" class="waves-effect waves-teal texto"><i class="material-icons">shopping_cart</i></a></li>
                 </ul>
             </div>
         </nav>
@@ -42,7 +42,7 @@
     <!--Se manda a llamar un archivo maestro del Slider-->
     <section>
       <?php
-        include ('archivosmaestros/slider.php')
+        include ('../archivosmaestros/slider.php')
       ?>
     </section>
     <!--se crea una seccion de acordeon-->
@@ -153,14 +153,14 @@
     </section>
     <!--Uso de archivo maestro para el footer-->
   <?php
-    include('archivosmaestros/footer.php')
+    include('../archivosmaestros/footer.php')
   ?>
   <!--archivos javascrip utilizados-->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/mapa.js" async defer></script>
-    <script async src="js/tweet.js" charset="utf-8"></script>
-    <script src="js/youtube.js"></script>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/materialize.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/mapa.js" async defer></script>
+    <script async src="../js/tweet.js" charset="utf-8"></script>
+    <script src="../js/youtube.js"></script>
 </body>    
 </html>

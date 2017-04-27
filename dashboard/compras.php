@@ -8,10 +8,10 @@
       <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximun-scale=1, minimun-scale=1">
       <title>Compras</title>
       <!--Se llaman los archivos CSS-->
-      <link rel="stylesheet" href="css/materialize.min.css">
-      <link rel="stylesheet" href="css/estilos.css">
-      <link rel="stylesheet" href="css/icon.css">
-      <link rel="shortcut icon" href="img/logo.png">
+      <link rel="stylesheet" href="../css/materialize.min.css">
+      <link rel="stylesheet" href="../css/estilos.css">
+      <link rel="stylesheet" href="../css/icon.css">
+      <link rel="shortcut icon" href="../img/logo.png">
       <div id="fb-root"></div>
   </head>
   <!--Aqui comienza el body-->
@@ -20,7 +20,7 @@
     <div class="navbar-fixed z-depth-4" id="menu">
         <nav class="tipografia">
             <div class="nav-wrapper #00838f cyan darken-3">
-                <a href="index.php" class="brand-logo logo"><img src="img/logo.png"></a>
+                <a href="index.php" class="brand-logo logo"><img src="../img/logo.png"></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="index.php" class="texto waves-effect waves-teal"><i class="material-icons left">home</i>INICIO</a></li>
@@ -59,7 +59,7 @@
                         <div class="col s12 m4">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="img/slider2.png">
+                                    <img src="../img/slider2.png">
                                     <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="Materialize.toast('Eliminado del Carrito', 4000)"><i class="material-icons">close</i></a>
                                 </div>
                                 <div class="card-content">
@@ -70,7 +70,7 @@
                         <div class="col s12 m4">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="img/producto1.png">
+                                    <img src="../img/producto1.png">
                                     <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="Materialize.toast('Eliminado del Carrito', 4000)"><i class="material-icons">close</i></a>
                                 </div>
                                 <div class="card-content">
@@ -120,8 +120,8 @@
                             </div>
                             <p><h5 class="tipografia">FORMAS DE PAGO</h5></p>
                             <div class="center-align">
-                                <a href="#!"><img height="100" src="img/paypal.png"></a>
-                                <a href="#!"><img height="100" src="img/visa-otros.png"></a>
+                                <a href="#!"><img height="100" src="../img/paypal.png"></a>
+                                <a href="#!"><img height="100" src="../img/visa-otros.png"></a>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
@@ -153,14 +153,14 @@
   </section>
   <!--Uso de archivo maestro para el footer-->
       <?php
-        include('archivosmaestros/footer.php')
+        include('../archivosmaestros/footer.php')
        ?>
        <!--archivos javascrip utilizados-->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/mapa.js" async defer></script>
-    <script async src="js/tweet.js" charset="utf-8"></script>
-    <script src="js/youtube.js"></script>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/materialize.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/mapa.js" async defer></script>
+    <script async src="../js/tweet.js" charset="utf-8"></script>
+    <script src="../js/youtube.js"></script>
   </body>
 </html>

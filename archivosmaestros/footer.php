@@ -19,7 +19,7 @@
                 <li><a class="grey-text text-lighten-3" href="#!">
                 <div class="g-ytsubscribe" data-channel="ComicGameMexico" data-layout="default" data-count="default"></div>
                 </a></li>
-                <li><a class="grey-text text-lighten-3" href="#!"><a href="https://www.instagram.com/thetopcomicsoficial/" class="ig-b- ig-b-v-24"><img src="img/instagram.png" alt="Instagram" /></a></a></li>
+                <li><a class="grey-text text-lighten-3" href="#!"><a href="https://www.instagram.com/thetopcomicsoficial/" class="ig-b- ig-b-v-24"><img src="../img/instagram.png" alt="Instagram" /></a></a></li>
             </ul>
         </div>
     </div>
