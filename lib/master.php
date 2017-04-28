@@ -1,5 +1,6 @@
 <?php
 require('database.php');
+require('validator.php');
 class master
 {
     public static function header($title){
@@ -26,19 +27,20 @@ class master
             <!--Aqui comienza el body-->
             <body>
         ");
-        if(isset($_SESSION['nombre_usuario']))
+        if(isset($_SESSION['usuario']))
         {
-            print("
+            if($_SESSION['id_tipo_usuario']==1){
+                print("
                 <div class='navbar-fixed z-depth-4' id='menu'>
                     <nav class='tipografia'>
-                        <div class='nav-wrapper #00838f cyan darken-3'>
+                        <div class='nav-wrappe'>
                             <a href='#!' class='brand-logo logo'><img src='../img/logo.png'></a>
                             <a href='#' data-activates='mobile-demo' class='button-collapse'><i class='material-icons'>menu</i></a>
                             <ul class='right hide-on-med-and-down'>
                                 <li><a href='index.php' class='texto waves-effect waves-teal'><i class='material-icons left'>home</i>INICIO</a></li>
                                 <li><a href='productos.php' class='waves-effect waves-teal texto'><i class='material-icons left'>extension</i>PRODUCTOS</a></li>
-                                <li><a href='soporte_linea.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>SOPORTE EN LÍNEA</a></li>
-                                <li class='active'><a href='login.php' class='waves-effect waves-teal texto'><i class='material-icons left'>person</i>INICIAR SESIÓN</a></li>
+                                <li><a href='soporte_linea.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Usuarios</a></li>
+                                <li class='active'><a href='login.php' class='waves-effect waves-teal texto'><i class='material-icons left'>person</i>".$_SESSION['usuario']."</a></li>
                                 <li><a href='compras.php' class='waves-effect waves-teal texto'><i class='material-icons'>shopping_cart</i></a></li>
                             </ul>
                         </div>
@@ -49,12 +51,42 @@ class master
                 <li><a href='#!' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>home</i>INICIO</a></li>
                 <li><a href='productos.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>extension</i>PRODUCTOS</a></li>
                 <li><a href='soporte_linea.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>question_answer</i>SOPORTE EN LÍNEA</a></li>
-                <li class='active'><a href='#!' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>person</i>INICIAR SESIÓN</a></li>
+                <li class='active'><a href='#!' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>person</i>".$_SESSION['usuario']."</a></li>
                 <li><a href='compras.php' class='texto white-text waves-effect waves-teal'><i class='material-icons white-text'>shopping_cart</i>COMPRAS</a></li>
                 </ul>
             
             ");
 
+            }
+            else{
+            print("
+                <div class='navbar-fixed z-depth-4' id='menu'>
+                    <nav class='tipografia'>
+                        <div class='nav-wrapper #00838f cyan darken-3'>
+                            <a href='#!' class='brand-logo logo'><img src='../img/logo.png'></a>
+                            <a href='#' data-activates='mobile-demo' class='button-collapse'><i class='material-icons'>menu</i></a>
+                            <ul class='right hide-on-med-and-down'>
+                                <li><a href='index.php' class='texto waves-effect waves-teal'><i class='material-icons left'>home</i>INICIO</a></li>
+                                <li><a href='productos.php' class='waves-effect waves-teal texto'><i class='material-icons left'>extension</i>PRODUCTOS</a></li>
+                                <li><a href='soporte_linea.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>SOPORTE EN LÍNEA</a></li>
+                                <li class='active'><a href='login.php' class='waves-effect waves-teal texto'><i class='material-icons left'>person</i>".$_SESSION['usuario']."</a></li>
+                                <li><a href='compras.php' class='waves-effect waves-teal texto'><i class='material-icons'>shopping_cart</i></a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!--Menu para el Mobil-->
+                <ul class='side-nav cyan darken-4 z-depth-4' id='mobile-demo'>
+                <li><a href='#!' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>home</i>INICIO</a></li>
+                <li><a href='productos.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>extension</i>PRODUCTOS</a></li>
+                <li><a href='soporte_linea.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>question_answer</i>SOPORTE EN LÍNEA</a></li>
+                <li class='active'><a href='#!' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>person</i>".$_SESSION['usuario']."</a></li>
+                <li><a href='compras.php' class='texto white-text waves-effect waves-teal'><i class='material-icons white-text'>shopping_cart</i>COMPRAS</a></li>
+                </ul>
+            
+            ");
+            }
+            
         }
         else
         {
@@ -125,7 +157,7 @@ class master
                 </ul>
             
             ");
-            if($documento == "main.php")
+            if($documento =="")
 			{
 				self::showMessage(3, "¡Debe iniciar sesión!", "../dashboard/login.php");
 				self::footer();
