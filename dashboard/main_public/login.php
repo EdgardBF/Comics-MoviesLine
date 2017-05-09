@@ -1,6 +1,6 @@
 <?php
-require("../lib/master.php");
-master::header("Login");
+require("../../lib/master.php");
+master::header("Login_public");
 $sql = "SELECT * FROM registro";
 $data = Database::getRows($sql, null);
 if($data == null)
@@ -24,16 +24,9 @@ if(!empty($_POST))
 		    	$hash = $data['clave'];
 		    	if(password_verify($clave, $hash)) 
 		    	{
-			    	$_SESSION['id_usuario'] = $data['id_usuario'];
-            $_SESSION['id_tipo_usuario'] = $data['id_tipo_usuario'];
+			      $_SESSION['id_registro'] = $data['id_registro'];
 			      $_SESSION['usuario'] = $data['usuario'];
-            if($data['id_tipo_usuario']==1){
-                header("location: main.php");
-            }
-            else{
-                header("location: main_user.php");
-            }
-			      	
+            header("location: main_user.php");			      	
 				}
 				else 
 				{
@@ -75,11 +68,11 @@ if(!empty($_POST))
         <button type='submit' class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">play_arrow</i>Ingresar</button> <!--Boton con el cual se ingrasara-->
         </div>
         <div class="center-align boton2">
-        <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="../dashboard/registro.php"><i class="material-icons right">face</i> Registrate!</a><!--boton para rederigirse a registro-->
+        <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="registro.php"><i class="material-icons right">face</i> Registrate!</a><!--boton para rederigirse a registro-->
         </div>
     </form>
   </div>
   </section>
 <?php
-master::footer();
+master::footer("Login_public");
 ?>

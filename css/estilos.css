@@ -1,3 +1,13 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+    
 /*llamar a una clase para colocar un font*/
 @font-face{
     font-family:ARDESTINE;
@@ -90,10 +100,6 @@ p.justificar{
     }
 .ig-b-v-24 { 
     width: 137px; height: 24px; background: url(../img/intagram3.png) no-repeat 0 0; 
-    }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-.ig-b-v-24 { 
-    background-image: url(../img/intagram2.png); background-size: 160px 178px; } 
     }
 /*responsive para los contenedores ylos botones de comentario*/
  @media screen and (max-width: 1000px){

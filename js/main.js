@@ -2,7 +2,7 @@ $( document ).ready(function(){
     //Se inicializan los componentes
     $(".button-collapse").sideNav();
     $('.collapsible').collapsible();
-  
+    $('select').material_select();
     $('.slider').slider({
         //Se le cambia el alto al Slider
         height: 400
@@ -40,6 +40,12 @@ window.fbAsyncInit = function() {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "../js/sdk.js";
+  js.src = "../../js/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+
+function eliminar (id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/eliminar.php?id="+id;
+}

@@ -64,5 +64,5 @@ master::header("Inicio");
       </div>
       </section>
 <?php
-master::footer();
+master::footer("Inicio");
 ?>

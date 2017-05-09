@@ -116,5 +116,5 @@ master::header("Soporte_Linea");
     </section>
     <!--Uso de archivo maestro para el footer-->
 <?php
-master::footer();
+master::footer("Soporte_Linea");
 ?>

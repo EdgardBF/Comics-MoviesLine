@@ -8,7 +8,7 @@ class Database
         $server = "localhost";
         $database = "db_tienda_comics";
         $username = "root";
-        $password = "";
+        $password = "77889776";
         $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8");
         self::$connection = null;
         try

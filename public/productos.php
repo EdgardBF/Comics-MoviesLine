@@ -400,5 +400,5 @@ master::header("Productos");
     </ul>
   </section>
 <?php
-master::footer();
+master::footer("Productos");
 ?>

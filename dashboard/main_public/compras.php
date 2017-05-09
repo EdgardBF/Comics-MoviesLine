@@ -1,5 +1,5 @@
 <?php
-require("../lib/master.php");
+require("../../lib/master.php");
 master::header("Compras");
 ?>
     <!--Se manda a llamar un archivo maestro del Slider-->
@@ -82,8 +82,8 @@ master::header("Compras");
                             </div>
                             <p><h5 class="tipografia">FORMAS DE PAGO</h5></p>
                             <div class="center-align">
-                                <a href="#!"><img height="100" src="../img/paypal.png"></a>
-                                <a href="#!"><img height="100" src="../img/visa-otros.png"></a>
+                                <a href="#!"><img height="100" src="../../img/paypal.png"></a>
+                                <a href="#!"><img height="100" src="../../img/visa-otros.png"></a>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
@@ -114,5 +114,5 @@ master::header("Compras");
         </div>    
   </section>
 <?php
-master::footer();
+master::footer("Compras");
 ?>

@@ -1,5 +1,5 @@
 <?php
-require("../lib/master.php");
+require("../../lib/master.php");
 master::header("Registro");
 if(!empty($_POST))
 {
@@ -9,7 +9,7 @@ if(!empty($_POST))
     $usuario = $_POST['usuario'];
     $clave1 = $_POST['clave1'];
     $clave2 = $_POST['clave2'];
-    $tipo_u = 2;
+    $permisos = $_POST['permisos'];
     try{
         if($nombre !="")
         {
@@ -17,25 +17,32 @@ if(!empty($_POST))
             {
                 if($usuario != "")
                 {
-                    if($clave1 != "" && $clave2 != "")
+                    if($permisos != "")
                     {
-                        if($clave1 == $clave2)
+                        if($clave1 != "" && $clave2 != "")
                         {
-                            $clave = password_hash($clave1, PASSWORD_DEFAULT);
-                            $sql = "INSERT INTO registro(nombre, correo, usuario, clave, id_tipo_usuario) VALUES(?, ?, ?, ?, ?)";
-                            $params = array($nombre, $correo, $usuario, $clave, $tipo_u);
-                            Database::executeRow($sql, $params);
-                            master::showMessage(1, "Operación satisfactoria", "login.php");
-                        }
-                        else
-                        {
-                            throw new Exception("Las contraseñas no coinciden");
-                        }
-
+                            if($clave1 == $clave2)
+                            {
+                                $clave = password_hash($clave1, PASSWORD_DEFAULT);
+                                $sql = "INSERT INTO administradores(nombre, correo, usuario, clave, id_tipo_usuario) VALUES(?, ?, ?, ?, ?)";
+                                $params = array($nombre, $correo, $usuario, $clave, $permisos);
+                                Database::executeRow($sql, $params);
+                                master::showMessage(1, "Operación satisfactoria", "login.php");
+                            }
+                            else
+                            {
+                                throw new Exception("Las contraseñas no coinciden");
+                            }
                     }
                     else
                     {
                         throw new Exception("Debe ingresar un clave");
+                    }
+
+                    }
+                    else
+                    {
+                        throw new Exception("Debe ingresar un tipo de permisos");
                     }
 
                 }
@@ -66,6 +73,9 @@ else
     $nombre = null;
     $correo = null;
     $usuario = null;
+    $clave1 = null;
+    $clave2 = null;
+    $permisos = null;
 }
 ?>
     <!--Uso de un contenedor para colocar los datos y de una clase para el cambio de colores-->
@@ -96,6 +106,12 @@ else
                 <input id="clave2" type="password" name='clave2' class="validate" required>
                 <label for="clave2" class="cyan-text text-darken-3">Verificar Contraseña</label><!--El cuadro de texto donde se pondra para verificar la contraseña-->
             </div>
+        <div class='input-field col s12 m6'>
+            <?php
+            $sql = "SELECT id_tipo_usuario, tipo_usuario FROM tipo_usuario";
+            master::setCombo("Permisos", "permisos", $permisos, $sql);
+            ?>
+        </div>
             <div class="center-align  boton">
                 <button type='submit' class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">create</i>Crear</button><!--boton para poner guardar-->
             </div>
@@ -106,5 +122,5 @@ else
   </div>
   </section>
 <?php
-master::footer();
+master::footer("Registro");
 ?>
