@@ -8,7 +8,7 @@ class Database
         $server = "localhost";
         $database = "db_tienda_comics";
         $username = "root";
-        $password = "77889776";
+        $password = "";
         $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8");
         self::$connection = null;
         try
@@ -51,6 +51,14 @@ class Database
         $statement->execute($values);
         self::desconnect();
         return $statement->fetchAll(PDO::FETCH_BOTH);
+    }
+    public static function numRows($query, $values)
+    {
+        self::connect();
+        $statement = self::$connection->prepare($query);
+        $statement->execute($values);
+        self::desconnect();
+        return $statement->rowCount();
     }
 }
 ?>

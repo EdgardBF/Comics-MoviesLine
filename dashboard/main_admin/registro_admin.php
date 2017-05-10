@@ -108,7 +108,7 @@ else
             </div>
         <div class='input-field col s12 m6'>
             <?php
-            $sql = "SELECT id_tipo_usuario, tipo_usuario FROM tipo_usuario";
+            $sql = "SELECT id_tipo_usuario, tipo FROM tipo_usuario";
             master::setCombo("Permisos", "permisos", $permisos, $sql);
             ?>
         </div>

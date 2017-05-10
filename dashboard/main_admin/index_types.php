@@ -4,12 +4,12 @@ master::header("main_index");
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
-	$sql = "SELECT * FROM tipo_usuario WHERE tipo_usuario LIKE ? OR id_tipo_usuario LIKE ? ORDER BY id_tipo_usuario";
+	$sql = "SELECT * FROM tipo_usuario WHERE tipo LIKE ? ORDER BY tipo";
 	$params = array("%$search%");
 }
 else
 {
-	$sql = "SELECT * FROM tipo_usuario ORDER BY tipo_usuario";
+	$sql = "SELECT * FROM tipo_usuario ORDER BY tipo";
 	$params = null;
 }
 $data = Database::getRows($sql, $params);
@@ -51,7 +51,7 @@ if($data != null)
 	{
 		print("
 			<tr>
-				<td>".$row['tipo_usuario']."</td>
+				<td>".$row['tipo']."</td>
 				<td>
 		");
 		if($row['seleccionar'] == 1)
@@ -114,8 +114,18 @@ if($data != null)
 		print("
 				</td>
 				<td>
-					<a href='save.php?id=".$row['id_tipo_usuario']."' class='blue-text'><i class='material-icons'>mode_edit</i></a>
-					<a href='delete.php?id=".$row['id_tipo_usuario']."' class='red-text'><i class='material-icons'>delete</i></a>
+					<a href='save_types.php?id=".$row['id_tipo_usuario']."' class='blue-text'><i class='material-icons'>mode_edit</i></a>
+					<a class='waves-effect waves-light' href='#modal1-".$row['id_tipo_usuario']."'><i class='material-icons'>delete</i></a>
+					<div id='modal1-".$row['id_tipo_usuario']."' class='modal'>
+					<div class='modal-content'>
+					<h4>¡CUIDADO!</h4>
+					<p>ESTA A PUNTO DE ELIMINAR UN USUARIO, ¿ESTA SEGURO?</p>
+					</div>
+					<div class='modal-footer'>
+					<a href='#!' onclick='eliminarT(".$row['id_tipo_usuario'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Okay!</a>
+					<a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>ÑO >:C</a>
+					</div>
+					</div>
 				</td>
 			</tr>
 		");
@@ -127,7 +137,7 @@ if($data != null)
 } //Fin de if que comprueba la existencia de registros.
 else
 {
-	Page::showMessage(4, "No hay registros disponibles", "save.php");
+	master::showMessage(4, "No hay registros disponibles", null);
 }
 master::footer("main");
 ?>

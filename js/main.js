@@ -49,3 +49,11 @@ function eliminar (id){
   console.log(id);
   window.location="./../../dashboard/main_admin/eliminar.php?id="+id;
 }
+function eliminarT (id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/eliminar_tipo.php?id="+id;
+}
+function eliminarD (id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/eliminar_admin.php?id="+id;
+}
