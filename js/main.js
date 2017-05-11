@@ -53,6 +53,30 @@ function eliminarT (id){
   console.log(id);
   window.location="./../../dashboard/main_admin/eliminar_tipo.php?id="+id;
 }
+function eliminardis (id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/eliminar_distribucion.php?id="+id;
+}
+function eliminarTP(id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/eliminar_tipo_producto.php?id="+id;
+}
+function eliminarPro(id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/eliminar_productos.php?id="+id;
+}
+function eliminarN(id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/eliminar_noticias.php?id="+id;
+}
+function coment_pro(usuario,comentario,producto,calificacion,tipo){
+  console.log(usuario);
+  console.log(comentario);
+  console.log(producto);
+  console.log(calificacion);
+  console.log(tipo);
+  window.location="./../../dashboard/main_public/comentarios_producto.php.php?id="+producto;
+}
 function eliminarD (id){
   console.log(id);
   window.location="./../../dashboard/main_admin/eliminar_admin.php?id="+id;

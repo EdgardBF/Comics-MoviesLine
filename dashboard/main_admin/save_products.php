@@ -1,21 +1,21 @@
 <?php
 require("../../lib/master.php");
-master::header("RegistroProducto");
+master::header("ProductosAdmin");
 $time = time();
-if(empty($_GET['id_producto'])) 
+if(empty($_GET['id'])) 
 {
     $id = null;
     $nombre = null;
     $precio = null;
     $tipo = null;
-    $distribucion = 1;
+    $distribucion = null;
     $descripcion = null;
     $fecha = date("Y-m-d ", $time);
     $imagen = null;
 }
 else
 {
-    $id = $_GET['id_producto'];
+    $id = $_GET['id'];
     $sql = "SELECT * FROM productos WHERE id_producto = ?";
     $params = array($id);
     $data = Database::getRow($sql, $params);
@@ -23,6 +23,7 @@ else
     $precio = $data['precio_producto'];
     $tipo = $data['id_tipo_producto'];
     $distribucion = $data['id_distribucion'];
+    $descripcion = $data['descripcion'];
     $fecha = $data['fecha'];
     $imagen = $data['imagen'];
 }
@@ -76,10 +77,10 @@ if(!empty($_POST))
                             else
                             {
                                 $sql = "UPDATE productos SET nombre_producto = ?, precio_producto = ?, id_tipo_producto = ?, id_distribucion = ?, descripcion = ?, imagen = ?, fecha = ? WHERE id_producto = ?";
-                                $params = array($nombre, $precio, $tipo, $distribucion, $descripcion, $imagen, $fecha);
+                                $params = array($nombre, $precio, $tipo, $distribucion, $descripcion, $imagen, $fecha, $id);
                             }
                             Database::executeRow($sql, $params);
-                            master::showMessage(1, "Operación satisfactoria", "productos.php");
+                            master::showMessage(1, "Operación satisfactoria", "productos_admin.php");
                         }
                         else
                         {
@@ -114,24 +115,12 @@ if(!empty($_POST))
     }
 }
 else
-{
-    $nombre = null;
-    $precio = null;
-    $tipo = null;
-    $distribucion = null;
-    $descripcion = null;
-    $fecha = date("Y-m-d ", $time);
-    $imagen = null;
-}
+{}
 ?>
     <!--Uso de un contenedor para colocar los datos y de una clase para el cambio de colores-->
 
-    <section class="container contenedor2">
-    <div class="row">
-        <form class="col s12" method='post'enctype='multipart/form-data' >
-            <div class="center-align">
-            <i class="material-icons"><a class="icono">note_add</a></i><!--Icono de la parte superior-->
-            </div>
+    <form form method='post'>
+        <div class='row'>
             <div class="input-field col s12">
                 <input id="nombre" type="text" name="nombre" class="validate" value='<?php print($nombre); ?>' required/>
                 <label for="nombre" class="cyan-text text-darken-3">Nombre del Producto</label><!--El cuadro de texto donde se pondra el nombre-->
@@ -165,12 +154,12 @@ else
                 <input class='file-path validate' type='text' placeholder='Seleccione una imagen'/>
             </div>
         </div>
-            <div class="center-align  boton">
-                <button type='submit' class="waves-effect waves-light btn #00838f cyan darken-3"><i class="material-icons right">create</i>Crear</button><!--boton para poner guardar-->
-            </div>
-        </form>
-  </div>
-  </section>
+        </div>
+        <div class='row center-align'>
+            <a href='noticias.php' class='btn waves-effect red'><i class='material-icons'>cancel</i></a>
+            <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
+        </div>
+    </form>
 <?php
-master::footer("RegistroProducto")
+master::footer("ProductosAdmin")
 ?>

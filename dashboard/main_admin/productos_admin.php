@@ -5,8 +5,8 @@ master::header("ProductosAdmin");
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
-	$sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, tipo_producto.tipo_producto, distribucion.distribucion, productos.descripcion, productos.imagen FROM productos, distribucion, tipo_producto WHERE productos.id_tipo_producto = tipo_producto.id_tipo_producto AND productos.id_distribucion = distribucion.id_distribucion OR  productos.nombre_producto LIKE ? OR productos.precio_producto LIKE ? OR tipo_producto.tipo_producto LIKE ? OR  distribucion.distribucion LIKE ? ORDER BY productos.fecha";
-	$params = array("%$search%", "%$search%");
+	$sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, tipo_producto.tipo_producto, distribucion.distribucion, productos.descripcion, productos.imagen FROM productos, distribucion, tipo_producto WHERE productos.id_tipo_producto = tipo_producto.id_tipo_producto AND productos.id_distribucion = distribucion.id_distribucion AND (productos.nombre_producto LIKE ? OR productos.precio_producto LIKE ? OR tipo_producto.tipo_producto LIKE ? OR  distribucion.distribucion LIKE ?) ORDER BY productos.fecha";
+	$params = array("%$search%", "%$search%", "%$search%", "%$search%");
 }
 else
 {
@@ -56,10 +56,20 @@ $mensaje = false;
 				<td>".$row['tipo_producto']."</td>
                 <td>".$row['distribucion']."</td>
                 <td>".$row['descripcion']."</td>
-                <td><img src='data:image/*;base64,".$row['imagen']."' class='materialboxed' width='100' height='100'></td>
+                <td><img src='data:image/*;base64,".$row['imagen']."' class='materialboxed' width='300' height='100'></td>
 				<td>
 					<a href='save_products.php?id=".$row['id_producto']."' class='blue-text'><i class='material-icons'>mode_edit</i></a>
-					<a href='eliminar_products.php?id=".$row['id_producto']."' class='red-text'><i class='material-icons'>delete</i></a>
+					<a class='waves-effect waves-light' href='#modal1-".$row['id_producto']."'><i class='material-icons'>delete</i></a>
+					<div id='modal1-".$row['id_producto']."' class='modal'>
+						<div class='modal-content'>
+							<h4>¡CUIDADO!</h4>
+							<p>ESTA A PUNTO DE ELIMINAR UN PRODUCTO, ¿ESTA SEGURO?</p>
+						</div>
+						<div class='modal-footer'>
+							<a href='#!' onclick='eliminarPro(".$row['id_producto'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
+							<a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>No</a>
+						</div>
+					</div>
 				</td>
 				</td>
 			</tr>

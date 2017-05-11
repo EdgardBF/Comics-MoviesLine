@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2017 a las 00:17:53
+-- Tiempo de generación: 10-05-2017 a las 05:43:38
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -25,13 +25,38 @@ USE `db_tienda_comics`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `administradores`
+--
+
+DROP TABLE IF EXISTS `administradores`;
+CREATE TABLE `administradores` (
+  `id_admin` int(10) UNSIGNED NOT NULL,
+  `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `correo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `usuario` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `clave` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `id_tipo_usuario` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `administradores`
+--
+
+INSERT INTO `administradores` (`id_admin`, `nombre`, `correo`, `usuario`, `clave`, `id_tipo_usuario`) VALUES
+(3, 'Edgard Alexander Barrera', 'edgardinono@hotmail.com', 'chito1015', '$2y$10$8ndbJhRrR5lV0qQdosFjjORaC5TbUxEj32DqmNIDcgnkOBpnPwp4O', 16),
+(4, 'Miguel Angel Flores', 'miguelfr0305@gmail.com', 'Miguel009VGC', '$2y$10$2bg20n5UOP5if361ncvex..zVnqwl5achB3k1PU2AuvW9ova7f2e2', 13),
+(7, 'Magikarp OP', 'miguelfr0305@noice.com', 'Magikarp', '$2y$10$cWmzmwvX3G4Tq7ATI4s.y.srMxKSDIEMaw0kSv5LGNABbmQVbMiW6', 15);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `carrito`
 --
 
 DROP TABLE IF EXISTS `carrito`;
 CREATE TABLE `carrito` (
   `id_carrito` int(10) UNSIGNED NOT NULL,
-  `id_producto` int(10) UNSIGNED NOT NULL,
+  `fecha` date NOT NULL,
   `id_registro` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -48,7 +73,8 @@ CREATE TABLE `comentarios` (
   `comentario` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `id_producto` int(10) UNSIGNED DEFAULT NULL,
   `calificacion` int(10) UNSIGNED DEFAULT NULL,
-  `id_tipo_comentario` int(10) UNSIGNED NOT NULL
+  `id_tipo_comentario` int(10) UNSIGNED NOT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -61,7 +87,10 @@ DROP TABLE IF EXISTS `compra`;
 CREATE TABLE `compra` (
   `id_compra` int(10) UNSIGNED NOT NULL,
   `id_carrito` int(10) UNSIGNED NOT NULL,
-  `tarjeta` int(11) NOT NULL
+  `estado` tinyint(1) NOT NULL,
+  `tarjeta` int(11) NOT NULL,
+  `id_registro` int(10) UNSIGNED NOT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -98,9 +127,10 @@ CREATE TABLE `imagenes` (
 DROP TABLE IF EXISTS `noticia`;
 CREATE TABLE `noticia` (
   `id_noticia` int(11) UNSIGNED NOT NULL,
-  `id_imagen` int(11) UNSIGNED NOT NULL,
+  `imagen` mediumblob NOT NULL,
   `titulo_imagen` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `descripcion_imagen` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `descripcion_imagen` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -117,7 +147,8 @@ CREATE TABLE `productos` (
   `id_tipo_producto` int(11) UNSIGNED NOT NULL,
   `id_distribucion` int(11) UNSIGNED NOT NULL,
   `descripcion` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `id_imagen` int(11) UNSIGNED NOT NULL
+  `imagen` mediumblob NOT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -132,17 +163,15 @@ CREATE TABLE `registro` (
   `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `correo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `usuario` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `clave` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `id_tipo_usuario` int(10) UNSIGNED NOT NULL
+  `clave` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `registro`
 --
 
-INSERT INTO `registro` (`id_registro`, `nombre`, `correo`, `usuario`, `clave`, `id_tipo_usuario`) VALUES
-(5, 'Miguel Angel Flores Reyes', 'miguelfr0305@hotmail.com', 'Miguel009VGC', '$2y$10$PnaeeqCTAI6Mj5jUckizquONEipUYO3H95mG5gd3nKV0o1fOm43lq', 1),
-(6, 'Veronica Isabel', 'veronica@gmail.com', 'Verito13', '$2y$10$OT/LG4haSTk0G6tBn6Eik.MnLZ8QrQA9rHUy3vxmPSFpWhk98qlVe', 2);
+INSERT INTO `registro` (`id_registro`, `nombre`, `correo`, `usuario`, `clave`) VALUES
+(24, 'miguel', 'miguelfr0305@hotmail.com', '123', '$2y$10$xXYRAIqgi1K0Yb5U2l9g2eq1rcpLkB5/GFNp2F/IdebIsIiCI3Fh6');
 
 -- --------------------------------------------------------
 
@@ -189,28 +218,46 @@ CREATE TABLE `tipo_producto` (
 DROP TABLE IF EXISTS `tipo_usuario`;
 CREATE TABLE `tipo_usuario` (
   `id_tipo_usuario` int(10) UNSIGNED NOT NULL,
-  `tipo_usuario` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+  `tipo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `seleccionar` tinyint(1) NOT NULL,
+  `crear` tinyint(1) NOT NULL,
+  `leer` tinyint(1) NOT NULL,
+  `actualizar` tinyint(1) NOT NULL,
+  `eliminar` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tipo_usuario`
 --
 
-INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`) VALUES
-(1, 'Administrador'),
-(2, 'Usuario');
+INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `tipo`, `seleccionar`, `crear`, `leer`, `actualizar`, `eliminar`) VALUES
+(3, 'Maestro', 1, 1, 1, 1, 1),
+(8, 'Oro', 0, 1, 1, 1, 0),
+(10, 'Plata', 0, 0, 1, 1, 0),
+(11, 'Platino', 1, 1, 1, 1, 0),
+(13, 'Gran Maestro', 1, 1, 1, 0, 1),
+(15, 'Top 500', 1, 1, 1, 1, 1),
+(16, 'Bronze', 1, 0, 1, 0, 0);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `administradores`
+--
+ALTER TABLE `administradores`
+  ADD PRIMARY KEY (`id_admin`),
+  ADD UNIQUE KEY `usuario` (`usuario`),
+  ADD UNIQUE KEY `correo` (`correo`),
+  ADD KEY `id_tipo_usuario` (`id_tipo_usuario`);
+
+--
 -- Indices de la tabla `carrito`
 --
 ALTER TABLE `carrito`
   ADD PRIMARY KEY (`id_carrito`),
-  ADD KEY `id_producto` (`id_producto`),
-  ADD KEY `id_usuario` (`id_registro`);
+  ADD KEY `id_registro` (`id_registro`);
 
 --
 -- Indices de la tabla `comentarios`
@@ -226,7 +273,8 @@ ALTER TABLE `comentarios`
 --
 ALTER TABLE `compra`
   ADD PRIMARY KEY (`id_compra`),
-  ADD KEY `id_carrito` (`id_carrito`);
+  ADD KEY `id_carrito` (`id_carrito`),
+  ADD KEY `id_registro` (`id_registro`);
 
 --
 -- Indices de la tabla `distribucion`
@@ -245,8 +293,7 @@ ALTER TABLE `imagenes`
 -- Indices de la tabla `noticia`
 --
 ALTER TABLE `noticia`
-  ADD PRIMARY KEY (`id_noticia`),
-  ADD KEY `id_imagen` (`id_imagen`);
+  ADD PRIMARY KEY (`id_noticia`);
 
 --
 -- Indices de la tabla `productos`
@@ -255,7 +302,6 @@ ALTER TABLE `productos`
   ADD PRIMARY KEY (`id_producto`),
   ADD UNIQUE KEY `nombre_producto` (`nombre_producto`),
   ADD KEY `id_tipo_producto` (`id_tipo_producto`),
-  ADD KEY `id_imagen` (`id_imagen`),
   ADD KEY `id_distribucion` (`id_distribucion`);
 
 --
@@ -263,8 +309,7 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `registro`
   ADD PRIMARY KEY (`id_registro`),
-  ADD UNIQUE KEY `usuario` (`usuario`),
-  ADD KEY `tipo_usuario` (`id_tipo_usuario`);
+  ADD UNIQUE KEY `usuario` (`usuario`);
 
 --
 -- Indices de la tabla `tipo_comentario`
@@ -295,6 +340,11 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `administradores`
+--
+ALTER TABLE `administradores`
+  MODIFY `id_admin` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `carrito`
 --
@@ -334,7 +384,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `registro`
 --
 ALTER TABLE `registro`
-  MODIFY `id_registro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_registro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `tipo_comentario`
 --
@@ -354,17 +404,22 @@ ALTER TABLE `tipo_producto`
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `id_tipo_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tipo_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Restricciones para tablas volcadas
 --
 
 --
+-- Filtros para la tabla `administradores`
+--
+ALTER TABLE `administradores`
+  ADD CONSTRAINT `administradores_ibfk_1` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `tipo_usuario` (`id_tipo_usuario`);
+
+--
 -- Filtros para la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  ADD CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`),
-  ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`id_registro`) REFERENCES `registro` (`id_registro`);
+  ADD CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`id_registro`) REFERENCES `registro` (`id_registro`);
 
 --
 -- Filtros para la tabla `comentarios`
@@ -378,33 +433,15 @@ ALTER TABLE `comentarios`
 -- Filtros para la tabla `compra`
 --
 ALTER TABLE `compra`
-  ADD CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`id_carrito`) REFERENCES `carrito` (`id_carrito`);
-
---
--- Filtros para la tabla `imagenes`
---
-ALTER TABLE `imagenes`
-  ADD CONSTRAINT `imagenes_ibfk_1` FOREIGN KEY (`id_tipo_imagen`) REFERENCES `tipo_imagen` (`id_tipo_imagen`);
-
---
--- Filtros para la tabla `noticia`
---
-ALTER TABLE `noticia`
-  ADD CONSTRAINT `noticia_ibfk_1` FOREIGN KEY (`id_imagen`) REFERENCES `imagenes` (`id_imagen`);
+  ADD CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`id_carrito`) REFERENCES `carrito` (`id_carrito`),
+  ADD CONSTRAINT `compra_ibfk_2` FOREIGN KEY (`id_registro`) REFERENCES `registro` (`id_registro`);
 
 --
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_imagen`) REFERENCES `imagenes` (`id_imagen`),
   ADD CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`id_tipo_producto`) REFERENCES `tipo_producto` (`id_tipo_producto`),
   ADD CONSTRAINT `productos_ibfk_3` FOREIGN KEY (`id_distribucion`) REFERENCES `distribucion` (`id_distribucion`);
-
---
--- Filtros para la tabla `registro`
---
-ALTER TABLE `registro`
-  ADD CONSTRAINT `registro_ibfk_1` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `tipo_usuario` (`id_tipo_usuario`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

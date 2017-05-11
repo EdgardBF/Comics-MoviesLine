@@ -22,14 +22,14 @@ class Validator
 	    		$img_info = getimagesize($img_temporal);
 		    	$img_width = $img_info[0]; 
 				$img_height = $img_info[1];
-				if ($img_width == $img_height)
+				if ($img_width > $img_height)
 				{
 					$image = file_get_contents($img_temporal);
 					return base64_encode($image);
 				}
 				else
 				{
-					throw new Exception("La dimensión de la imagen debe ser cuadrada");
+					throw new Exception("La dimensión de la imagen debe ser rectangular horizontal");
 				}
 	    	}
 	    	else
