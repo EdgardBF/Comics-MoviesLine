@@ -3,6 +3,7 @@ $( document ).ready(function(){
     $(".button-collapse").sideNav();
     $('.collapsible').collapsible();
     $('select').material_select();
+    $(".dropdown-button").dropdown();
     $('.slider').slider({
         //Se le cambia el alto al Slider
         height: 400

@@ -18,6 +18,7 @@ class master
                 <title>$title</title>
                 <!--Se llaman los archivos CSS-->
                 <link type='text/css' rel='stylesheet' href='../css/materialize.min.css'>
+                <link type='text/css' rel='stylesheet' href='../css/zebra_pagination.css'>
                 <link type='text/css' rel='stylesheet' href='../css/estilos.css'>
                 <link type='text/css' rel='stylesheet' href='../css/sweetalert2.min.css'/>
                 <link type='text/css' rel='stylesheet' href='../css/icon.css'>
@@ -42,6 +43,7 @@ class master
                 <!--Se llaman los archivos CSS-->
                 <link type='text/css' rel='stylesheet' href='../../css/materialize.min.css'>
                 <link type='text/css' rel='stylesheet' href='../../css/estilos.css'>
+                <link type='text/css' rel='stylesheet' href='../../css/zebra_pagination.css'>
                 <link type='text/css' rel='stylesheet' href='../../css/sweetalert2.min.css'/>
                 <link type='text/css' rel='stylesheet' href='../../css/icon.css'>
                 <script type='text/javascript' src='../../js/sweetalert2.min.js'></script>
@@ -139,18 +141,24 @@ class master
                             <a href='#!' class='brand-logo logo'><img src='../../img/logo.png'></a>
                             <a href='#' data-activates='mobile-demo' class='button-collapse'><i class='material-icons'>menu</i></a>
                             <ul class='right hide-on-med-and-down'>
-                            <li class='$activo1'><a href='index_admin.php' class='texto waves-effect waves-teal'><i class='material-icons left'>mood</i>Administradores</a></li>
-                            <li class='$activo2'><a href='productos_admin.php' class='waves-effect waves-teal texto'><i class='material-icons left'>extension</i>Productos</a></li>
-                            <li class='$activo2'><a href='index_types.php' class='waves-effect waves-teal texto'><i class='material-icons left'>face</i>Tipos Usuario</a></li>
                             <li class='$activo1'><a href='main.php' class='texto waves-effect waves-teal'><i class='material-icons left'>home</i>Inicio</a></li>
-                            <li class='$activo3'><a href='index_users.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Usuarios</a></li>
-                            <!--<li class='$activo5'><a href='tipo_producto.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Tipo de Productos</a></li>
-                            <li class='$activo5'><a href='noticias.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Noticias</a></li>
-                            <li class='$activo5'><a href='comentarios.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Comentarios</a></li>
-                            <li class='$activo5'><a href='distribuidor.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Distribuidores</a></li>-->
-                            <li class='$activo4'><a class='texto dropdown-button' data-activates='dropdown'><i class='material-icons left white-text'>person</i>".$_SESSION['usuario']."</a></li>
+                            <li class='$activo4'><a class='texto dropdown-button' data-activates='dropdown4'><i class='material-icons left white-text'>arrow_drop_down</i>Productos</a></li>
+                            <ul id='dropdown4' class='dropdown-content'>
+								 <li class='$activo2'><a href='productos_admin.php' class='waves-effect waves-teal texto'><i class='material-icons left'>extension</i>Productos</a></li>
+								<li class='$activo5'><a href='tipo_producto.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Tipo de Productos</a></li>
+                                <li class='$activo5'><a href='noticias.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Noticias</a></li>
+                                <li class='$activo5'><a href='comentarios.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Comentarios</a></li>
+                                <li class='$activo5'><a href='distribuidor.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Distribuidores</a></li>
+							</ul>
+                            <li class='$activo4'><a class='texto dropdown-button' data-activates='dropdown3'><i class='material-icons left white-text'>arrow_drop_down</i>Usuarios</a></li>
+                            <ul id='dropdown3' class='dropdown-content'>
+								 <li class='$activo3'><a href='index_users.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>Usuarios</a></li>
+								 <li class='$activo2'><a href='index_types.php' class='waves-effect waves-teal texto'><i class='material-icons left'>face</i>Tipos Usuario</a></li>
+                                 <li class='$activo1'><a href='index_admin.php' class='texto waves-effect waves-teal'><i class='material-icons left'>mood</i>Administradores</a></li>
+							</ul>
+                            <li class='$activo4'><a class='texto dropdown-button' data-activates='dropdown2'><i class='material-icons left white-text'>person</i>".$_SESSION['usuario']."</a></li>
                             </ul>
-                            <ul id='dropdown' class='dropdown-content'>
+                            <ul id='dropdown2' class='dropdown-content'>
 								<li><a href='perfil.php'><i class='material-icons left'>edit</i>Perfil</a></li>
 								<li><a href='../../dashboard/main_admin/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>
 							</ul>

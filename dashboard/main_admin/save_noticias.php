@@ -87,7 +87,7 @@ else
 ?>
     <!--Uso de un contenedor para colocar los datos y de una clase para el cambio de colores-->
 
-    <form form method='post'>
+    <form form method='post' enctype='multipart/form-data'>
         <div class='row'>
             <div class="input-field col s12">
                 <input id="titulo" type="text" name="titulo" class="validate" value='<?php print($titulo); ?>' required/>

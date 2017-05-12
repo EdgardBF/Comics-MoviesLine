@@ -45,7 +45,7 @@ require_once '../lib/Zebra_Pagination.php';
                     $total = "SELECT *  FROM productos";
                     $registros = Database::numRows($total,null);
                     //Numero de registros para mostrar en pantalla
-                    $resultados = 10;
+                    $resultados = 4;
                     //Iniciar clase Zebra
                     $pagination = new Zebra_Pagination();
                     //Funciones de Zebra
