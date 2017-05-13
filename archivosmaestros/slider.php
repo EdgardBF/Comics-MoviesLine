@@ -1,5 +1,6 @@
     <?php
         try{
+            //Selecciona los registros a mostrar
             $sql = "SELECT id_noticia, imagen, titulo_imagen, descripcion_imagen FROM noticia ORDER BY fecha";
 
             $data = Database::getRows($sql, null);
@@ -7,11 +8,13 @@
             if($data != null)
             {
     ?>
+    <!--Creamos el Slider-->
     <div class="row">
         <div class="col s12 m12 l12" >
             <div class="slider ">
                 <ul class="slides z-depth-4">
       <?php
+      //Mostramos los datos dentro del Slider
         foreach ($data as $row) 
         {
             print("

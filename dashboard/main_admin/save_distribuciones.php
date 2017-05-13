@@ -1,6 +1,8 @@
 <?php
 require("../../lib/master.php");
-master::header("Distribuciones");
+//Obtiene la Hora del Sistema
+$time = time();
+//Verifica que hayan datos a guardar, con el metodo Get,en el Id de la pagina
 if(empty($_GET['id'])) 
 {
     $id = null;
@@ -23,6 +25,7 @@ if(!empty($_POST))
     try{
         if($distribucion !="")
         {
+            //Guarda los registros en la Base de Datos
             if($id == null)
             {
                 $sql = "INSERT INTO distribucion(distribucion) VALUES(?)";

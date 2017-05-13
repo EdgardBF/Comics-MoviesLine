@@ -1,6 +1,9 @@
 <?php
 require("../../lib/master.php");
 master::header("tipo_producto");
+//Obtiene la Hora del Sistema
+$time = time();
+//Verifica que hayan datos a guardar, con el metodo Get,en el Id de la pagina
 if(empty($_GET['id'])) 
 {
     $id = null;
@@ -21,8 +24,10 @@ if(!empty($_POST))
     $tipo_producto = $_POST['tipo_producto'];
 
     try{
+        //Valida que los datos no esten vacios
         if($tipo_producto !="")
         {
+            //Guarda los registros en la Base de Datos
             if($id == null)
             {
                 $sql = "INSERT INTO tipo_producto(tipo_producto) VALUES(?)";

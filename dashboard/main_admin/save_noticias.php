@@ -1,7 +1,9 @@
 <?php
 require("../../lib/master.php");
 master::header("Noticias");
+//Obtiene la Hora del Sistema
 $time = time();
+//Verifica que hayan datos a guardar, con el metodo Get,en el Id de la pagina
 if(empty($_GET['id'])) 
 {
     $id = null;
@@ -32,6 +34,7 @@ if(!empty($_POST))
     $fecha = date("Y-m-d ", $time);
 
     try{
+        //valida que los datos no esten vacios
         if($titulo !="")
         {
             if($descripcion != "")
@@ -55,6 +58,7 @@ if(!empty($_POST))
                         throw new Exception("Debe seleccionar una imagen");
                     }
                 }
+                //Guarda datos en la Base de Datos
                     if($id == null)
                 {
                     $sql = "INSERT INTO noticia(imagen, titulo_imagen, descripcion_imagen, fecha) VALUES(?, ?, ?, ?)";

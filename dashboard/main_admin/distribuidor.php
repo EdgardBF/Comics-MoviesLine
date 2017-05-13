@@ -1,7 +1,7 @@
 <?php
 require("../../lib/master.php");
 master::header("Distribuiciones");
-
+//Busca registros en la Base de datos
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
@@ -17,6 +17,7 @@ $data = Database::getRows($sql, $params);
 if($data != null)
 {
 ?>
+<!--Crea un buscador-->
 <form method='post'>
 	<div class='row'>
 		<div class='input-field col s6 m4'>
@@ -32,6 +33,7 @@ if($data != null)
 		</div>
 	</div>
 </form>
+<!--Crea la tabla en donde los registros estaran-->
 <table class='striped'>
 	<thead>
 		<tr>
@@ -42,6 +44,7 @@ if($data != null)
 	<tbody>
 <?php
 $mensaje = false;
+//Ingresa los registros en la tabla
 	foreach($data as $row)
 	{
 		print("

@@ -1,7 +1,7 @@
 <?php
 require("../../lib/master.php");
 master::header("ProductosAdmin");
-
+//Busca los registros en la Base de datos
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
@@ -17,6 +17,7 @@ $data = Database::getRows($sql, $params);
 if($data != null)
 {
 ?>
+<!--Crea un buscador-->
 <form method='post'>
 	<div class='row'>
 		<div class='input-field col s6 m4'>
@@ -32,6 +33,7 @@ if($data != null)
 		</div>
 	</div>
 </form>
+<!--Se crea la tabla en donde estaran los registros-->
 <table class='striped'>
 	<thead>
 		<tr>

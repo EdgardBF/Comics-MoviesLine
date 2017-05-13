@@ -1,7 +1,7 @@
 <?php
 require("../../lib/master.php");
 master::header("Noticias");
-
+//Busca los registros en la Base de Datos
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
@@ -18,6 +18,7 @@ if($data != null)
 {
 ?>
 <form method='post'>
+	<!--Crea un buscador-->
 	<div class='row'>
 		<div class='input-field col s6 m4'>
 			<i class='material-icons prefix'>search</i>
@@ -32,6 +33,7 @@ if($data != null)
 		</div>
 	</div>
 </form>
+<!--Crea la tabla en donde se meteran los registros-->
 <table class='striped'>
 	<thead>
 		<tr>
@@ -44,6 +46,7 @@ if($data != null)
 	<tbody>
 <?php
 $mensaje = false;
+//Se ingresan los registros a la tabla
 	foreach($data as $row)
 	{
 		print("

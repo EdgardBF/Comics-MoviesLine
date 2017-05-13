@@ -1,7 +1,9 @@
 <?php
 require("../../lib/master.php");
 master::header("ProductosAdmin");
+//Obtiene la Hora del Sistema
 $time = time();
+//Verifica que hayan datos a guardar, con el metodo Get,en el Id de la pagina
 if(empty($_GET['id'])) 
 {
     $id = null;

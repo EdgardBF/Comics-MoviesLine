@@ -1,7 +1,7 @@
 <?php
 require("../../lib/master.php");
 master::header("Comentarios");
-
+//Busca registros en la Base de datos
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
@@ -18,6 +18,7 @@ if($data != null)
 {
 ?>
 <form method='post'>
+<!--Crea un buscador-->
 	<div class='row'>
 		<div class='input-field col s6 m4'>
 			<i class='material-icons prefix'>search</i>
@@ -29,6 +30,7 @@ if($data != null)
 		</div>
 	</div>
 </form>
+	<!--Crea la tabla en donde los datos se mostraran-->
 <table class='striped'>
 	<thead>
 		<tr>
@@ -42,6 +44,7 @@ if($data != null)
 	<tbody>
 <?php
 $mensaje = false;
+	//mete los datos en la tabla
 	foreach($data as $row)
 	{
 		print("

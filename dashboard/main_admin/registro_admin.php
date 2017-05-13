@@ -1,6 +1,7 @@
 <?php
 require("../../lib/master.php");
 master::header("Registro");
+//Verifica que hayan datos a guardar
 if(!empty($_POST))
 {
     $_POST = Validator::validateForm($_POST);

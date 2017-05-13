@@ -1,11 +1,11 @@
 <?php
 require("../../lib/master.php");
 master::header("tipo_producto");
-
+//Revisa si el metodo get del id, no esta vacio
 if(!empty($_GET)){
-
     try{
 			$id = $_GET['id'];
+            //Elimina un registro y muestra un mensaje
 			$sql = "DELETE FROM tipo_producto WHERE id_tipo_producto = ?";
 		    $params = array($id);
 		    Database::executeRow($sql, $params);
