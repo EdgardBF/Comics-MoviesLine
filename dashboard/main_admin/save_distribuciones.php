@@ -1,5 +1,6 @@
 <?php
 require("../../lib/master.php");
+master::header("Distribuciones");
 //Obtiene la Hora del Sistema
 $time = time();
 //Verifica que hayan datos a guardar, con el metodo Get,en el Id de la pagina
@@ -59,7 +60,7 @@ else
         <div class='input-field col s12 m6'>
           	<i class='material-icons prefix'>person</i>
           	<input id='distribucion' type='text' name='distribucion' class='validate' value='<?php print($distribucion); ?>' required/>
-          	<label for='distribucion'>Distribucion</label>
+          	<label for='distribucion'>Distribuidor</label>
         </div>
     </div>
     <div class='row center-align'>

@@ -52,6 +52,8 @@ class Database
         self::desconnect();
         return $statement->fetchAll(PDO::FETCH_BOTH);
     }
+
+    //Obtiene la cantidad de registros en la tabla
     public static function numRows($query, $values)
     {
         self::connect();

@@ -23,6 +23,7 @@ class master
                 <link type='text/css' rel='stylesheet' href='../css/sweetalert2.min.css'/>
                 <link type='text/css' rel='stylesheet' href='../css/icon.css'>
                 <script type='text/javascript' src='../js/sweetalert2.min.js'></script>
+                <script type='text/javascript' src='../js/validator.js'></script>
                 <link rel='shortcut icon' href='../img/logo.png'>
                 <div id='fb-root'></div>
             </head>
@@ -47,6 +48,7 @@ class master
                 <link type='text/css' rel='stylesheet' href='../../css/sweetalert2.min.css'/>
                 <link type='text/css' rel='stylesheet' href='../../css/icon.css'>
                 <script type='text/javascript' src='../../js/sweetalert2.min.js'></script>
+                <script type='text/javascript' src='../../js/validator.js'></script>
                 <link rel='shortcut icon' href='../../img/logo.png'>
                 <div id='fb-root'></div>
             </head>

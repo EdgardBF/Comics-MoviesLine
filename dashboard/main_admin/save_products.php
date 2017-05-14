@@ -128,7 +128,7 @@ else
                 <label for="nombre" class="cyan-text text-darken-3">Nombre del Producto</label><!--El cuadro de texto donde se pondra el nombre-->
             </div>
             <div class="input-field col s12">
-                <input id="precio" type="number" name='precio' class="validate"  value='<?php print($precio); ?>' required/>
+                <input id="precio" type="number" name='precio' class="validate" value='<?php print($precio); ?>' required/>
                 <label for="precio" class="cyan-text text-darken-3">Precio del Producto</label><!--El cuadro de texto donde se pondra el precio-->
             </div>
             <div class='input-field col s12 m6'>

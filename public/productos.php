@@ -75,7 +75,7 @@ require_once '../lib/Zebra_Pagination.php';
                                         <div class='col s12 m6 l6'>
                                             <div class='card'>
                                                 <div class='card-image waves-effect waves-block waves-light'>
-                                                    <img class='materialboxed' src='data:image/*;base64,$row[imagen]'>
+                                                    <img class='materialboxed' src='data:image/*;base64,$row[imagen]' width='300' height='150'>
                                                 </div>
                                                     <div class='card-content'>
                                                         <span class='card-title activator grey-text text-darken-4'>$row[nombre_producto] $ $row[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
