@@ -118,7 +118,7 @@ if(!empty($_POST))
         </div>
     </div>
     <div class='row center-align'>
-        <a href='index.php' class='btn waves-effect grey'><i class='material-icons'>cancel</i></a>
+        <a href='index_types.php' class='btn waves-effect red'><i class='material-icons'>cancel</i></a>
         <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
     </div>
 </form>

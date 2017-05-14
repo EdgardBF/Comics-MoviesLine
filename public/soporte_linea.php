@@ -109,7 +109,7 @@ master::header("Soporte_Linea");
                     <a class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">cloud_upload</i>Enviar</a> <!--Boton con el cual se enviara el commentraio-->
                 </div>
                 <div class="center-align boton2">
-                    <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="registro.php"><i class="material-icons right">face</i> Registrate!</a><!--boton para rederigirse a registro-->
+                    <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="../dashboard/main_public/login.php"><i class="material-icons right">face</i> Registrate!</a><!--boton para rederigirse a registro-->
                 </div>
             </form>
         </div>
