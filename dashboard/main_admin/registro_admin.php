@@ -85,7 +85,7 @@ else
     <div class="row">
         <form class="col s12" method='post'>
             <div class="center-align">
-            <i class="material-icons"><a class="icono">note_add</a></i><!--Icono de la parte superior-->
+            <i class="material-icons"><a class="icono">lock</a></i><!--Icono de la parte superior-->
             </div>
             <div class="input-field col s12">
                 <input id="nombre" type="text" name="nombre" class="validate" value='<?php print($nombre); ?>' required/>
@@ -115,9 +115,6 @@ else
         </div>
             <div class="center-align  boton">
                 <button type='submit' class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">create</i>Crear</button><!--boton para poner guardar-->
-            </div>
-            <div class="center-align boton2">
-                <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="login.php"><i class="material-icons right">face</i> Ya existo!</a><!--boton para redirigirse de un solo-->
             </div>
         </form>
   </div>

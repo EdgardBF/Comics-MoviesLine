@@ -1,6 +1,7 @@
 <?php
+//se utiliza para saber cual es el tipo de usuario al que es y asi actulizarala 
 require("../../lib/master.php");
-master::header("Editar perfil");
+master::header("Editar Administrador");
 if(empty($_GET['id'])) 
 {
     $id = null;
@@ -23,7 +24,6 @@ else
 if(!empty($_POST))
 {
     $permisos = $_POST['permisos'];
-    echo $permisos."FURULOWAASA";
 
     try 
     {
@@ -63,6 +63,7 @@ else
 }
 ?>
 <br>
+<!--Formulario con el cual se muestran los datos y el unico habilitado es el combobox-->
 <form form method='post'>
     <div class='row'>
         <div class='input-field col s12 m6'>

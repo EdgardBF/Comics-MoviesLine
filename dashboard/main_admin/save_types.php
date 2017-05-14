@@ -1,8 +1,11 @@
 <?php
+//mandamos a llamar a nuestro archivo maestro
 require("../../lib/master.php");
+//hacemos una condicional diciendo que si el get esta vacio muestre los registros normales sino que los muestre solo los que se han pedido en el parametro
 if(empty($_GET['id'])) 
 {
-    master::header("Agregar categoría");
+    //colocamos el metodo de header
+    master::header("Agregar tipo");
     $id = null;
     $nombre = null;
     $seleccionar = 0;
@@ -13,7 +16,8 @@ if(empty($_GET['id']))
 }
 else
 {
-    master::header("Modificar categoría");
+    //colocamos el metodo de header
+    master::header("Modificar tipo");
     $id = $_GET['id'];
     $sql = "SELECT * FROM tipo_usuario WHERE id_tipo_usuario = ?";
     $params = array($id);
@@ -25,7 +29,7 @@ else
     $actu =$data['actualizar'];
     $eliminar =$data['eliminar'];
 }
-
+//hacemos una condicional diciendo que si el post esta vacio muestre los registros normales sino que los muestre solo los que se han pedido en el parametro
 if(!empty($_POST))
 {
   	$nombre = $_POST['nombre'];
@@ -91,7 +95,7 @@ if(!empty($_POST))
     }
 }
 ?>
-
+<!--formulario en donde se llaman los datos-->
 <form method='post'>
     <div class='row'>
         <div class='input-field col s12 m6'>
@@ -120,5 +124,5 @@ if(!empty($_POST))
 </form>
 
 <?php
-master::footer("Types");
+master::footer("Tipo");
 ?>

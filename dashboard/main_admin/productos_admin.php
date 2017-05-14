@@ -26,10 +26,10 @@ if($data != null)
 			<label for='buscar'>Buscar</label>
 		</div>
 		<div class='input-field col s6 m4'>
-			<button type='submit' class='btn waves-effect green'><i class='material-icons'>check_circle</i></button> 	
+			<button type='submit' class='btn waves-effect #00838f cyan darken-3'><i class='material-icons'>check_circle</i></button> 	
 		</div>
 		<div class='input-field col s12 m4'>
-			<a href='save_products.php' class='btn waves-effect indigo'><i class='material-icons'>add_circle</i></a>
+			<a href='save_products.php' class='btn waves-effect #00838f cyan darken-3'><i class='material-icons'>note_add</i></a>
 		</div>
 	</div>
 </form>
@@ -60,8 +60,8 @@ $mensaje = false;
                 <td>".$row['descripcion']."</td>
                 <td><img src='data:image/*;base64,".$row['imagen']."' class='materialboxed' width='300' height='100'></td>
 				<td>
-					<a href='save_products.php?id=".$row['id_producto']."' class='blue-text'><i class='material-icons'>mode_edit</i></a>
-					<a class='waves-effect waves-light' href='#modal1-".$row['id_producto']."'><i class='material-icons'>delete</i></a>
+					<a href='save_products.php?id=".$row['id_producto']."' class='waves-effect waves-light'><i class='material-icons cyan-text text-darken-3'>update</i></a>
+					<a class='waves-effect waves-light' href='#modal1-".$row['id_producto']."'><i class='material-icons red-text text-darken-4'>highlight_off</i></a>
 					<div id='modal1-".$row['id_producto']."' class='modal'>
 						<div class='modal-content'>
 							<h4>¡CUIDADO!</h4>

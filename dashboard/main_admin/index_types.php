@@ -1,6 +1,9 @@
 <?php
+//mandamos a llamar a nuestro archivo maestro
 require("../..//lib/master.php");
-master::header("main_index");
+//colocamos el metodo de header
+master::header("Tipos");
+//hacemos una condicional diciendo que si el post esta vacio muestre los registros normales sino que los muestre solo los que se han pedido en el parametro
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
@@ -12,11 +15,12 @@ else
 	$sql = "SELECT * FROM tipo_usuario ORDER BY tipo";
 	$params = null;
 }
+//ejecutamos el metodo get rows para ver si tenemos respuesta
 $data = Database::getRows($sql, $params);
 if($data != null)
 {
 ?>
-
+<!--Tabla en donde se muestran los datos-->
 <form method='post'>
 	<div class='row'>
 		<div class='input-field col s6 m4'>
@@ -25,13 +29,14 @@ if($data != null)
 			<label for='buscar'>Buscar</label>
 		</div>
 		<div class='input-field col s6 m4'>
-			<button type='submit' class='btn waves-effect green'><i class='material-icons'>check_circle</i></button> 	
+			<button type='submit' class='btn waves-effect #00838f cyan darken-3'><i class='material-icons'>check_circle</i></button> 	
 		</div>
 		<div class='input-field col s12 m4'>
-			<a href='save_types.php' class='btn waves-effect indigo'><i class='material-icons'>add_circle</i></a>
+			<a href='save_types.php' class='btn waves-effect #00838f cyan darken-3'><i class='material-icons'>note_add</i></a>
 		</div>
 	</div>
 </form>
+<!--la calse striped hace que se intercale el color de la tabla-->
 <table class='striped'>
 	<thead>
 		<tr>
@@ -47,6 +52,7 @@ if($data != null)
 	<tbody>
 
 <?php
+//hacemos una condicional que si el valor de cada uno de estas es iguala uno entonces se pondra el incono de cheque
 	foreach($data as $row)
 	{
 		print("
@@ -114,16 +120,16 @@ if($data != null)
 		print("
 				</td>
 				<td>
-					<a href='save_types.php?id=".$row['id_tipo_usuario']."' class='blue-text'><i class='material-icons'>mode_edit</i></a>
-					<a class='waves-effect waves-light' href='#modal1-".$row['id_tipo_usuario']."'><i class='material-icons'>delete</i></a>
+					<a href='save_types.php?id=".$row['id_tipo_usuario']."' class='waves-effect waves-light'><i class='material-icons cyan-text text-darken-3'>update</i></a>
+					<a class='waves-effect waves-light' href='#modal1-".$row['id_tipo_usuario']."'><i class='material-icons red-text text-darken-4'>highlight_off</i></a>
 					<div id='modal1-".$row['id_tipo_usuario']."' class='modal'>
 					<div class='modal-content'>
 					<h4>¡CUIDADO!</h4>
 					<p>ESTA A PUNTO DE ELIMINAR UN USUARIO, ¿ESTA SEGURO?</p>
 					</div>
 					<div class='modal-footer'>
-					<a href='#!' onclick='eliminarT(".$row['id_tipo_usuario'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Okay!</a>
-					<a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>ÑO >:C</a>
+					<a href='#!' onclick='eliminarT(".$row['id_tipo_usuario'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
+					<a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>No</a>
 					</div>
 					</div>
 				</td>
@@ -137,7 +143,8 @@ if($data != null)
 } //Fin de if que comprueba la existencia de registros.
 else
 {
-	master::showMessage(4, "No hay registros disponibles", null);
+	master::showMessage(4, "No hay registros disponibles", "save_types.php");
 }
-master::footer("main");
+//llamada del footer
+master::footer("Tipos");
 ?>

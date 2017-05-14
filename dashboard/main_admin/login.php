@@ -1,12 +1,16 @@
 <?php
+//mandamos a llamar a nuestro archivo maestro
 require("../..//lib/master.php");
+//colocamos el metodo de header
 master::header("Login");
+//aqui colocamos una validacion la cual es que si no hay resgristro en admin entonces nos enviara a crear uno
 $sql = "SELECT * FROM administradores";
 $data = Database::getRows($sql, null);
 if($data == null)
 {
     header("location: registro_admin.php");
 }
+//aqui mandamos a llamar al metodo post y colocamos la conficionales necesesarias
 if(!empty($_POST))
 {
 	$_POST = validator::validateForm($_POST);
@@ -24,9 +28,10 @@ if(!empty($_POST))
 		    	$hash = $data['clave'];
 		    	if(password_verify($clave, $hash)) 
 		    	{
-			    	$_SESSION['id_admin'] = $data['id_admin'];
+			    	  $_SESSION['id_admin'] = $data['id_admin'];
 			        $_SESSION['usuario'] = $data['usuario'];
-                    header("location: main.php");
+              $_SESSION['key'] = 1;
+              header("location: main.php");
 			      	
 				}
 				else 
@@ -67,9 +72,6 @@ if(!empty($_POST))
         </div>
         <div class="center-align  boton">
         <button type='submit' class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">play_arrow</i>Ingresar</button> <!--Boton con el cual se ingrasara-->
-        </div>
-        <div class="center-align boton2">
-        <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="registro_admin.php"><i class="material-icons right">face</i> Registrate!</a><!--boton para rederigirse a registro-->
         </div>
     </form>
   </div>

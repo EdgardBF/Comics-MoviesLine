@@ -158,7 +158,7 @@ else
         </div>
         </div>
         <div class='row center-align'>
-            <a href='noticias.php' class='btn waves-effect red'><i class='material-icons'>cancel</i></a>
+            <a href='productos_admin.php' class='btn waves-effect red'><i class='material-icons'>cancel</i></a>
             <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
         </div>
     </form>

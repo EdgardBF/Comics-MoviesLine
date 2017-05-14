@@ -1,7 +1,9 @@
 <?php
+//mandamos a llamar a nuestro archivo maestro
 require("../../lib/master.php");
-master::header("Editar perfil");
-
+//colocamos el metodo de header
+master::header("Editar perfil Admin");
+//hacemos una condicional diciendo que si el post esta vacio muestre los registros normales sino que los muestre solo los que se han pedido en el parametro
 if(!empty($_POST))
 {
     $_POST = Validator::validateForm($_POST);
@@ -71,6 +73,7 @@ else
 }
 ?>
 <br>
+<!--Formulario con el cual se podra modificar toda la informacion-->
 <form method='post'>
     <div class='row'>
         <div class='input-field col s12 m6'>

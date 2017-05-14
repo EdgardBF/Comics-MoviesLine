@@ -1,6 +1,6 @@
 <?php
 require("../../lib/master.php");
-master::header("Login_public");
+master::header("Login public");
 $sql = "SELECT * FROM registro";
 $data = Database::getRows($sql, null);
 if($data == null)
@@ -26,6 +26,7 @@ if(!empty($_POST))
 		    	{
 			      $_SESSION['id_registro'] = $data['id_registro'];
 			      $_SESSION['usuario'] = $data['usuario'];
+            $_SESSION['key'] = 0;
             header("location: main_user.php");			      	
 				}
 				else 
@@ -74,5 +75,5 @@ if(!empty($_POST))
   </div>
   </section>
 <?php
-master::footer("Login_public");
+master::footer("Login public");
 ?>
