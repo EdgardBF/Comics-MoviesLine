@@ -1,0 +1,6 @@
+crear campo de estado para noticia y producto
+Especificar tamaño de imagen
+poner paginacion a todas la tablas 
+y registro que si sos admin que te meta al de editar perfil de admin 
+poner titulo a la pagina de las tablas
+colocar el id del admin en noticia para ver quien la mando
