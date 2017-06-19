@@ -70,6 +70,23 @@ function eliminarN(id){
   console.log(id);
   window.location="./../../dashboard/main_admin/eliminar_noticias.php?id="+id;
 }
+function eliminarP(id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/eliminarcompag.php?id="+id;
+}
+function eliminarP(id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/eliminarcompag.php?id="+id;
+}
+function actupag(id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/actualizar_compagina.php?id="+id;
+}
+function agrecar(id, cantidad){
+  console.log(id);
+  console.log(cantidad)
+  window.location="./../dashboard/main_admin/agrecarrito.php?id="+id;
+}
 function coment_pro(usuario,comentario,producto,calificacion,tipo){
   console.log(usuario);
   console.log(comentario);

@@ -79,13 +79,19 @@ require_once '../lib/Zebra_Pagination.php';
                                                 </div>
                                                     <div class='card-content'>
                                                         <span class='card-title activator grey-text text-darken-4'>$row[nombre_producto] $ $row[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
-                                                        <p><a onclick='Materialize.toast('Agregado al Carrito', 4000)'>Agregar al Carrito</a></p>
+                                                        <p><button onclick='agrecar(".$row['id_producto'].")'>Agregar al Carrito</button></p>
                                                         <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
                                                         <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
                                                         <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
                                                         <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star_half</i></a>
                                                         <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star_border</i></a>
                                                     </div>
+                                                    <div class='input-field col s12'>
+                                                        <input id='precio' type='number' name='cantidad' class='validate' required/>
+                                                        <label for='precio' class='cyan-text text-darken-3'>cantidad</label><!--El cuadro de texto donde se pondra el precio-->
+                                                    </div>
+                                                    <br>
+                                                    <br>
                                                 <div class='card-reveal'>
                                                     <span class='card-title grey-text text-darken-4'>$row[nombre_producto] $$row[precio_producto]<i class='material-icons right'>close</i></span>
                                                     <p>$row[descripcion]</p>
