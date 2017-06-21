@@ -1,6 +1,9 @@
 <?php
 require("../../lib/master.php");
 master::header("ProductosAdmin");
+?>
+<h3 class="center-align">Productos</h3>
+<?php
 //Obtiene la Hora del Sistema
 $time = time();
 //Verifica que hayan datos a guardar, con el metodo Get,en el Id de la pagina
@@ -12,6 +15,7 @@ if(empty($_GET['id']))
     $tipo = null;
     $distribucion = null;
     $descripcion = null;
+    $cantidad = null;
     $fecha = date("Y-m-d ", $time);
     $imagen = null;
 }
@@ -26,6 +30,7 @@ else
     $tipo = $data['id_tipo_producto'];
     $distribucion = $data['id_distribucion'];
     $descripcion = $data['descripcion'];
+    $cantidad = $data['cantidad'];
     $fecha = $data['fecha'];
     $imagen = $data['imagen'];
 }
@@ -38,6 +43,7 @@ if(!empty($_POST))
     $tipo = $_POST['tipo'];
     $distribucion = $_POST['distribucion'];
     $descripcion = $_POST['descripcion'];
+    $cantidad = $_POST['cantidad'];
     $fecha = date("Y-m-d ", $time);
     $archivo = $_FILES['imagen'];
 
@@ -52,37 +58,49 @@ if(!empty($_POST))
                     {
                         if($descripcion != "")
                         {
-                            if($archivo['name'] != null)
-                            { 
-                                $base64 = Validator::validateImage($archivo);
-                                if($base64 != false)
-                                {
-                                    $imagen = $base64;
+                            if($cantidad > 0)
+                            {
+                                if($archivo['name'] != null)
+                                { 
+                                    $base64 = Validator::validateImage($archivo);
+                                    if($base64 != false)
+                                    {
+                                        $imagen = $base64;
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("Ocurrió un problema con la imagen");
+                                    }
                                 }
                                 else
                                 {
-                                    throw new Exception("Ocurrió un problema con la imagen");
+                                    if($imagen == null)
+                                    {
+                                        throw new Exception("Debe seleccionar una imagen");
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                if($imagen == null)
+                                if($id == null)
                                 {
-                                    throw new Exception("Debe seleccionar una imagen");
+                                    $sql = "INSERT INTO productos(nombre_producto, precio_producto, id_tipo_producto, id_distribucion, descripcion, imagen, cantidad, fecha) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+                                    $params = array($nombre, $precio, $tipo, $distribucion, $descripcion, $imagen, $cantidad, $fecha);
+                                }
+                                else
+                                {
+                                    $sql = "UPDATE productos SET nombre_producto = ?, precio_producto = ?, id_tipo_producto = ?, id_distribucion = ?, descripcion = ?, imagen = ?, cantidad=?, fecha = ? WHERE id_producto = ?";
+                                    $params = array($nombre, $precio, $tipo, $distribucion, $descripcion, $imagen, $cantidad, $fecha, $id);
+                                }
+                                if(Database::executeRow($sql, $params))
+                                {
+                                                master::showMessage(1, "Operación satisfactoria", "productos_admin.php");
+                                }                             
+                                else
+                                {
+                                    throw new Exception(Database::$error[1]);
                                 }
                             }
-                             if($id == null)
-                            {
-                                $sql = "INSERT INTO productos(nombre_producto, precio_producto, id_tipo_producto, id_distribucion, descripcion, imagen, fecha) VALUES(?, ?, ?, ?, ?, ?, ?)";
-                                $params = array($nombre, $precio, $tipo, $distribucion, $descripcion, $imagen, $fecha);
+                            else {
+                                    throw new Exception("Debe ingresar una cantidad adecuada");
                             }
-                            else
-                            {
-                                $sql = "UPDATE productos SET nombre_producto = ?, precio_producto = ?, id_tipo_producto = ?, id_distribucion = ?, descripcion = ?, imagen = ?, fecha = ? WHERE id_producto = ?";
-                                $params = array($nombre, $precio, $tipo, $distribucion, $descripcion, $imagen, $fecha, $id);
-                            }
-                            Database::executeRow($sql, $params);
-                            master::showMessage(1, "Operación satisfactoria", "productos_admin.php");
                         }
                         else
                         {
@@ -120,7 +138,7 @@ else
 {}
 ?>
     <!--Uso de un contenedor para colocar los datos y de una clase para el cambio de colores-->
-
+    <section class="container">
     <form form method='post' enctype='multipart/form-data'>
         <div class='row'>
             <div class="input-field col s12">
@@ -128,7 +146,7 @@ else
                 <label for="nombre" class="cyan-text text-darken-3">Nombre del Producto</label><!--El cuadro de texto donde se pondra el nombre-->
             </div>
             <div class="input-field col s12">
-                <input id="precio" type="number" name='precio' class="validate" value='<?php print($precio); ?>' required/>
+                <input id="precio" type="number" name='precio' class="validate" max='999.99' min='0.01' step='any' value='<?php print($precio); ?>' required/>
                 <label for="precio" class="cyan-text text-darken-3">Precio del Producto</label><!--El cuadro de texto donde se pondra el precio-->
             </div>
             <div class='input-field col s12 m6'>
@@ -147,6 +165,10 @@ else
                 <input id="descripcion" type="text" name="descripcion" class="validate" value='<?php print($descripcion); ?>' required/>
                 <label for="descripcion" class="cyan-text text-darken-3">Descripción</label><!--El cuadro de texto donde se pondra el nombre de usuario-->
             </div>
+            <div class="input-field col s12 m6">
+                <input id="cantidad" type="number" name='cantidad' class="validate" min='1' value='<?php print($cantidad); ?>' required/>
+                <label for="cantidad" class="cyan-text text-darken-3">Cantidad del Producto</label><!--El cuadro de texto donde se pondra el precio-->
+            </div>
       	<div class='file-field input-field col s12 m6'>
             <div class='btn waves-effect'>
                 <span><i class='material-icons'>image</i></span>
@@ -157,11 +179,12 @@ else
             </div>
         </div>
         </div>
-        <div class='row center-align'>
-            <a href='productos_admin.php' class='btn waves-effect red'><i class='material-icons'>cancel</i></a>
-            <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
-        </div>
+            <div class='row center-align'>
+                <a href='productos_admin.php' class='btn waves-effect red'>Cancelar<i class='material-icons left'>highlight_off</i></a>
+                <button type='submit' class='btn waves-effect blue'>Guardar<i class='material-icons left'>add_circle_outline</i></button>
+            </div>
     </form>
+      </section>
 <?php
 master::footer("ProductosAdmin")
 ?>

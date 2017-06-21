@@ -1,6 +1,9 @@
 <?php
 require("../../lib/master.php");
 master::header("Distribuciones");
+?>
+<h3 class="center-align">Distribuidor</h3>
+<?php
 //Obtiene la Hora del Sistema
 $time = time();
 //Verifica que hayan datos a guardar, con el metodo Get,en el Id de la pagina
@@ -37,8 +40,14 @@ if(!empty($_POST))
                 $sql = "UPDATE distribucion SET distribucion = ? WHERE id_distribucion = ?";
                 $params = array($distribucion, $id);
             }
-            Database::executeRow($sql, $params);
+                if(Database::executeRow($sql, $params))
+	            {
             master::showMessage(1, "Operación satisfactoria", "distribuidor.php");
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
       }
         else
         {
@@ -55,19 +64,20 @@ else
 ?>
     <!--Uso de un contenedor para colocar los datos y de una clase para el cambio de colores-->
 
-    <form form method='post'>
-    <div class='row'>
-        <div class='input-field col s12 m6'>
-          	<i class='material-icons prefix'>person</i>
-          	<input id='distribucion' type='text' name='distribucion' class='validate' value='<?php print($distribucion); ?>' required/>
-          	<label for='distribucion'>Distribuidor</label>
-        </div>
-    </div>
-    <div class='row center-align'>
-        <a href='distribuidor.php' class='btn waves-effect red'><i class='material-icons'>cancel</i></a>
-        <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
-    </div>
-    </form>
+    <section class="container">
+        <form class="col s12" form method='post' enctype='multipart/form-data'>
+            <div class='row'>
+                <div class="input-field col s12">
+                    <input id="distribucion" type="text" name="distribucion" class="validate" value='<?php print($distribucion); ?>' required/>
+                    <label for="distribucion" class="cyan-text text-darken-3">Distribuidor</label><!--El cuadro de texto donde se pondra el titulo-->
+                </div>
+            </div>
+            <div class='row center-align'>
+                <a href='distribuidor.php' class='btn waves-effect red'>Cancelar<i class='material-icons left'>highlight_off</i></a>
+                <button type='submit' class='btn waves-effect blue'>Guardar<i class='material-icons left'>add_circle_outline</i></button>
+            </div>
+        </form>
+    </section>
 <?php
 master::footer("Distribuciones")
 ?>

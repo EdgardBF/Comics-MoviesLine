@@ -25,14 +25,13 @@ require_once '../lib/Zebra_Pagination.php';
                     <!--Se dice que tamaño del grid se usara-->
                     <form method='post'>
                         <div class='row'>
-                            <div class='input-field col s6 m8'>
-                                <i class='material-icons prefix'>search</i>
+                            <div class='input-field col s6 m4'>
                                 <input id='buscar' type='text' name='buscar'/>
                                 <label for='buscar'>Buscar</label>
                             </div>
-                            <div class='input-field col s6 m4'>
-                                <button type='submit' class='btn waves-effect green'><i class='material-icons'>check_circle</i></button> 	
-                            </div>
+                                <div class='input-field col s6 m4'>
+                                    <button type='submit' class='btn waves-effect #00838f cyan darken-3'>Buscar<i class='material-icons left'>search</i></button> 	
+                                </div>
                         </div>
                     </form>
                 

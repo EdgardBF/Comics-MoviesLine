@@ -147,6 +147,7 @@ class master
                         <li><a href='perfil.php'><i class='material-icons left'>edit</i>Editar perfil</a></li>
                         <li><a href='../dashboard/main_public/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>
                         </ul>
+                        <main>
                     
                     ");
 
@@ -185,7 +186,7 @@ class master
                         <li><a href='perfil.php'><i class='material-icons left'>edit</i>Editar perfil</a></li>
                         <li><a href='../dashboard/main_public/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>
                         </ul>
-                    
+                        <main>
                     ");
                 }
             }
@@ -245,6 +246,7 @@ class master
                 <li><a href='../main/profile.php'><i class='material-icons left'>edit</i>Editar perfil</a></li>
                 <li><a href='../../dashboard/main_admin/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>
                 </ul>
+                <main>
             
             ");
                     }
@@ -320,6 +322,7 @@ class master
                 <li class='$activo4'><a href='../dashboard/main_public/login.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>person</i>INICIAR SESIÓN</a></li>
                 <li class='$activo5'><a href='../dashboard/main_public/compras.php' class='texto white-text waves-effect waves-teal'><i class='material-icons white-text'>shopping_cart</i>COMPRAS</a></li>
                 </ul>
+                <main>
             
             ");
             }
@@ -334,7 +337,8 @@ class master
                 </div>
                 <!--Menu para el Mobil-->
                 <ul class='side-nav cyan darken-4 z-depth-4' id='mobile-demo'>
-                </ul>            
+                </ul>   
+                <main>         
             ");
                         //se utiliza para validar la entrada
             if($documento !="login.php" && $documento != "registro_admin.php" && $documento != "registro.php")
@@ -356,6 +360,7 @@ class master
             if($title=="Login public")
             {
                 print("
+                </main>
             <footer class='page-footer tipografia #00838f cyan darken-3'>
                 <div class='container'>
                 <div class='row'>
@@ -403,6 +408,7 @@ class master
             else
             {
                 print("
+                </main>
             <footer class='page-footer tipografia #00838f cyan darken-3'>
                 <div class='container'>
                 <div class='row'>
@@ -451,6 +457,7 @@ class master
     }
     else{
                 print("
+                </main>
             <footer class='page-footer tipografia #00838f cyan darken-3'>
 				<div class='container'>
 					<div class='row'>
@@ -484,9 +491,42 @@ class master
 
     }
     //este metodo es usado para la alertas de sweet alert en donde se pido el tipo el mensaje que llevara y adonde se redirijira
-    	public static function showMessage($type, $message, $url)
+ public static function showMessage($type, $message, $url)
 	{
-		$text = addslashes($message);
+		if(is_numeric($message))
+		{
+			switch($message)
+			{
+				case 1045:
+					$text = "Autenticación desconocida";
+					break;
+				case 1049:
+					$text = "Base de datos desconocida";
+					break;
+				case 1054:
+					$text = "Nombre de campo desconocido";
+					break;
+				case 1062:
+					$text = "Dato duplicado, no se puede guardar";
+					break;
+				case 1146:
+					$text = "Nombre de tabla desconocido";
+					break;
+				case 1451:
+					$text = "Registro ocupado, no se puede eliminar";
+					break;
+				case 2002:
+					$text = "Servidor desconocido";
+					break;
+				default:
+					$text = "Ocurrio un problema, contacte al administrador";
+			}
+		}
+		else
+		{
+			$text = $message;
+		}
+
 		switch($type)
 		{
 			case 1:
@@ -505,6 +545,7 @@ class master
 				$title = "Aviso";
 				$icon = "info";
 		}
+
 		if($url != null)
 		{
 			print("<script>swal({title: '$title', text: '$text', type: '$icon', confirmButtonText: 'Aceptar', allowOutsideClick: false, allowEscapeKey: false}).then(function(){location.href = '$url'})</script>");
