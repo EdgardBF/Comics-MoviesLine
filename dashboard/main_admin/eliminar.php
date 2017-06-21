@@ -8,13 +8,18 @@ if(!empty($_GET)){
             //Elimina un registro y muestra un mensaje
 			$sql = "DELETE FROM registro WHERE id_registro = ?";
 		    $params = array($id);
-		    Database::executeRow($sql, $params);
+                if(Database::executeRow($sql, $params))
+	            {
             master::showMessage(1, "Se elimino el usuario", "index_users.php");
-            
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
     }
     catch(Exception $error)
     {
-            master::showMessage(1, $error->getMessage(), null);
+            master::showMessage(1, $error->getMessage(), "index_users.php");
     }
     
 }

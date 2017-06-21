@@ -8,13 +8,18 @@ if(!empty($_GET)){
             //Elimina un registro y muestra un mensaje
 			$sql = "DELETE FROM productos WHERE id_producto = ?";
 		    $params = array($id);
-		    Database::executeRow($sql, $params);
+                if(Database::executeRow($sql, $params))
+	            {
             master::showMessage(1, "Se elimino el producto", "productos_admin.php");
-            
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
     }
     catch(Exception $error)
     {
-            master::showMessage(2, $error->getMessage(), null);
+            master::showMessage(2, $error->getMessage(), "productos_admin.php");
     }
     
 }

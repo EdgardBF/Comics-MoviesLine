@@ -35,8 +35,14 @@ if(!empty($_POST))
                 {
                             $sql = "UPDATE administradores SET id_tipo_usuario = ? WHERE id_admin = ?";
                             $params = array($permisos, $id);
-                    Database::executeRow($sql, $params);
+                    if(Database::executeRow($sql, $params))
+                    {
                     master::showMessage(1, "Operación satisfactoria", "index_admin.php");
+                    }                             
+                    else
+                    {
+                        throw new Exception(Database::$error[1]);
+                    }
                 }
                 else
                 {

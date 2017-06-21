@@ -3,6 +3,9 @@
 class Database
 {
     private static $connection;
+    private static $statement;
+        public static $id;
+    public static $error;
     //hacemos una funcion privada la cual nos servira para crear una conexion a la base de datos
     private static function connect()
     {
@@ -11,60 +14,59 @@ class Database
         $username = "root"; //usuario con el cual se tendra acceso
         $password = ""; //y la contraseña
         //lo que hace es colocar todo a utf8 es decir para aceptar caracteres especiales
-        $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8");
-        self::$connection = null;
-        //en el try lo que hacemos es colocar la linea para crear la conexcion
+        $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8");     
         try
         {
-            self::$connection = new PDO("mysql:host=".$server."; dbname=".$database, $username, $password, $options);
-            self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            @self::$connection = new PDO("mysql:host=".$server."; dbname=".$database, $username, $password, $options);
         }
         catch(PDOException $exception)
         {
-            die($exception->getMessage());
+            throw new Exception($exception->getCode());
         }
     }
-//hacemos que la funcion haga una desconexion de la base
+
     private static function desconnect()
     {
+        self::$error = self::$statement->errorInfo();
         self::$connection = null;
     }
 
-//Esta funcion es utilizada para ejecutrar el query que se le mande ya sea un insert un update y un delete
     public static function executeRow($query, $values)
     {
-        self::connect();//inicia la conexion a la base de datos
-        $statement = self::$connection->prepare($query);//preparamos el query es decur la funcion que le hemos puesto ya sea un insert, update, etc
-        $statement->execute($values);//colocamos los valores a enviar
-        self::desconnect();//termina la conexion a la base de datos
+        self::connect();
+        self::$statement = self::$connection->prepare($query);
+        $state = self::$statement->execute($values);
+        self::$id = self::$connection->lastInsertId();
+        self::desconnect();
+        return $state;
     }
-//Esta funcion se utiliza para los select con un where unico es decir solo una fila
+
     public static function getRow($query, $values)
     {
-        self::connect();//Inicia la conexion a la base de datos
-        $statement = self::$connection->prepare($query);//se prepara el query ah ejecutar en este caso un select
-        $statement->execute($values);//los valor que se envian
-        self::desconnect();//Termina la conexion
-        return $statement->fetch(PDO::FETCH_BOTH);//se retornan los valores
+        self::connect();
+        self::$statement = self::$connection->prepare($query);
+        self::$statement->execute($values);
+        self::desconnect();
+        return self::$statement->fetch();
     }
-//esta funcion es utilizada para mandar a llamar una gran cantidad de filas para los querys de select y search
+
     public static function getRows($query, $values)
     {
-        self::connect();//Inicia la conexion a base
-        $statement = self::$connection->prepare($query);//prepara el query que en este caso seria un select
-        $statement->execute($values);//los valores a enviar
-        self::desconnect();//se desconecta de la base
-        return $statement->fetchAll(PDO::FETCH_BOTH);//regresa los datos pedidos
+        self::connect();
+        self::$statement = self::$connection->prepare($query);
+        self::$statement->execute($values);
+        self::desconnect();
+        return self::$statement->fetchAll();
     }
 
     //Obtiene la cantidad de registros en la tabla
     public static function numRows($query, $values)
     {
         self::connect();
-        $statement = self::$connection->prepare($query);
-        $statement->execute($values);
+        self::$statement = self::$connection->prepare($query);
+        self::$statement->execute($values);
         self::desconnect();
-        return $statement->rowCount();
+        return self::$statement->rowCount();
     }
 }
 ?>
