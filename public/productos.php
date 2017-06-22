@@ -70,6 +70,9 @@ require_once '../lib/Zebra_Pagination.php';
                                 //Muestra los datos en cartas
                                 foreach ($data as $row) 
                                 {
+                                   $sql1 = "SELECT AVG(calificacion) FROM comentarios WHERE id_producto = ?";
+                                   $params1 = array($row['id_producto']);
+                                   $data1 = Database::getRow($sql1, $params1);
                                     print("
                                         <div class='col s12 m6 l6'>
                                             <div class='card'>
@@ -78,7 +81,7 @@ require_once '../lib/Zebra_Pagination.php';
                                                 </div>
                                                 <div class='card-content row'>
                                                     <span class='card-title activator grey-text text-darken-4'>$row[nombre_producto] $ $row[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
-                                                    <p>Clasificacion Promedio de: $row[clasificacion]</p>
+                                                    <p>Calificacion Promedio de: ".round($data1['AVG(calificacion)'], 2)."</p>
                                                     <p><button type='submit' class='waves-effect waves-light btn  #00838f cyan darken-3 col s12' onclick='agrecar(".$row['id_producto'].")'><i class='material-icons right'>shopping_cart</i>Agregar al Carrito</button> </p>
                                                     <div class='input-field col s12'>
                                                         <input id='precio' type='number' name='cantidad' class='validate' required/>
