@@ -126,11 +126,11 @@ class master
                                         <li class='$activo2'><a href='../../public/productos.php' class='waves-effect waves-teal texto'><i class='material-icons left'>extension</i>PRODUCTOS</a></li>
                                         <li class='$activo3'><a href='../../public/soporte_linea.php' class='waves-effect waves-teal texto'><i class='material-icons left'>question_answer</i>SOPORTE EN LÍNEA</a></li>
                                         <li class='$activo4'><a href='../dashboard/main_public/login.php' class='dropdown-button texto' data-activates='dropdown'><i class='material-icons left'>mood</i>".$_SESSION['usuario']."</a></li>
-                                        <li class='$activo5'><a href='../dashboard/main_public/compras.php' class='waves-effect waves-teal texto'><i class='material-icons'>shopping_cart</i></a></li>
+                                        <li class='$activo5'><a href='../main_public/compras.php' class='waves-effect waves-teal texto'><i class='material-icons'>shopping_cart</i></a></li>
                                     </ul>
                                     <ul id='dropdown' class='dropdown-content'>
                                         <li><a href='../dashboard/main_public/perfil.php'><i class='material-icons left'>edit</i>Editar perfil</a></li>
-                                        <li><a href='../dashboard/main_public/historialc.php'><i class='material-icons left'>edit</i>Historial de Compra</a></li>
+                                        <li><a href='../main_public/historialc.php'><i class='material-icons left'>edit</i>Historial de Compra</a></li>
                                         <li><a href='../main_public/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>
                                     </ul>
                                 </div>
@@ -138,13 +138,13 @@ class master
                         </div>
                         <!--Menu para el Mobil-->
                         <ul class='side-nav cyan darken-4 z-depth-4' id='mobile-demo'>
-                        <li class='$activo1'><a href='../public/index.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>home</i>INICIO</a></li>
-                        <li class='$activo2'><a href='../public/productos.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>extension</i>PRODUCTOS</a></li>
-                        <li class='$activo3'><a href='../public/soporte_linea.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>question_answer</i>SOPORTE EN LÍNEA</a></li>
-                        <li class='$activo4'><a class='texto dropdown-button'><i class='material-icons left white-text'>mood</i>".$_SESSION['usuario']."</a></li>
-                        <li class='$activo5'><a href='../dashboard/main_public/compras.php' class='texto white-text waves-effect waves-teal'><i class='material-icons white-text'>shopping_cart</i>COMPRAS</a></li>
+                        <li class='$activo1'><a href='../../public/index.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>home</i>INICIO</a></li>
+                        <li class='$activo2'><a href='../../public/productos.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>extension</i>PRODUCTOS</a></li>
+                        <li class='$activo3'><a href='../../public/soporte_linea.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>question_answer</i>SOPORTE EN LÍNEA</a></li>
+                        <li class='$activo4'><a class='texto dropdown-button' data-activates='dropdown20'><i class='material-icons left white-text'>mood</i>".$_SESSION['usuario']."</a></li>
+                        <li class='$activo5'><a href='../main_public/compras.php' class='texto white-text waves-effect waves-teal'><i class='material-icons white-text'>shopping_cart</i>COMPRAS</a></li>
                         </ul>
-                        <ul id='dropdown' class='dropdown-content'>
+                        <ul id='dropdown20' class='dropdown-content'>
                         <li><a href='perfil.php'><i class='material-icons left'>edit</i>Editar perfil</a></li>
                         <li><a href='../dashboard/main_public/historialc.php'><i class='material-icons left'>edit</i>Historial de Compra</a></li>
                         <li><a href='../dashboard/main_public/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>
@@ -181,10 +181,10 @@ class master
                         <li class='$activo1'><a href='../public/index.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>home</i>INICIO</a></li>
                         <li class='$activo2'><a href='../public/productos.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>extension</i>PRODUCTOS</a></li>
                         <li class='$activo3'><a href='../public/soporte_linea.php' class='texto white-text waves-effect waves-teal'><i class='material-icons left white-text'>question_answer</i>SOPORTE EN LÍNEA</a></li>
-                        <li class='$activo4'><a class='texto dropdown-button'><i class='material-icons left white-text'>mood</i>".$_SESSION['usuario']."</a></li>
+                        <li class='$activo4'><a class='texto dropdown-button' data-activates='dropdown21'><i class='material-icons left white-text'>mood</i>".$_SESSION['usuario']."</a></li>
                         <li class='$activo5'><a href='../dashboard/main_public/compras.php' class='texto white-text waves-effect waves-teal'><i class='material-icons white-text'>shopping_cart</i>COMPRAS</a></li>
                         </ul>
-                        <ul id='dropdown' class='dropdown-content'>
+                        <ul id='dropdown21' class='dropdown-content'>
                         <li><a href='perfil.php'><i class='material-icons left'>edit</i>Editar perfil</a></li>
                         <li><a href='../dashboard/main_public/historialc.php'><i class='material-icons left'>edit</i>Historial de Compra</a></li>
                         <li><a href='../dashboard/main_public/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>

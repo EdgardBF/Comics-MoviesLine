@@ -16,6 +16,8 @@ if(!empty($_POST))
     $numero = $_POST['numero'];
     $credito = $_POST['credito'];
     $direccion = $_POST['direccion'];
+     $valida = strlen($numero); 
+     $valida1 = strlen($credito); 
         try{
         //Valida que los datos no esten vacios
             foreach ($data as $row)
@@ -26,11 +28,11 @@ if(!empty($_POST))
     foreach ($data as $row)
     {
 
-            if($postal != null)
+            if($postal != null && $valida == 8)
             {
                 if($numero != null)
                 {
-                    if($credito != null)
+                    if($credito != null && $valida1 == 16)
                     {
                         $fes = date("Y-m-d ", $time);
                         //Guarda los registros en la Base de Datos
@@ -45,12 +47,12 @@ if(!empty($_POST))
                     }
                     else
                     {
-                         throw new Exception("Debe ingresar tarjeta de credito");
+                         throw new Exception("Debe ingresar una tarjeta de credito valida");
                     }
                 }
                 else
                 {
-                     throw new Exception("Debe Ingresar el telefono");
+                     throw new Exception("Debe Ingresar un telefono valido");
                 }
                 
             }
@@ -105,8 +107,8 @@ else
                             <div class='card'>
                                 <div class='card-image'>
                                     <img class='materialboxed' src='data:image/*;base64,$row[imagen]' width='300' height='150'>
-                                    <a class='btn-floating halfway-fab waves-effect waves-light red' href='#modal1-".$row['id_vista_carrito']."'><i class='material-icons'>close</i></a>
-                                    <div id='modal1-".$row['id_vista_carrito']."' class='modal'>
+                                    <a class='btn-floating halfway-fab waves-effect waves-light red' href='#modal2-".$row['id_vista_carrito']."'><i class='material-icons'>close</i></a>
+                                    <div id='modal2-".$row['id_vista_carrito']."' class='modal'>
                                     <div class='modal-content'>
                                     <h4>¡CUIDADO!</h4>
                                     <p>ESTA A PUNTO DE ELIMINAR UN USUARIO, ¿ESTA SEGURO?</p>
@@ -154,14 +156,14 @@ else
                                 <label for="first_name" class="black-text">Nombre</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="cod" type="text" name = "postal" class="validate" value='<?php print($postal); ?>' required/>
+                                    <input id="cod" type="number" name = "postal" pattern="[0-9]" class="validate" value='<?php print($postal); ?>' required/>
                                     <label for="cod" class="black-text">Codigo Postal</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                <input id="number" type="text" class="validate" name = "numero" value='<?php print($numero); ?>' required/>
-                                <label for="number" class="black-text">Numero</label>
+                                <input id="number" type="tel" pattern="[0-9]{8}" class="validate" name = "numero" value='<?php print($numero); ?>' required/>
+                                <label for="number" class="black-text">Telefono</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="cod" type="text" name = "direccion" class="validate" value='<?php print($direccion); ?>' required/>
@@ -170,7 +172,7 @@ else
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                <input id="tarjeta" type="text" class="validate" name = "credito" value='<?php print($credito); ?>' required/>
+                                <input id="tarjeta" type="number" pattern="[0-9]{16}" class="validate" name = "credito" value='<?php print($credito); ?>' required/>
                                 <label for="tarjeta" class="black-text">Tarjeta de Credito</label>
                                 </div>
                             </div>

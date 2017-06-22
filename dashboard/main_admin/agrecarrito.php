@@ -22,14 +22,29 @@ $id = $_GET['id'];
             $stock = $st['cantidad'];
             if($data != null){
                 if($cantidad <= $stock){
+                $sql2 = "SELECT id_vista_carrito, productos.id_producto FROM vista_carrito, carrito, productos, registro WHERE carrito.id_registro = registro.id_registro AND vista_carrito.id_carrito = carrito.id_carrito AND productos.id_producto = vista_carrito.id_producto  AND  vista_carrito.id_producto = ? AND carrito.id_registro = ? ";
+                $params2 = array($id, $_SESSION['id_registro']);
+                $data2 = Database::getRow($sql2, $params2);
+                if($data2 == null)
+                {
                 $sql = "INSERT INTO vista_carrito(id_carrito, id_producto, cantidad) VALUES(?, ?, ?)";
                 $params = array($id_carrito, $id, $cantidad);
-                echo "noma". $id_carrito;
                 Database::executeRow($sql, $params);
                 $sql = "UPDATE productos SET cantidad = ($stock-$cantidad) WHERE id_producto = $id";
                 $params = array($id);
                 Database::executeRow($sql, $params);
                 master::showMessage(1, "Operación satisfactoria", "../../public/productos.php");
+                }
+                else
+                {
+                    $sql = "UPDATE vista_carrito SET cantidad = cantidad+$cantidad WHERE id_vista_carrito = ?";
+                    $params = array($data2['id_vista_carrito']);
+                    Database::executeRow($sql, $params);
+                    $sql = "UPDATE productos SET cantidad = ($stock-$cantidad) WHERE id_producto = $id";
+                    $params = array($id);
+                    Database::executeRow($sql, $params);
+                    master::showMessage(1, "Actualizacion satisfactoria", "../../public/productos.php");
+                }
                 }
                 else
                 {
@@ -134,7 +149,7 @@ else
     <div class='row'>
         <div class='input-field col s12 m9'>
           	<i class='material-icons prefix'>person</i>
-          	<input id='tipo_producto' type='text' name='cantidad' class='validate' value='<?php print($cantidad); ?>' required/>
+          	<input id='tipo_producto' type='number' name='cantidad' class='validate' value='<?php print($cantidad); ?>' required/>
           	<label for='tipo_producto'>Cantidad</label>
         </div>
     </div>

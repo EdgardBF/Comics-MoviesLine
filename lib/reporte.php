@@ -5,6 +5,90 @@ require("../lib/database.php");
  ini_set("date.timezone", "America/El_Salvador");
 class PDF extends FPDF
 {
+    protected $B = 0;
+protected $I = 0;
+protected $U = 0;
+protected $HREF = '';
+
+function WriteHTML($html)
+{
+    // Intérprete de HTML
+    $html = str_replace("\n",' ',$html);
+    $a = preg_split('/<(.*)>/U',$html,-1,PREG_SPLIT_DELIM_CAPTURE);
+    foreach($a as $i=>$e)
+    {
+        if($i%2==0)
+        {
+            // Text
+            if($this->HREF)
+                $this->PutLink($this->HREF,$e);
+            else
+                $this->Write(5,$e);
+        }
+        else
+        {
+            // Etiqueta
+            if($e[0]=='/')
+                $this->CloseTag(strtoupper(substr($e,1)));
+            else
+            {
+                // Extraer atributos
+                $a2 = explode(' ',$e);
+                $tag = strtoupper(array_shift($a2));
+                $attr = array();
+                foreach($a2 as $v)
+                {
+                    if(preg_match('/([^=]*)=["\']?([^"\']*)/',$v,$a3))
+                        $attr[strtoupper($a3[1])] = $a3[2];
+                }
+                $this->OpenTag($tag,$attr);
+            }
+        }
+    }
+}
+
+function OpenTag($tag, $attr)
+{
+    // Etiqueta de apertura
+    if($tag=='B' || $tag=='I' || $tag=='U')
+        $this->SetStyle($tag,true);
+    if($tag=='A')
+        $this->HREF = $attr['HREF'];
+    if($tag=='BR')
+        $this->Ln(5);
+}
+
+function CloseTag($tag)
+{
+    // Etiqueta de cierre
+    if($tag=='B' || $tag=='I' || $tag=='U')
+        $this->SetStyle($tag,false);
+    if($tag=='A')
+        $this->HREF = '';
+}
+
+function SetStyle($tag, $enable)
+{
+    // Modificar estilo y escoger la fuente correspondiente
+    $this->$tag += ($enable ? 1 : -1);
+    $style = '';
+    foreach(array('B', 'I', 'U') as $s)
+    {
+        if($this->$s>0)
+            $style .= $s;
+    }
+    $this->SetFont('',$style);
+}
+
+function PutLink($URL, $txt)
+{
+    // Escribir un hiper-enlace
+    $this->SetTextColor(0,0,255);
+    $this->SetStyle('U',true);
+    $this->Write(5,$txt,$URL);
+    $this->SetStyle('U',false);
+    $this->SetTextColor(0);
+}
 // Cabecera de página
 function Header()
 {
@@ -89,6 +173,7 @@ function FancyTable($header, $data)
 $time2 = time();
 $fes = date("Y-m-d ", $time2);
 $pdf = new PDF();
+$html = 'Volver al sitio <a href="../public/">aqui</a>';
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','',12);
@@ -117,6 +202,7 @@ $pdf->FancyTable($header,$data2);
 $pdf->Ln();
 $pdf->SetFont('Arial','B',15);
 $pdf->Cell(40,10,"TOTAL A PAGAR: $".($tot),0,1);
+$pdf->WriteHTML($html);
 $pdf->Output();
 /*
 $pdf = new FPDF();

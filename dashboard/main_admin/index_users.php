@@ -39,6 +39,7 @@ if($data != null)
 			<th>NOMBRES</th>
 			<th>CORREO</th>
 			<th>USUARIO</th>
+			<th>ESTADO</th>
 			<th>ACCIÓN</th>
 		</tr>
 	</thead>
@@ -53,12 +54,18 @@ $mensaje = false;
 				<td>".$row['nombre']."</td>
 				<td>".$row['correo']."</td>
 				<td>".$row['usuario']."</td>
+								");
+				if($row['estado'] == 0)
+				{
+					print("<td>Desactivado</td>");
+				print ("
 				<td>
-					<a class='waves-effect waves-light' href='#modal1-".$row['id_registro']."'><i class='material-icons red-text text-darken-4'>highlight_off</i></a>
+					<a class='waves-effect waves-light' href='historialcu.php?id=".$row['id_registro']."'><i class='material-icons green-text text-darken-4'>highlight_off</i></a>
+					<a class='waves-effect waves-light' href='#modal1-".$row['id_registro']."'><i class='material-icons blue-text text-darken-4'>highlight_off</i></a>
 					<div id='modal1-".$row['id_registro']."' class='modal'>
 					<div class='modal-content'>
 					<h4>¡CUIDADO!</h4>
-					<p>ESTA A PUNTO DE ELIMINAR UN USUARIO, ¿ESTA SEGURO?</p>
+					<p>ESTA A PUNTO DE ACTIVAR UN USUARIO, ¿ESTA SEGURO?</p>
 					</div>
 					<div class='modal-footer'>
 					<a href='#!' onclick='eliminar(".$row['id_registro'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
@@ -68,6 +75,28 @@ $mensaje = false;
 				</td>
 			</tr>
 		");
+				}
+				else
+				{
+					print("<td>Activado</td>");
+								print ("
+				<td>
+					<a class='waves-effect waves-light' href='historialcu.php?id=".$row['id_registro']."'><i class='material-icons green-text text-darken-4'>highlight_off</i></a>
+					<a class='waves-effect waves-light' href='#modal1-".$row['id_registro']."'><i class='material-icons red-text text-darken-4'>highlight_off</i></a>
+					<div id='modal1-".$row['id_registro']."' class='modal'>
+					<div class='modal-content'>
+					<h4>¡CUIDADO!</h4>
+					<p>ESTA A PUNTO DE DESACTIVAR UN USUARIO, ¿ESTA SEGURO?</p>
+					</div>
+					<div class='modal-footer'>
+					<a href='#!' onclick='eliminar(".$row['id_registro'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
+					<a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>No</a>
+					</div>
+					</div>
+				</td>
+			</tr>
+		");
+				}
 	}
 	print("
 		</tbody>

@@ -3,6 +3,11 @@ require("../../lib/master.php");
 master::header("Editar perfil");
 $data = null;
 $fecha1 = date("Y-m-d");
+$id = $_GET['id'];
+$sql1 = "SELECT nombre FROM registro WHERE id_registro = ?";
+$params1 = array($id);
+$data1 = Database::getRow($sql1, $params1);
+$nombre = $data1['nombre'];
 if(!empty($_POST))
 {
     $_POST = Validator::validateForm($_POST);
@@ -10,9 +15,8 @@ if(!empty($_POST))
     $fecha2 = $_POST['fecha1'];
     try 
     {
-      	
             $sql = "SELECT productos.nombre_producto, productos.precio_producto, compra.cantidad, compra.fecha FROM productos, registro, compra WHERE compra.fecha BETWEEN ? AND ? AND productos.id_producto = compra.id_producto AND registro.id_registro = compra.id_registro AND registro.id_registro = ?";
-            $params = array($fecha, $fecha2, $_SESSION['id_registro']);
+            $params = array($fecha, $fecha2, $id);
             $data = Database::getRows($sql, $params);
     }
     catch (Exception $error)
@@ -28,10 +32,14 @@ else
 
 <form method='post'>
     <div class='row'>
-        <div class='input-field col s12 m6'>
+        <div class="input-field col s12">
+                    <input id="disabled" class="cyan-text text-darken-3" disabled type="text" class="validate" name='usuario' value='<?php print($nombre); ?>'>
+                    <label for="disabled" class="cyan-text text-darken-3">Usuario Nombre</label><!--El cuadro de texto donde se pondra el nombre de usuario-->
+        </div>
+        <div class='input-field col s12 m6' >
             <label>Fecha Inicio</label>
             <br>
-          <input type="date" name='fecha' max='<?php print($fecha1); ?>' class="validate">
+          <input type="date" name='fecha' max='<?php print($fecha1); ?>' class="validate" >
         </div>
         <div class="input-field col s12 m6" >
             <label>Fecha Fin</label>
