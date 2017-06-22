@@ -3,9 +3,11 @@ require("../../lib/master.php");
 master::header("Carrito");
 //Revisa si el metodo get del id, no esta vacio
 if(!empty($_GET)){
+    
 $id = $_GET['id'];
     if(!empty($_POST))
 {
+    $cantidad=$_POST['cantidad'];
     
     try{
             $time = time();
@@ -14,16 +16,29 @@ $id = $_GET['id'];
 	        $params = array($_SESSION['id_registro']);
             $data = Database::getRow($sql, $params);
             $id_carrito = $data['id_carrito'];
-            
+            $sql = "SELECT *FROM productos WHERE id_producto = ?";
+	        $params = array($id);
+            $st = Database::getRow($sql, $params);
+            $stock = $st['cantidad'];
             if($data != null){
+                if($cantidad <= $stock){
                 $sql = "INSERT INTO vista_carrito(id_carrito, id_producto, cantidad) VALUES(?, ?, ?)";
-                $params = array($id_carrito, $id, 1);
+                $params = array($id_carrito, $id, $cantidad);
                 echo "noma". $id_carrito;
-                //Database::executeRow($sql, $params);
-
+                Database::executeRow($sql, $params);
+                $sql = "UPDATE productos SET cantidad = ($stock-$cantidad) WHERE id_producto = $id";
+                $params = array($id);
+                Database::executeRow($sql, $params);
+                master::showMessage(1, "Operación satisfactoria", "../../public/productos.php");
+                }
+                else
+                {
+                    throw new Exception("No puede escojer mas de lo que se tiene en cantidad");
+                }
             }
             else
             {
+                if($cantidad <= $stock){
                 $sql = "INSERT INTO carrito(id_registro, fecha) VALUES(?, ?)";
                 $params = array($_SESSION['id_registro'], $fes);
                 Database::executeRow($sql, $params);
@@ -32,14 +47,22 @@ $id = $_GET['id'];
                 $poder = Database::getRow($sql, $params);
                 $id_carrito = $poder['id_carrito'];
                 $sql = "INSERT INTO vista_carrito(id_carrito, id_producto, cantidad) VALUES(?, ?, ?)";
-                $params = array($id_carrito, $id, 1);
+                $params = array($id_carrito, $id, $cantidad);
                 Database::executeRow($sql, $params);
+                $sql = "UPDATE productos SET cantidad = ($stock-$cantidad) WHERE id_producto = $id";
+                $params = array($id);
+                Database::executeRow($sql, $params);
+                master::showMessage(1, "Operación satisfactoria", "../../public/productos.php");
+                }
+                else
+                {
+                    throw new Exception("No puede escojer mas de lo que se tiene en cantidad");
+                }
 
 
             }
             //Elimina un registro y muestra un mensaje
                 
-            master::showMessage(1, "Se agrego al carrito", "../../public/productos.php");
             
     }
     catch(Exception $error)
@@ -57,15 +80,18 @@ else
     $params = array($id);
     $carta = Database::getRow($sql, $params);
         print("
+        <br>
         <div class='row'>
         <div class='col s12 m4 l6'> <!-- Note that 'm4 l3' was added -->
-                        <div class='col s12 m6 l9'>
-                <div class='card'>
+                        
+                <div class='card carta'>
                     <div class='card-image waves-effect waves-block waves-light'>
-                        <img class='materialboxed' src='data:image/*;base64,$carta[imagen]' width='300' height='150'>
+                        <img class='materialboxed' src='data:image/*;base64,$carta[imagen]' width='300' height='300'>
                     </div>
                         <div class='card-content'>
                             <span class='card-title activator grey-text text-darken-4'>$carta[nombre_producto] $ $carta[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
+                            <br>
+                            <span class='card-title activator grey-text text-darken-4'>En Existencia: $carta[cantidad]<i class='material-icons right'>keyboard_arrow_down</i></span>
                             <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
                             <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
                             <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
@@ -99,15 +125,17 @@ else
                         </div>
                     </div>
                 </div>
-        </div>
-        <div class='col s12 m8 l6'>
+    
+        ");
+        ?>
+    <div class='col s12 m8 l6'>
         
     <form form method='post'>
     <div class='row'>
         <div class='input-field col s12 m9'>
           	<i class='material-icons prefix'>person</i>
-          	<input id='tipo_producto' type='text' name='tipo_producto' class='validate' value='<?php print($tipo_producto); ?>' required/>
-          	<label for='tipo_producto'>Tipo de Producto</label>
+          	<input id='tipo_producto' type='text' name='cantidad' class='validate' value='<?php print($cantidad); ?>' required/>
+          	<label for='tipo_producto'>Cantidad</label>
         </div>
     </div>
     <div class='row center-align'>
@@ -117,7 +145,7 @@ else
     </form>
         </div>
         </div>
-        ");
+        <?php
 
 
 master::footer("Distribucion");

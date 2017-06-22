@@ -86,10 +86,6 @@ require_once '../lib/Zebra_Pagination.php';
                                                         <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star_half</i></a>
                                                         <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star_border</i></a>
                                                     </div>
-                                                    <div class='input-field col s12'>
-                                                        <input id='precio' type='number' name='cantidad' class='validate' required/>
-                                                        <label for='precio' class='cyan-text text-darken-3'>cantidad</label><!--El cuadro de texto donde se pondra el precio-->
-                                                    </div>
                                                     <br>
                                                     <br>
                                                 <div class='card-reveal'>

@@ -9,7 +9,7 @@ class Database
         $server = "localhost"; //colocamos el nombre del sevidor
         $database = "db_tienda_comics"; // nombre de la base de datos
         $username = "root"; //usuario con el cual se tendra acceso
-        $password = "77889776"; //y la contraseña
+        $password = ""; //y la contraseña
         //lo que hace es colocar todo a utf8 es decir para aceptar caracteres especiales
         $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8");
         self::$connection = null;

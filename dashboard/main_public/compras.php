@@ -1,6 +1,81 @@
 <?php
 require("../../lib/master.php");
 master::header("Compras");
+$sql = "SELECT id_vista_carrito, productos.id_producto, registro.nombre, registro.id_registro, registro.usuario, productos.nombre_producto, productos.precio_producto, vista_carrito.cantidad, productos.imagen FROM vista_carrito, carrito, productos, registro WHERE carrito.id_registro = registro.id_registro AND vista_carrito.id_carrito = carrito.id_carrito AND productos.id_producto = vista_carrito.id_producto  AND  carrito.id_registro = ?";
+$params = array($_SESSION['id_registro']);
+$data = Database::getRows($sql, $params);
+$data1 = Database::getRow($sql, $params);
+$nombre = $data1['nombre'];
+    $tot =0;
+     $apagar = 0;
+if(!empty($_POST))
+{
+    $time = time();
+    $_POST = Validator::validateForm($_POST);
+    $postal = $_POST['postal'];
+    $numero = $_POST['numero'];
+    $credito = $_POST['credito'];
+    $direccion = $_POST['direccion'];
+        try{
+        //Valida que los datos no esten vacios
+            foreach ($data as $row)
+    {
+                $apagar = $row['cantidad']*$row['precio_producto'];
+                $tot = $apagar+$tot;
+    }
+    foreach ($data as $row)
+    {
+
+            if($postal != null)
+            {
+                if($numero != null)
+                {
+                    if($credito != null)
+                    {
+                        $fes = date("Y-m-d ", $time);
+                        //Guarda los registros en la Base de Datos
+                        $sql = "INSERT INTO compra(id_producto, cantidad, tarjeta, id_registro, fecha, numero, codigo_postal, direccion, pagado) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        $params = array($row['id_producto'], $row['cantidad'], $credito, $_SESSION['id_registro'], $fes, $numero, $postal, $direccion, $tot);
+                        Database::executeRow($sql, $params);
+                        $sql = "DELETE FROM vista_carrito WHERE id_vista_carrito = ?";
+                        $params = array($row['id_vista_carrito']);
+                        Database::executeRow($sql, $params);
+                        master::showMessage(1, "Operación satisfactoria", "../../lib/reporte.php?id=".$_SESSION['id_registro']);
+
+                    }
+                    else
+                    {
+                         throw new Exception("Debe ingresar tarjeta de credito");
+                    }
+                }
+                else
+                {
+                     throw new Exception("Debe Ingresar el telefono");
+                }
+                
+            }
+            else
+            {
+                 throw new Exception("Debe ingresar un codigo postal");
+            }
+    } 
+                            
+
+
+            }
+            catch(Exception $error){
+                master::showMessage(2, $error->getMessage(), null);
+            }
+    
+}
+else
+{
+    $postal = null;
+    $numero = null;
+    $credito = null;
+    $direccion = null;
+    
+}
 ?>
     <!--Se manda a llamar un archivo maestro del Slider-->
     <section>
@@ -17,30 +92,51 @@ master::header("Compras");
                         <p><h5 class="tipografia">PRODUCTOS A COMPRAR EN LA TIENDA</h5></p>
                     </div>
                     <!--Tarjetas-->
-                    <div class="row">
-                        <div class="col s12 m4">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img src="../img/slider2.png">
-                                    <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="Materialize.toast('Eliminado del Carrito', 4000)"><i class="material-icons">close</i></a>
+                    <?php
+                        //master::showMessage(1, $_SESSION['id_registro'], null);
+                       
+                          if($data != null)
+                            {
+                    foreach ($data as $row) 
+                                {
+                    print("
+                    
+                        <div class='col s12 m4'>
+                            <div class='card'>
+                                <div class='card-image'>
+                                    <img class='materialboxed' src='data:image/*;base64,$row[imagen]' width='300' height='150'>
+                                    <a class='btn-floating halfway-fab waves-effect waves-light red' href='#modal1-".$row['id_vista_carrito']."'><i class='material-icons'>close</i></a>
+                                    <div id='modal1-".$row['id_vista_carrito']."' class='modal'>
+                                    <div class='modal-content'>
+                                    <h4>¡CUIDADO!</h4>
+                                    <p>ESTA A PUNTO DE ELIMINAR UN USUARIO, ¿ESTA SEGURO?</p>
+                                    </div>
+                                    <div class='modal-footer'>
+                                    <a href='#!' onclick='eliminarCa(".$row['id_vista_carrito'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
+                                    <a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>No</a>
+                                    </div>
+                                    </div>
                                 </div>
-                                <div class="card-content">
-                                    <p class="grey-text text-darken-4"><h5>Doctor Strange  $39.00</h5></p>
+                                <div class='card-content'>
+                                    <p class='grey-text text-darken-4'><h5>$row[nombre_producto] $ $row[precio_producto]</h5></p>
+                                    <p class='grey-text text-darken-4'><h5>Cantidad: $row[cantidad]</h5></p>
+                                    <p class='grey-text text-darken-4'><h5>A pagar: $ ".$row['cantidad']*$row['precio_producto']."</h5></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col s12 m4">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img src="../img/producto1.png">
-                                    <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="Materialize.toast('Eliminado del Carrito', 4000)"><i class="material-icons">close</i></a>
-                                </div>
-                                <div class="card-content">
-                                    <p class="grey-text text-darken-4"><h5>Star Wars: The Force Awakens $46.00</h5></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        
+
+                        ");
+                         $apagar = $row['cantidad']*$row['precio_producto'];
+                         $tot = $apagar+$tot;
+                        }
+                            }
+                            else{
+                                print("<div class='card-panel cyan darken-3'><i class='material-icons left'>warning</i>No hay registros disponibles en este momento.</div>");
+                            }
+                                print ("
+                                <H1>TOTAL: $ $tot</H1>");
+                        ?>
                     <button class="btn waves-effect waves-light button-compra" type="submit" name="action">Siguiente
                         <i class="material-icons right">keyboard_arrow_right</i>
                     </button><br><br>
@@ -51,46 +147,92 @@ master::header("Compras");
                     </div>
                      <div class="row">
                      <!--Formulario para la compra de Articulos-->
-                        <form class="col s12">
+                        <form class="col s12" method='post'>
                             <div class="row ">
                                 <div class="input-field col s6">
-                                <input id="first_name" type="text" class="validate ">
-                                <label for="first_name" class="black-text">Nombres</label>
+                                <input id="first_name" class="black-text" disabled type="text" class="validate " value='<?php print($nombre); ?>' required/>
+                                <label for="first_name" class="black-text">Nombre</label>
                                 </div>
                                 <div class="input-field col s6">
-                                <input id="last_name" type="text" class="validate">
-                                <label for="last_name" class="black-text">Apellidos</label>
+                                    <input id="cod" type="text" name = "postal" class="validate" value='<?php print($postal); ?>' required/>
+                                    <label for="cod" class="black-text">Codigo Postal</label>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="input-field col s12">
-                                <input id="email" type="email" class="validate">
-                                <label for="email" class="black-text">Correo</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                <input id="cod" type="text" class="validate">
-                                <label for="cod" class="black-text">Codigo Postal</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                <input id="number" type="text" class="validate">
+                                <div class="input-field col s6">
+                                <input id="number" type="text" class="validate" name = "numero" value='<?php print($numero); ?>' required/>
                                 <label for="number" class="black-text">Numero</label>
                                 </div>
-                            </div>
-                            <p><h5 class="tipografia">FORMAS DE PAGO</h5></p>
-                            <div class="center-align">
-                                <a href="#!"><img height="100" src="../../img/paypal.png"></a>
-                                <a href="#!"><img height="100" src="../../img/visa-otros.png"></a>
+                                <div class="input-field col s6">
+                                    <input id="cod" type="text" name = "direccion" class="validate" value='<?php print($direccion); ?>' required/>
+                                    <label for="cod" class="black-text">Direccion</label>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                <input id="tarjeta" type="text" class="validate">
+                                <input id="tarjeta" type="text" class="validate" name = "credito" value='<?php print($credito); ?>' required/>
                                 <label for="tarjeta" class="black-text">Tarjeta de Credito</label>
                                 </div>
                             </div>
+                            <p><h5 class="tipografia">Productos a comprar</h5></p>
+                            <div class="center-align">
+                                                    <?php
+                        $sql = "SELECT id_vista_carrito, registro.id_registro, registro.usuario, productos.nombre_producto, productos.precio_producto, vista_carrito.cantidad, productos.imagen FROM vista_carrito, carrito, productos, registro WHERE carrito.id_registro = registro.id_registro AND vista_carrito.id_carrito = carrito.id_carrito AND productos.id_producto = vista_carrito.id_producto  AND  carrito.id_registro = ?";
+                        $params = array($_SESSION['id_registro']);
+                        //master::showMessage(1, $_SESSION['id_registro'], null);
+                        $apagar = 0;
+                        $tot =0;
+                        $data = Database::getRows($sql, $params);
+                          if($data != null)
+                            {
+                    foreach ($data as $row) 
+                                {
+                    print("
+                    
+                        <div class='col s12 m4'>
+                            <div class='card'>
+                                <div class='card-image'>
+                                    <img class='materialboxed' src='data:image/*;base64,$row[imagen]' width='300' height='150'>
+                                    <a class='btn-floating halfway-fab waves-effect waves-light red' href='#modal1-".$row['id_vista_carrito']."'><i class='material-icons'>close</i></a>
+                                    <div id='modal1-".$row['id_vista_carrito']."' class='modal'>
+                                    <div class='modal-content'>
+                                    <h4>¡CUIDADO!</h4>
+                                    <p>ESTA A PUNTO DE ELIMINAR UN USUARIO, ¿ESTA SEGURO?</p>
+                                    </div>
+                                    <div class='modal-footer'>
+                                    <a href='#!' onclick='eliminarCa(".$row['id_vista_carrito'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
+                                    <a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>No</a>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class='card-content'>
+                                    <p class='grey-text text-darken-4'><h5>$row[nombre_producto] $ $row[precio_producto]</h5></p>
+                                    <p class='grey-text text-darken-4'><h5>Cantidad: $row[cantidad]</h5></p>
+                                    <p class='grey-text text-darken-4'><h5>A pagar: $ ".$row['cantidad']*$row['precio_producto']."</h5></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        ");
+                         $apagar = $row['cantidad']*$row['precio_producto'];
+                         $tot = $apagar+$tot;
+                        }
+                            }
+                            else{
+                                print("<div class='card-panel cyan darken-3'><i class='material-icons left'>warning</i>No hay registros disponibles en este momento.</div>");
+                            }
+                        ?>
+                            </div>
+                            <div>
+                                <?php
+                                 print ("
+                                <H5>TOTAL: $ $tot</H5>");
+                                ?>
+                             </div>
+                        <button class="btn waves-effect waves-light button-compra" type="submit" name="action">Comprar
+                        <i class="material-icons right">shopping_cart</i>
+                    </button><br><br>
                         </form>
                     </div>
                     <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Terminos y Condiciones</a>
@@ -106,9 +248,6 @@ master::header("Compras");
                             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Rechazo</a>
                         </div>
                     </div>
-                    <button class="btn waves-effect waves-light button-compra disabled" type="submit" name="action">Comprar
-                        <i class="material-icons right">shopping_cart</i>
-                    </button><br><br>
                 </div>
             </div>
         </div>    

@@ -112,8 +112,8 @@ class master
                 $activo5 = 'active';  
             }
             //condifcional que si se encuentra en esta paginas lo llevaran al nav publico de la pagina
-            if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" || $title=="Editar perfil" || $title=="Carrito"){
-                if($title=="Editar perfil" || $title=="Carrito" )
+            if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" || $title=="Editar perfil" || $title=="Carrito" || $title=="Compras" ){
+                if($title=="Editar perfil" || $title=="Carrito" || $title=="Compras" )
                 {
                     print("
                         <div class='navbar-fixed z-depth-4' id='menu'>
@@ -130,6 +130,7 @@ class master
                                     </ul>
                                     <ul id='dropdown' class='dropdown-content'>
                                         <li><a href='../dashboard/main_public/perfil.php'><i class='material-icons left'>edit</i>Editar perfil</a></li>
+                                        <li><a href='../dashboard/main_public/historialc.php'><i class='material-icons left'>edit</i>Historial de Compra</a></li>
                                         <li><a href='../main_public/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>
                                     </ul>
                                 </div>
@@ -145,6 +146,7 @@ class master
                         </ul>
                         <ul id='dropdown' class='dropdown-content'>
                         <li><a href='perfil.php'><i class='material-icons left'>edit</i>Editar perfil</a></li>
+                        <li><a href='../dashboard/main_public/historialc.php'><i class='material-icons left'>edit</i>Historial de Compra</a></li>
                         <li><a href='../dashboard/main_public/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>
                         </ul>
                     
@@ -168,6 +170,7 @@ class master
                                     </ul>
                                     <ul id='dropdown' class='dropdown-content'>
                                         <li><a href='../dashboard/main_public/perfil.php'><i class='material-icons left'>edit</i>Editar perfil</a></li>
+                                        <li><a href='../dashboard/main_public/historialc.php'><i class='material-icons left'>edit</i>Historial de Compra</a></li>
                                         <li><a href='../dashboard/main_public/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>
                                     </ul>
                                 </div>
@@ -183,6 +186,7 @@ class master
                         </ul>
                         <ul id='dropdown' class='dropdown-content'>
                         <li><a href='perfil.php'><i class='material-icons left'>edit</i>Editar perfil</a></li>
+                        <li><a href='../dashboard/main_public/historialc.php'><i class='material-icons left'>edit</i>Historial de Compra</a></li>
                         <li><a href='../dashboard/main_public/logout.php'><i class='material-icons left'>clear</i>Salir</a></li>
                         </ul>
                     
