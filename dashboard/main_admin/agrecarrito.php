@@ -18,7 +18,6 @@ $id = $_GET['id'];
             if($data != null){
                 $sql = "INSERT INTO vista_carrito(id_carrito, id_producto, cantidad) VALUES(?, ?, ?)";
                 $params = array($id_carrito, $id, 1);
-                echo "noma". $id_carrito;
                 //Database::executeRow($sql, $params);
 
             }
@@ -26,14 +25,25 @@ $id = $_GET['id'];
             {
                 $sql = "INSERT INTO carrito(id_registro, fecha) VALUES(?, ?)";
                 $params = array($_SESSION['id_registro'], $fes);
-                Database::executeRow($sql, $params);
-                $sql = "SELECT *FROM carrito WHERE id_registro = ?";
-	            $params = array($_SESSION['id_registro']);
-                $poder = Database::getRow($sql, $params);
-                $id_carrito = $poder['id_carrito'];
-                $sql = "INSERT INTO vista_carrito(id_carrito, id_producto, cantidad) VALUES(?, ?, ?)";
-                $params = array($id_carrito, $id, 1);
-                Database::executeRow($sql, $params);
+                if(Database::executeRow($sql, $params))
+	            {
+                    $sql = "SELECT *FROM carrito WHERE id_registro = ?";
+                    $params = array($_SESSION['id_registro']);
+                    $poder = Database::getRow($sql, $params);
+                    $id_carrito = $poder['id_carrito'];
+                    $sql = "INSERT INTO vista_carrito(id_carrito, id_producto, cantidad) VALUES(?, ?, ?)";
+                    $params = array($id_carrito, $id, 1);
+                    if(Database::executeRow($sql, $params))
+	                {}                             
+                    else
+                    {
+                        throw new Exception(Database::$error[1]);
+                    }
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
 
 
             }
@@ -101,24 +111,23 @@ else
                 </div>
         </div>
         <div class='col s12 m8 l6'>
-        
-    <form form method='post'>
-    <div class='row'>
-        <div class='input-field col s12 m9'>
-          	<i class='material-icons prefix'>person</i>
-          	<input id='tipo_producto' type='text' name='tipo_producto' class='validate' value='<?php print($tipo_producto); ?>' required/>
-          	<label for='tipo_producto'>Tipo de Producto</label>
-        </div>
-    </div>
-    <div class='row center-align'>
-        <a href='tipo_producto.php' class='btn waves-effect red'><i class='material-icons'>cancel</i></a>
-        <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
-    </div>
-    </form>
+            <form form method='post'>
+            <div class='row'>
+                <div class='input-field col s12 m9'>
+                    <i class='material-icons prefix'>person</i>
+                    <input id='tipo_producto' type='text' name='tipo_producto' class='validate' value='<?php print($tipo_producto); ?>' required/>
+                    <label for='tipo_producto'>Tipo de Producto</label>
+                </div>
+            </div>
+            <div class='row center-align'>
+                <a href='tipo_producto.php' class='btn waves-effect red'><i class='material-icons'>cancel</i></a>
+                <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
+            </div>
+            </form>
         </div>
         </div>
         ");
 
 
-master::footer("Distribucion");
+master::footer("Carrito");
 ?>

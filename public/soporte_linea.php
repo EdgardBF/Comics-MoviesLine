@@ -33,8 +33,14 @@ if(!empty($_POST))
                 //Guarda los registros en la Base de Datos
                 $sql = "INSERT INTO comentarios(id_registro, comentario, id_tipo_comentario, fecha) VALUES(?, ?, ?, ?)";
                 $params = array($_SESSION['id_registro'], $comentario, 3, $fes);
-                Database::executeRow($sql, $params);
-                master::showMessage(1, "Operación satisfactoria, el comentario sera revisado por el administrador", "soporte_linea.php");
+                if(Database::executeRow($sql, $params))
+	            {
+                    master::showMessage(1, "Operación satisfactoria, el comentario sera revisado por el administrador", "soporte_linea.php");
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
             }
             else
             {
@@ -179,6 +185,7 @@ else
             </form>
         </div>
     </section>
+        
     <!--Uso de archivo maestro para el footer-->
 <?php
 master::footer("Soporte_Linea");

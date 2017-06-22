@@ -10,7 +10,7 @@ class master
         session_start();    
         ini_set("date.timezone", "America/El_Salvador");
         //colocamos una condicional que si se esta en el sitio publico usara esa direccion 
-        if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos"){
+        if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" || $title=="Comentar"){
         print("
             <!DOCTYPE html>
             <html lang = 'es'>
@@ -112,7 +112,7 @@ class master
                 $activo5 = 'active';  
             }
             //condifcional que si se encuentra en esta paginas lo llevaran al nav publico de la pagina
-            if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" || $title=="Editar perfil" || $title=="Carrito"){
+            if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" || $title=="Editar perfil" || $title=="Carrito" || $title=="Comentar"){
                 if($title=="Editar perfil" || $title=="Carrito" )
                 {
                     print("
@@ -356,7 +356,7 @@ class master
 //metodo para el footer de la pagina
     public static function footer($title)
     {
-        if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" || $title=="Login public"){
+        if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" || $title=="Login public" || $title=="Comentar"){
             if($title=="Login public")
             {
                 print("

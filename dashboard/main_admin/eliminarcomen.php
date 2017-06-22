@@ -10,7 +10,7 @@ if(!empty($_GET)){
 		    $params = array($id);
                 if(Database::executeRow($sql, $params))
 	            {
-                    master::showMessage(1, "Se elimino el comentario", "index_compag.php");
+                    master::showMessage(1, "Se elimino el comentario", "index_comen.php");
                 }                             
                 else
                 {
@@ -20,7 +20,7 @@ if(!empty($_GET)){
     }
     catch(Exception $error)
     {
-            master::showMessage(2, $error->getMessage(), "index_compag.php");
+            master::showMessage(2, $error->getMessage(), "index_comen.php");
     }
     
 }

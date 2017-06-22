@@ -74,13 +74,17 @@ function eliminarP(id){
   console.log(id);
   window.location="./../../dashboard/main_admin/eliminarcompag.php?id="+id;
 }
-function eliminarP(id){
+function eliminarPa(id){
   console.log(id);
-  window.location="./../../dashboard/main_admin/eliminarcompag.php?id="+id;
+  window.location="./../../dashboard/main_admin/eliminarcomen.php?id="+id;
 }
 function actupag(id){
   console.log(id);
-  window.location="./../../dashboard/main_admin/actualizar_compagina.php?id="+id;
+  window.location="./../../dashboard/main_admin/actualizar_compag.php?id="+id;
+}
+function actumen(id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/actualizar_comen.php?id="+id;
 }
 function agrecar(id, cantidad){
   console.log(id);

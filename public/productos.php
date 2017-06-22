@@ -76,46 +76,27 @@ require_once '../lib/Zebra_Pagination.php';
                                                 <div class='card-image waves-effect waves-block waves-light'>
                                                     <img class='materialboxed' src='data:image/*;base64,$row[imagen]' width='300' height='150'>
                                                 </div>
-                                                    <div class='card-content'>
-                                                        <span class='card-title activator grey-text text-darken-4'>$row[nombre_producto] $ $row[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
-                                                        <p><button onclick='agrecar(".$row['id_producto'].")'>Agregar al Carrito</button></p>
-                                                        <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
-                                                        <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
-                                                        <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
-                                                        <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star_half</i></a>
-                                                        <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star_border</i></a>
-                                                    </div>
+                                                <div class='card-content row'>
+                                                    <span class='card-title activator grey-text text-darken-4'>$row[nombre_producto] $ $row[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
+                                                    <p>Clasificacion Promedio de: $row[clasificacion]</p>
+                                                    <p><button type='submit' class='waves-effect waves-light btn  #00838f cyan darken-3 col s12' onclick='agrecar(".$row['id_producto'].")'><i class='material-icons right'>shopping_cart</i>Agregar al Carrito</button> </p>
                                                     <div class='input-field col s12'>
                                                         <input id='precio' type='number' name='cantidad' class='validate' required/>
                                                         <label for='precio' class='cyan-text text-darken-3'>cantidad</label><!--El cuadro de texto donde se pondra el precio-->
                                                     </div>
-                                                    <br>
-                                                    <br>
+                                                </div>
                                                 <div class='card-reveal'>
                                                     <span class='card-title grey-text text-darken-4'>$row[nombre_producto] $$row[precio_producto]<i class='material-icons right'>close</i></span>
                                                     <p>$row[descripcion]</p>
                                                 </div>
                                                 <div class='card-action'>
                                                     <div class='center-align'>
-                                                            <a class='waves-effect waves-light btn cyan darken-3 separar' href='#modal1'> <span class='reponsivo'>comentarios</span> <i class='material-icons'><span class='icono-boton'>comment</span></i></a>
-                                                    </div>
-                                                    <!-- Modal Structure -->
-                                                    <div id='modal1' class='modal bottom-sheet modal-fixed-footer'>
-                                                        <div class='modal-content'>
-                                                        <h4>Comentarios</h4>
-                                                        <div class='input-field col s12'>
-                                                            <input id='last_name' type='text' class='validate'>
-                                                            <label for='last_name' class='cyan-text text-darken-3'>Comentario</label><!--El cuadro de texto donde se colocara el comentario-->
-                                                        </div>
-                                                        </div>
-                                                        <div class='modal-footer'>
-                                                            <a href='#!' class=' modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4'>Enviar</a>
-                                                            <a href='../dashboard/main_public/registro.php' class=' modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4'>Registrate</a>
-                                                        </div>
+                                                            <a class='waves-effect waves-light btn cyan darken-3 separar' href='coment_product.php?id=".$row['id_producto']."'> <span class='reponsivo'>comentarios</span> <i class='material-icons'><span class='icono-boton'>comment</span></i></a>
                                                     </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                     ");
                                 }
                                 $pagination->render();

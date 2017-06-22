@@ -4,11 +4,7 @@
             $sql = "SELECT id_noticia, imagen, titulo_imagen, descripcion_imagen, estado FROM noticia ORDER BY fecha";
 
             $data = Database::getRows($sql, null);
-
-            if($data != null)
-            {
-    ?>
-    <!--Creamos el Slider-->
+?>
     <div class="row">
         <div class="col s12 m12 l12" >
           <!--Creamos el Slider-->
@@ -31,6 +27,13 @@
                       <h5 class='light grey-text text-lighten-3'>"Venta de Productos Increibles"</h5>
                   </div>
               </li>
+              <?php
+
+            if($data != null)
+            {
+    ?>
+    <!--Creamos el Slider-->
+
       <?php
       //Mostramos los datos dentro del Slider
         foreach ($data as $row) 

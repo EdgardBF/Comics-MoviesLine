@@ -9,12 +9,12 @@ require_once '../../lib/Zebra_Pagination.php';
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
-	$sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, tipo_producto.tipo_producto, distribucion.distribucion, productos.descripcion, productos.imagen, productos.cantidad FROM productos, distribucion, tipo_producto WHERE productos.id_tipo_producto = tipo_producto.id_tipo_producto AND productos.id_distribucion = distribucion.id_distribucion AND (productos.nombre_producto LIKE ? OR productos.precio_producto LIKE ? OR tipo_producto.tipo_producto LIKE ? OR  distribucion.distribucion LIKE ?) ORDER BY productos.fecha";
+	$sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, tipo_producto.tipo_producto, distribucion.distribucion, productos.descripcion, productos.imagen, productos.cantidad, productos.clasificacion FROM productos, distribucion, tipo_producto WHERE productos.id_tipo_producto = tipo_producto.id_tipo_producto AND productos.id_distribucion = distribucion.id_distribucion AND (productos.nombre_producto LIKE ? OR productos.precio_producto LIKE ? OR tipo_producto.tipo_producto LIKE ? OR  distribucion.distribucion LIKE ?) ORDER BY productos.fecha";
 	$params = array("%$search%", "%$search%", "%$search%", "%$search%");
 }
 else
 {
-	$sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, tipo_producto.tipo_producto, distribucion.distribucion, productos.descripcion, productos.imagen, productos.cantidad FROM productos, distribucion, tipo_producto WHERE productos.id_tipo_producto = tipo_producto.id_tipo_producto AND productos.id_distribucion = distribucion.id_distribucion ORDER BY productos.fecha";
+	$sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, tipo_producto.tipo_producto, distribucion.distribucion, productos.descripcion, productos.imagen, productos.cantidad, productos.clasificacion FROM productos, distribucion, tipo_producto WHERE productos.id_tipo_producto = tipo_producto.id_tipo_producto AND productos.id_distribucion = distribucion.id_distribucion ORDER BY productos.fecha";
 	$params = null;
 }
 ?>
@@ -60,6 +60,7 @@ else
             <th>Descripción</th>
 			<th>Cantidad</th>
             <th>Imagenes</th>
+			<th>Clasificaciones</th>
             <th>ACCIONES</th>
 		</tr>
 	</thead>
@@ -77,6 +78,7 @@ $mensaje = false;
                 <td>".$row['descripcion']."</td>
 				<td>".$row['cantidad']."</td>
                 <td><img src='data:image/*;base64,".$row['imagen']."' class='materialboxed' width='300' height='100'></td>
+				<td>".$row['clasificacion']."</td>
 				<td>
 					<a href='save_products.php?id=".$row['id_producto']."' class='waves-effect waves-light'><i class='material-icons cyan-text text-darken-3'>update</i></a>
 					<a class='waves-effect waves-light' href='#modal1-".$row['id_producto']."'><i class='material-icons red-text text-darken-4'>highlight_off</i></a>

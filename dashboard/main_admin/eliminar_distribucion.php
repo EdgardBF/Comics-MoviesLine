@@ -10,7 +10,7 @@ if(!empty($_GET)){
 		    $params = array($id);
                 if(Database::executeRow($sql, $params))
 	            {
-            master::showMessage(1, "Se elimino el distribuidor", "distribuidor.php");
+                    master::showMessage(1, "Se elimino el distribuidor", "distribuidor.php");
                 }                             
                 else
                 {
