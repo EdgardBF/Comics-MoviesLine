@@ -69,7 +69,7 @@ require_once '../lib/Zebra_Pagination.php';
                             {
                                 foreach ($data as $row) 
                                 {
-                                   $sql1 = "SELECT AVG(calificacion) FROM comentarios WHERE id_producto = ?";
+                                   $sql1 = "SELECT AVG(calificacion) FROM comentarios WHERE id_producto = ? AND id_tipo_comentario =1";
                                    $params1 = array($row['id_producto']);
                                    $data1 = Database::getRow($sql1, $params1);
                                     print("
