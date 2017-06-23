@@ -37,8 +37,14 @@ if(!empty($_POST))
                         $sql = "UPDATE registro SET nombre = ?, correo = ?, usuario = ? WHERE id_registro = ?";
                         $params = array($nombres, $correo, $alias, $_SESSION['id_registro']);
                     }
-                    Database::executeRow($sql, $params);
+                if(Database::executeRow($sql, $params))
+	            {
                     master::showMessage(1, "Operación satisfactoria", "main_user.php");
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
                 }
                 else
                 {

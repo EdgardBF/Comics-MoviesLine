@@ -39,8 +39,14 @@ if(!empty($_POST))
                         $sql = "UPDATE administradores SET nombre = ?, correo = ?, usuario = ? WHERE id_admin = ?";
                         $params = array($nombres, $correo, $alias, $_SESSION['id_admin']);
                     }
-                    Database::executeRow($sql, $params);
-                    master::showMessage(1, "Operación satisfactoria", "main.php");
+                    if(Database::executeRow($sql, $params))
+                    {
+                        master::showMessage(1, "Operación satisfactoria", "main.php");
+                    }                             
+                    else
+                    {
+                        throw new Exception(Database::$error[1]);
+                    }
                 }
                 else
                 {

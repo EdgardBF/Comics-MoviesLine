@@ -140,7 +140,6 @@ else
                         </div>
                     </div>
                 </div>
-    
         ");
         ?>
     <div class='col s12 m8 l6'>
@@ -163,5 +162,5 @@ else
         <?php
 
 
-master::footer("Distribucion");
+master::footer("Carrito");
 ?>

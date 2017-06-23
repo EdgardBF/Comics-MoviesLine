@@ -3,18 +3,18 @@ require("../../lib/master.php");
 master::header("Comentarios");
 require_once '../../lib/Zebra_Pagination.php';
 ?>
-<h3 class="center-align">Clasificación</h3>
+<h3 class="center-align">Comentarios</h3>
 <?php
 //Busca registros en la Base de datos
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
-	$sql = "SELECT comentarios.id_comentario, registro.usuario, comentarios.comentario, productos.nombre_producto, comentarios.calificacion, comentarios.id_tipo_comentario FROM comentarios, registro, productos WHERE registro.id_registro = comentarios.id_registro AND productos.id_producto = comentarios.id_producto AND comentarios.id_tipo_comentario = 3 AND (registro.usuario LIKE ? OR comentarios.comentario LIKE ? OR productos.nombre_producto LIKE ? OR comentarios.calificacion LIKE ?) ORDER BY comentarios.fecha";
+	$sql = "SELECT comentarios.id_comentario, registro.usuario, comentarios.comentario, comentarios.id_tipo_comentario FROM comentarios, registro WHERE registro.id_registro = comentarios.id_registro AND comentarios.id_tipo_comentario = 3 AND (registro.usuario LIKE ? OR comentarios.comentario LIKE ?) ORDER BY comentarios.fecha";
 	$params = array("%$search%", "%$search%", "%$search%", "%$search%");
 }
 else
 {
-    $sql = "SELECT comentarios.id_comentario, registro.usuario, comentarios.comentario, productos.nombre_producto, comentarios.calificacion, comentarios.id_tipo_comentario FROM comentarios, registro, productos WHERE registro.id_registro = comentarios.id_registro AND productos.id_producto = comentarios.id_producto AND comentarios.id_tipo_comentario = 3 ORDER BY comentarios.fecha desc";
+    $sql = "SELECT comentarios.id_comentario, registro.usuario, comentarios.comentario, comentarios.id_tipo_comentario FROM comentarios, registro WHERE registro.id_registro = comentarios.id_registro AND comentarios.id_tipo_comentario = 3 ORDER BY comentarios.fecha desc";
 	$params = null;
 }
 $data = Database::getRows($sql, $params);
@@ -28,7 +28,7 @@ $data = Database::getRows($sql, $params);
 			<label for='buscar'>Buscar</label>
 		</div>
             <div class='input-field col s6 m4'>
-                <button type='submit' class='btn tooltipped waves-effect #00838f cyan darken-3' data-tooltip='Busca por Nombre, Comentario, Producto, Calificacion'>Buscar<i class='material-icons left'>search</i></button> 	
+                <button type='submit' class='btn tooltipped waves-effect #00838f cyan darken-3' data-tooltip='Busca por Registro y Comentario'>Buscar<i class='material-icons left'>search</i></button> 	
             </div>
 	</div>
 </form>
@@ -56,7 +56,6 @@ if($data != null)
 		<tr>
 			<th>Registros</th>
             <th>Comentarios</th>
-			<th>Calificación</th>
             <th>ACCIONES</th>
 		</tr>
 	</thead>
@@ -70,16 +69,15 @@ $mensaje = false;
 			<tr>
 				<td>".$row['usuario']."</td>
                 <td>".$row['comentario']."</td>
-				<td>".$row['calificacion']."</td>
                 <td>
-					<a class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Ingresar' href='#modal2-".$row['id_comentario']."'><i class='material-icons green-text text-darken-4'>playlist_add_check</i></a>
+                    <a class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Ingresar' href='#modal2-".$row['id_comentario']."'><i class='material-icons green-text text-darken-4'>playlist_add_check</i></a>
                         <div id='modal2-".$row['id_comentario']."' class='modal'>
                         <div class='modal-content'>
                         <h4>¡CUIDADO!</h4>
                         <p>ESTA A PUNTO DE PUBLICAR EL COMENTARIO, ¿ESTA SEGURO?</p>
                         </div>
                         <div class='modal-footer'>
-                        <a href='#!' onclick='actupag(".$row['id_comentario'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
+                        <a href='#!' onclick='actumen(".$row['id_comentario'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
                         <a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>No</a>
                         </div>
                         </div>
@@ -90,7 +88,7 @@ $mensaje = false;
 					<p>ESTA A PUNTO DE ELIMINAR UN REGISTRO, ¿ESTA SEGURO?</p>
 					</div>
 					<div class='modal-footer'>
-					<a href='#!' onclick='eliminarP(".$row['id_comentario'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
+					<a href='#!' onclick='eliminarPa(".$row['id_comentario'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
 					<a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>No</a>
 					</div>
 					</div>

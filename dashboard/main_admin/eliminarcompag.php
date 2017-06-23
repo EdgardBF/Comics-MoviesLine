@@ -8,15 +8,21 @@ if(!empty($_GET)){
             //Elimina un registro y muestra un mensaje
 			$sql = "DELETE FROM comentarios WHERE id_comentario = ?";
 		    $params = array($id);
-		    Database::executeRow($sql, $params);
-            master::showMessage(1, "Se elimino el comentario", "index_compag.php");
+                if(Database::executeRow($sql, $params))
+	            {
+                    master::showMessage(1, "Se elimino el comentario", "index_compag.php");
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
             
     }
     catch(Exception $error)
     {
-            master::showMessage(2, $error->getMessage(), null);
+            master::showMessage(2, $error->getMessage(), "index_compag.php");
     }
     
 }
-master::footer("ProductosAdmin");
+master::footer("Comentarios");
 ?>

@@ -8,8 +8,14 @@ if(!empty($_GET)){
             //Elimina un registro y muestra un mensaje
 			$sql = "UPDATE comentarios SET id_tipo_comentario = 2 WHERE id_comentario = ?";
 		    $params = array($id);
-		    Database::executeRow($sql, $params);
-            master::showMessage(1, "Se publico el comentario", "index_compag.php");
+                if(Database::executeRow($sql, $params))
+	            {
+                    master::showMessage(1, "Se publico el comentario", "index_comen.php");
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
             
     }
     catch(Exception $error)
@@ -18,5 +24,5 @@ if(!empty($_GET)){
     }
     
 }
-master::footer("ProductosAdmin");
+master::footer("Comentarios");
 ?>

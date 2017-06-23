@@ -3,44 +3,60 @@
 require("../../lib/master.php");
 //colocamos el metodo de header
 master::header("Usuarios");
+require_once '../../lib/Zebra_Pagination.php';
+?>
+<h3 class="center-align">Usuarios</h3>
+<?php
 //hacemos una condicional diciendo que si el post esta vacio muestre los registros normales sino que los muestre solo los que se han pedido en el parametro
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
-	$sql = "SELECT * FROM registro WHERE nombre LIKE ? OR usuario LIKE ? ORDER BY nombre";
+	$sql = "SELECT * FROM registro WHERE nombre LIKE ? OR usuario LIKE ? ORDER BY id_registro desc";
 	$params = array("%$search%", "%$search%");
 }
 else
 {
-	$sql = "SELECT * FROM registro ORDER BY nombre";
+	$sql = "SELECT * FROM registro ORDER BY id_registro desc";
 	$params = null;
 }
 //ejecutamos el metodo get rows para ver si tenemos respuesta
-$data = Database::getRows($sql, $params);
-if($data != null)
-{
 ?>
 <!--Tabla en donde se muestran los datos-->
+<main class="container">
 <form method='post'>
 	<div class='row'>
 		<div class='input-field col s6 m4'>
-			<i class='material-icons prefix'>search</i>
 			<input id='buscar' type='text' name='buscar'/>
 			<label for='buscar'>Buscar</label>
 		</div>
-		<div class='input-field col s6 m4'>
-			<button type='submit' class='btn waves-effect #00838f cyan darken-3'><i class='material-icons'>check_circle</i></button> 	
-		</div>
+            <div class='input-field col s6 m4'>
+                <button type='submit' class='btn tooltipped waves-effect #00838f cyan darken-3' data-tooltip='Busca por Usuario, Nombre'>Buscar<i class='material-icons left'>search</i></button> 	
+            </div>
 	</div>
 </form>
+<?php
+	//Cuenta la cantidad de registros mostrados
+	$registros = Database::numRows($sql,$params);
+	//Numero de registros para mostrar en pantalla
+	$resultados = 6;
+	//Iniciar clase Zebra
+	$pagination = new Zebra_Pagination();
+	//Funciones de Zebra
+	$pagination->records($registros);
+	$pagination->records_per_page($resultados);
+	//Modificar Select y Limitar por pagina
+	$sql .= " LIMIT ".(($pagination->get_page()-1)*$resultados).",".$resultados;
+	$data = Database::getRows($sql, $params);
+	if($data != null) {
+?>
 <table class='striped'>
 	<thead>
 		<tr>
-			<th>NOMBRES</th>
-			<th>CORREO</th>
-			<th>USUARIO</th>
-			<th>ESTADO</th>
-			<th>ACCIÓN</th>
+			<th>Nombres</th>
+			<th>Correos</th>
+			<th>Usuarios</th>
+      <th>Estados</th>
+			<th>ACCIONES</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -101,11 +117,13 @@ $mensaje = false;
 	print("
 		</tbody>
 	</table>
+		</main>
 	");
+		$pagination->render();
 } //Fin de if que comprueba la existencia de registros. 
 else
 {
-	master::showMessage(4, "No hay registros disponibles", null);
+	print("<div class='card-panel cyan darken-3'><i class='material-icons left'>warning</i>No hay registros disponibles en este momento.</div></main>");
 }
 master::footer("Usuarios");
 ?>

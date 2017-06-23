@@ -1,22 +1,44 @@
     <?php
         try{
             //Selecciona los registros a mostrar
-            $sql = "SELECT id_noticia, imagen, titulo_imagen, descripcion_imagen FROM noticia ORDER BY fecha";
+            $sql = "SELECT id_noticia, imagen, titulo_imagen, descripcion_imagen, estado FROM noticia ORDER BY fecha";
 
             $data = Database::getRows($sql, null);
+?>
+    <div class="row">
+        <div class="col s12 m12 l12" >
+          <!--Creamos el Slider-->
+          <div class="slider ">
+              <ul class="slides"> 
+              <li>
+              <?php
+                $archivo_actual = basename($_SERVER['PHP_SELF']);
+                if($archivo_actual != "index_admin.php")
+                {
+                    print("<img src='../img/slider1.png'> <!--Imagen-->");
+
+                  } else {
+                    print("<img src='../../img/slider1.png'> <!--Imagen-->");
+                  }
+                ?>
+                  <!--Decide en que posicion salir el texto-->
+                  <div class='caption center-align'>
+                      <h3>Comics & Movies Line</h3>
+                      <h5 class='light grey-text text-lighten-3'>"Venta de Productos Increibles"</h5>
+                  </div>
+              </li>
+              <?php
 
             if($data != null)
             {
     ?>
     <!--Creamos el Slider-->
-    <div class="row">
-        <div class="col s12 m12 l12" >
-            <div class="slider ">
-                <ul class="slides z-depth-4">
+
       <?php
       //Mostramos los datos dentro del Slider
         foreach ($data as $row) 
         {
+            if($row['estado'] == '0') {
             print("
                 <li>
                     <a href='#!' class='texto'>
@@ -28,6 +50,7 @@
                         </div>
                     </a>
                 </li>");
+            }
         }
         ?>
                 </ul>
@@ -37,9 +60,7 @@
         <?php
             }
             else
-            {
-            print("<div class='card-panel cyan darken-3'><i class='material-icons left'>warning</i>No hay registros disponibles en este momento.</div>");
-            }
+            {}
         }
         catch(Exception $error)
         {

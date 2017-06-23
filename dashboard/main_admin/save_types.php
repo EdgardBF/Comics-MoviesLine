@@ -1,11 +1,15 @@
 <?php
 //mandamos a llamar a nuestro archivo maestro
 require("../../lib/master.php");
+
 //hacemos una condicional diciendo que si el get esta vacio muestre los registros normales sino que los muestre solo los que se han pedido en el parametro
 if(empty($_GET['id'])) 
 {
     //colocamos el metodo de header
     master::header("Agregar tipo");
+    ?>
+    <h3 class="center-align">Tipos de Usuarios</h3>
+    <?php
     $id = null;
     $nombre = null;
     $seleccionar = 0;
@@ -18,6 +22,9 @@ else
 {
     //colocamos el metodo de header
     master::header("Modificar tipo");
+    ?>
+    <h3 class="center-align">Tipos de Usuarios</h3>
+    <?php
     $id = $_GET['id'];
     $sql = "SELECT * FROM tipo_usuario WHERE id_tipo_usuario = ?";
     $params = array($id);
@@ -81,8 +88,14 @@ if(!empty($_POST))
                 $sql = "UPDATE tipo_usuario SET tipo = ?, seleccionar = ?, crear = ?, leer = ?, actualizar = ?, eliminar = ? WHERE id_tipo_usuario = ?";
                 $params = array($nombre, $seleccionar, $crear, $leer, $actu, $eliminar, $id);
             }
-            Database::executeRow($sql, $params);
+                if(Database::executeRow($sql, $params))
+	            {
             master::showMessage(1, "Operación satisfactoria", "index_types.php");
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
         }
         else
         {
@@ -96,14 +109,14 @@ if(!empty($_POST))
 }
 ?>
 <!--formulario en donde se llaman los datos-->
-<form method='post'>
+<section class="container">
+    <form class="col s12" form method='post' enctype='multipart/form-data'>
     <div class='row'>
-        <div class='input-field col s12 m6'>
-            <i class='material-icons prefix'>note_add</i>
+        <div class='input-field col s12'>
             <input id='nombre' type='text' name='nombre' class='validate' value='<?php print($nombre); ?>' required/>
-            <label for='nombre'>Nombre</label>
+            <label for='nombre' class='cyan-text text-darken-3'>Nombre</label>
         </div>
-        <div class='input-field col s12 m6'>
+        <div class='input-field col s12 m8 offset-m3'>
             <span>Permisos:</span>
             <input type="checkbox" id="test" value="1" <?php print(($seleccionar)?"checked":""); ?> name="numero[]"/>
             <label for="test">Seleccionar</label>
@@ -118,10 +131,11 @@ if(!empty($_POST))
         </div>
     </div>
     <div class='row center-align'>
-        <a href='index_types.php' class='btn waves-effect red'><i class='material-icons'>cancel</i></a>
-        <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
+        <a href='index_types.php' class='btn waves-effect red'>Cancelar<i class='material-icons left'>highlight_off</i></a>
+        <button type='submit' class='btn waves-effect blue'>Guardar<i class='material-icons left'>add_circle_outline</i></button>
     </div>
-</form>
+        </form>
+    </section>
 
 <?php
 master::footer("Tipo");

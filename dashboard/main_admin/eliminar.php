@@ -30,7 +30,7 @@ if(!empty($_GET)){
     }
     catch(Exception $error)
     {
-            master::showMessage(1, $error->getMessage(), null);
+            master::showMessage(1, $error->getMessage(), "index_users.php");
     }
     
 }

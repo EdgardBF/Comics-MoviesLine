@@ -27,8 +27,16 @@ if(!empty($_POST))
                                 $clave = password_hash($clave1, PASSWORD_DEFAULT);
                                 $sql = "INSERT INTO administradores(nombre, correo, usuario, clave, id_tipo_usuario) VALUES(?, ?, ?, ?, ?)";
                                 $params = array($nombre, $correo, $usuario, $clave, $permisos);
-                                Database::executeRow($sql, $params);
-                                master::showMessage(1, "Operación satisfactoria", "login.php");
+                                if(Database::executeRow($sql, $params))
+                                {
+                                    $refer = $_SERVER['HTTP_REFERER'];
+                                        master::showMessage(1, "Operación satisfactoria", "login.php");
+
+                                }                             
+                                else
+                                {
+                                    throw new Exception(Database::$error[1]);
+                                }
                             }
                             else
                             {
@@ -92,7 +100,7 @@ else
                 <label for="nombre" class="cyan-text text-darken-3">Nombre completo</label><!--El cuadro de texto donde se pondra el nombre completo-->
             </div>
             <div class="input-field col s12">
-                <input id="correo" type="email" name='correo' class="validate"  value='<?php print($correo); ?>' required/>
+                <input id="correo" type="email" name='correo' pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"  class="validate"  value='<?php print($correo); ?>' required/>
                 <label for="correo" class="cyan-text text-darken-3">Email</label><!--El cuadro de texto donde se pondra el Email-->
             </div>
             <div class="input-field col s12">
@@ -114,7 +122,7 @@ else
             ?>
         </div>
             <div class="center-align  boton">
-                <button type='submit' class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">create</i>Crear</button><!--boton para poner guardar-->
+            <button type='submit' class='btn waves-effect blue'>Crear<i class='material-icons left'>add_circle_outline</i></button>
             </div>
         </form>
   </div>

@@ -8,13 +8,18 @@ if(!empty($_GET)){
             //Elimina un registro y muestra un mensaje
 			$sql = "DELETE FROM tipo_usuario WHERE id_tipo_usuario = ?";
 		    $params = array($id);
-		    Database::executeRow($sql, $params);
+                if(Database::executeRow($sql, $params))
+	            {
             master::showMessage(1, "Se elimino el usuario", "index_types.php");
-            
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
     }
     catch(Exception $error)
     {
-            master::showMessage(2, $error->getMessage(), null);
+            master::showMessage(2, $error->getMessage(), "index_types.php");
     }
     
 }

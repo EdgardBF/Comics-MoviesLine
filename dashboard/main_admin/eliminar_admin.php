@@ -16,8 +16,14 @@ if(!empty($_GET)){
                 //Elimina un registro y muestra un mensaje
                 $sql = "DELETE FROM administradores WHERE id_admin = ?";
                 $params = array($id);
-                Database::executeRow($sql, $params);
-                master::showMessage(1, "Se elimino el usuario", "index_admin.php");
+                if(Database::executeRow($sql, $params))
+	            {
+                    master::showMessage(1, "Se elimino el usuario", "index_admin.php");
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
             }
 
             
@@ -25,7 +31,7 @@ if(!empty($_GET)){
     //cacha para si hay alguna error
     catch(Exception $error)
     {
-            master::showMessage(2, $error->getMessage(), null);
+            master::showMessage(2, $error->getMessage(), "index_admin.php");
     }
     
 }

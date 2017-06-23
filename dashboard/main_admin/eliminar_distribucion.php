@@ -8,13 +8,18 @@ if(!empty($_GET)){
             //Elimina un registro y muestra un mensaje
 			$sql = "DELETE FROM distribucion WHERE id_distribucion = ?";
 		    $params = array($id);
-		    Database::executeRow($sql, $params);
-            master::showMessage(1, "Se elimino el distribuidor", "distribuidor.php");
-            
+                if(Database::executeRow($sql, $params))
+	            {
+                    master::showMessage(1, "Se elimino el distribuidor", "distribuidor.php");
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
     }
     catch(Exception $error)
     {
-            master::showMessage(2, $error->getMessage(), null);
+            master::showMessage(2, $error->getMessage(), "distribuidor.php");
     }
     
 }

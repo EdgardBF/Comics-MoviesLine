@@ -26,6 +26,11 @@ if(!empty($_POST))
                             $params = array($nombre, $correo, $usuario, $clave, $estado);
                             Database::executeRow($sql, $params);
                             master::showMessage(1, "Operación satisfactoria", "login.php");
+                }                             
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
                         }
                         else
                         {
@@ -81,7 +86,7 @@ else
                 <label for="nombre" class="cyan-text text-darken-3">Nombre completo</label><!--El cuadro de texto donde se pondra el nombre completo-->
             </div>
             <div class="input-field col s12">
-                <input id="correo" type="email" name='correo' class="validate"  value='<?php print($correo); ?>' required/>
+                <input id="correo" type="email" name='correo' pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"  class="validate"  value='<?php print($correo); ?>' required/>
                 <label for="correo" class="cyan-text text-darken-3">Email</label><!--El cuadro de texto donde se pondra el Email-->
             </div>
             <div class="input-field col s12">
