@@ -7,7 +7,9 @@ body {
 main {
     flex: 1 0 auto;
 }
-    
+.carta{
+  margin-left: 40px;
+}    
 /*llamar a una clase para colocar un font*/
 @font-face{
     font-family:ARDESTINE;

@@ -55,6 +55,7 @@ else
 			<th>Nombres</th>
 			<th>Correos</th>
 			<th>Usuarios</th>
+      <th>Estados</th>
 			<th>ACCIONES</th>
 		</tr>
 	</thead>
@@ -69,22 +70,49 @@ $mensaje = false;
 				<td>".$row['nombre']."</td>
 				<td>".$row['correo']."</td>
 				<td>".$row['usuario']."</td>
+								");
+				if($row['estado'] == 0)
+				{
+					print("<td>Desactivado</td>");
+				print ("
 				<td>
-					<a href='save_distribuciones.php?id=".$row['id_registro']."' class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Modificar'><i class='material-icons cyan-text text-darken-3'>edit</i></a>
-					<a class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar' href='#modal1-".$row['id_registro']."'><i class='material-icons red-text text-darken-4'>delete_forever</i></a>
+					<a class='waves-effect waves-light' href='historialcu.php?id=".$row['id_registro']."'><i class='material-icons green-text text-darken-4'>highlight_off</i></a>
+					<a class='waves-effect waves-light' href='#modal1-".$row['id_registro']."'><i class='material-icons blue-text text-darken-4'>highlight_off</i></a>
 					<div id='modal1-".$row['id_registro']."' class='modal'>
-						<div class='modal-content'>
-							<h4>¡CUIDADO!</h4>
-							<p>ESTA A PUNTO DE ELIMINAR UN REGISTRO, ¿ESTA SEGURO?</p>
-						</div>
-						<div class='modal-footer'>
-							<a href='#!' onclick='eliminar(".$row['id_registro'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
-							<a href='#!' class='modsal-action modal-close waves-effect waves-green btn-flat'>No</a>
-						</div>
+					<div class='modal-content'>
+					<h4>¡CUIDADO!</h4>
+					<p>ESTA A PUNTO DE ACTIVAR UN USUARIO, ¿ESTA SEGURO?</p>
+					</div>
+					<div class='modal-footer'>
+					<a href='#!' onclick='eliminar(".$row['id_registro'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
+					<a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>No</a>
+					</div>
 					</div>
 				</td>
 			</tr>
 		");
+				}
+				else
+				{
+					print("<td>Activado</td>");
+								print ("
+				<td>
+					<a class='waves-effect waves-light' href='historialcu.php?id=".$row['id_registro']."'><i class='material-icons green-text text-darken-4'>highlight_off</i></a>
+					<a class='waves-effect waves-light' href='#modal1-".$row['id_registro']."'><i class='material-icons red-text text-darken-4'>highlight_off</i></a>
+					<div id='modal1-".$row['id_registro']."' class='modal'>
+					<div class='modal-content'>
+					<h4>¡CUIDADO!</h4>
+					<p>ESTA A PUNTO DE DESACTIVAR UN USUARIO, ¿ESTA SEGURO?</p>
+					</div>
+					<div class='modal-footer'>
+					<a href='#!' onclick='eliminar(".$row['id_registro'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
+					<a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>No</a>
+					</div>
+					</div>
+				</td>
+			</tr>
+		");
+				}
 	}
 	print("
 		</tbody>

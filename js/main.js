@@ -50,6 +50,10 @@ function eliminar (id){
   console.log(id);
   window.location="./../../dashboard/main_admin/eliminar.php?id="+id;
 }
+function eliminarCa (id){
+  console.log(id);
+  window.location="./../../dashboard/main_admin/eliminarcarrito.php?id="+id;
+}
 function eliminarT (id){
   console.log(id);
   window.location="./../../dashboard/main_admin/eliminar_tipo.php?id="+id;

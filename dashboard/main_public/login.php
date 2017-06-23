@@ -24,10 +24,17 @@ if(!empty($_POST))
 		    	$hash = $data['clave'];
 		    	if(password_verify($clave, $hash)) 
 		    	{
+            if($data['estado'] != 0)
+            {
 			      $_SESSION['id_registro'] = $data['id_registro'];
 			      $_SESSION['usuario'] = $data['usuario'];
             $_SESSION['key'] = 0;
-            header("location: main_user.php");			      	
+            header("location: main_user.php");	
+            }
+            else
+            {
+              throw new Exception("El usuario esta desactivado");
+            }		      	
 				}
 				else 
 				{

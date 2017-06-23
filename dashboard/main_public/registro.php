@@ -9,7 +9,7 @@ if(!empty($_POST))
     $usuario = $_POST['usuario'];
     $clave1 = $_POST['clave1'];
     $clave2 = $_POST['clave2'];
-    $tipo_u = 2;
+    $estado = 1;
     try{
         if($nombre !="")
         {
@@ -22,10 +22,9 @@ if(!empty($_POST))
                         if($clave1 == $clave2)
                         {
                             $clave = password_hash($clave1, PASSWORD_DEFAULT);
-                            $sql = "INSERT INTO registro(nombre, correo, usuario, clave) VALUES(?, ?, ?, ?)";
-                            $params = array($nombre, $correo, $usuario, $clave);
-                if(Database::executeRow($sql, $params))
-	            {
+                            $sql = "INSERT INTO registro(nombre, correo, usuario, clave, estado) VALUES(?, ?, ?, ?, ?)";
+                            $params = array($nombre, $correo, $usuario, $clave, $estado);
+                            Database::executeRow($sql, $params);
                             master::showMessage(1, "Operación satisfactoria", "login.php");
                 }                             
                 else
