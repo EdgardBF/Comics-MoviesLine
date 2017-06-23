@@ -30,7 +30,7 @@ else
 			<label for='buscar'>Buscar</label>
 		</div>
             <div class='input-field col s6 m4'>
-                <button type='submit' class='btn waves-effect #00838f cyan darken-3'>Buscar<i class='material-icons left'>search</i></button> 	
+                <button type='submit' class='btn tooltipped waves-effect #00838f cyan darken-3' data-tooltip='Busca por Usuario, Nombre'>Buscar<i class='material-icons left'>search</i></button> 	
             </div>
 	</div>
 </form>

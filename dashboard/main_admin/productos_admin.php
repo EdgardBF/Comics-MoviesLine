@@ -26,12 +26,12 @@ else
 			<input id='buscar' type='text' name='buscar'/>
 			<label for='buscar'>Buscar</label>
 		</div>
-            <div class='input-field col s6 m4'>
-                <button type='submit' class='btn waves-effect #00838f cyan darken-3'>Buscar<i class='material-icons left'>search</i></button> 	
-            </div>
-            <div class='input-field col s12 m4'>
-                <a href='save_products.php' class='btn waves-effect #00838f cyan darken-3'>Agregar<i class='material-icons left'>add_circle_outline</i></a>
-            </div>
+		<div class='input-field col s6 m4'>
+			<button type='submit' class='btn tooltipped waves-effect #00838f cyan darken-3' data-tooltip='Busca por Nombre, Precio, Tipo, Distribución'>Buscar<i class='material-icons left'>search</i></button> 	
+		</div>
+		<div class='input-field col s12 m4'>
+			<a href='save_products.php' class='btn waves-effect #00838f cyan darken-3'>Agregar<i class='material-icons left'>add_circle_outline</i></a>
+		</div>
 	</div>
 </form>
 <!--Se crea la tabla en donde estaran los registros-->
@@ -60,7 +60,6 @@ else
             <th>Descripción</th>
 			<th>Cantidad</th>
             <th>Imagenes</th>
-			<th>Clasificaciones</th>
             <th>ACCIONES</th>
 		</tr>
 	</thead>
@@ -78,10 +77,9 @@ $mensaje = false;
                 <td>".$row['descripcion']."</td>
 				<td>".$row['cantidad']."</td>
                 <td><img src='data:image/*;base64,".$row['imagen']."' class='materialboxed' width='300' height='100'></td>
-				<td>".$row['clasificacion']."</td>
 				<td>
-					<a href='save_products.php?id=".$row['id_producto']."' class='waves-effect waves-light'><i class='material-icons cyan-text text-darken-3'>update</i></a>
-					<a class='waves-effect waves-light' href='#modal1-".$row['id_producto']."'><i class='material-icons red-text text-darken-4'>highlight_off</i></a>
+					<a href='save_distribuciones.php?id=".$row['id_producto']."' class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Modificar'><i class='material-icons cyan-text text-darken-3'>edit</i></a>
+					<a class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar' href='#modal1-".$row['id_producto']."'><i class='material-icons red-text text-darken-4'>delete_forever</i></a>
 					<div id='modal1-".$row['id_producto']."' class='modal'>
 						<div class='modal-content'>
 							<h4>¡CUIDADO!</h4>

@@ -30,7 +30,7 @@ require_once '../lib/Zebra_Pagination.php';
                                 <label for='buscar'>Buscar</label>
                             </div>
                                 <div class='input-field col s6 m4'>
-                                    <button type='submit' class='btn waves-effect #00838f cyan darken-3'>Buscar<i class='material-icons left'>search</i></button> 	
+                                    <button type='submit' class='btn tooltipped waves-effect #00838f cyan darken-3' data-tooltip='Busca por Nombre, Precio, Tipo, Distribución'>Buscar<i class='material-icons left'>search</i></button> 	
                                 </div>
                         </div>
                     </form>
@@ -45,12 +45,12 @@ require_once '../lib/Zebra_Pagination.php';
                             if(!empty($_POST))
                             {
                                 $search = trim($_POST['buscar']);
-                                $sql = "SELECT * FROM productos WHERE nombre_producto LIKE ? OR precio_producto LIKE ? ORDER BY fecha ";
-                                $params = array("%$search%", "%$search%");
+                                $sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, tipo_producto.tipo_producto, distribucion.distribucion, productos.descripcion, productos.imagen, productos.cantidad, productos.clasificacion FROM productos, distribucion, tipo_producto WHERE productos.id_tipo_producto = tipo_producto.id_tipo_producto AND productos.id_distribucion = distribucion.id_distribucion AND (nombre_producto LIKE ? OR precio_producto LIKE ? OR distribucion LIKE ? OR tipo_producto LIKE ?) ORDER BY fecha ";
+                                $params = array("%$search%", "%$search%", "%$search%", "%$search%");
                             }
                             else
                             {
-                                $sql = "SELECT  * FROM productos ORDER BY fecha ";
+                                $sql = "SELECT  productos.id_producto, productos.nombre_producto, productos.precio_producto, tipo_producto.tipo_producto, distribucion.distribucion, productos.descripcion, productos.imagen, productos.cantidad, productos.clasificacion FROM productos, distribucion, tipo_producto WHERE productos.id_tipo_producto = tipo_producto.id_tipo_producto AND productos.id_distribucion = distribucion.id_distribucion ORDER BY fecha ";
                                 $params = null;
                             }
                             //Cuenta la cantidad de registros mostrados
@@ -67,7 +67,6 @@ require_once '../lib/Zebra_Pagination.php';
                             $data = Database::getRows($sql, $params);
                             if($data != null)
                             {
-                                //Muestra los datos en cartas
                                 foreach ($data as $row) 
                                 {
                                    $sql1 = "SELECT AVG(calificacion) FROM comentarios WHERE id_producto = ?";
@@ -82,6 +81,8 @@ require_once '../lib/Zebra_Pagination.php';
                                                 <div class='card-content row'>
                                                     <span class='card-title activator grey-text text-darken-4'>$row[nombre_producto] $ $row[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
                                                     <p>Calificacion Promedio de: ".round($data1['AVG(calificacion)'], 2)."</p>
+                                                    <p>Distribuidor: $row[distribucion]</p>
+                                                    <p>Tipo: $row[tipo_producto]</p>
                                                     <p><button type='submit' class='waves-effect waves-light btn  #00838f cyan darken-3 col s12' onclick='agrecar(".$row['id_producto'].")'><i class='material-icons right'>shopping_cart</i>Agregar al Carrito</button> </p>
                                                     <div class='input-field col s12'>
                                                         <input id='precio' type='number' name='cantidad' class='validate' required/>

@@ -102,9 +102,6 @@ else
                         <div class="center-align  boton">
                             <button type='submit' class="waves-effect waves-light btn  #00838f cyan darken-3"><i class="material-icons right">cloud_upload</i>Enviar</button> <!--Boton con el cual se enviara el commentraio-->
                         </div>
-                        <div class="center-align boton2">
-                            <a class="waves-effect waves-light btn  #00838f cyan darken-3" href="../dashboard/main_public/login.php"><i class="material-icons right">face</i> Registrate!</a><!--boton para rederigirse a registro-->
-                        </div>
                     </form>
                 </div>
             </div>
@@ -118,6 +115,9 @@ else
             //Muestra los datos en cartas
             foreach ($data1 as $row1) 
             {
+                $sql2 = "SELECT AVG(calificacion) FROM comentarios WHERE id_producto = ?";
+                $params2 = array($row1['id_producto']);
+                $data2 = Database::getRow($sql2, $params2);
                 print("
                     <div class='col s12 m4 l4'>
                         <div class='card'>
@@ -126,7 +126,7 @@ else
                             </div>
                             <div class='card-content row'>
                                 <span class='card-title activator grey-text text-darken-4'>$row1[nombre_producto] $ $row1[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
-                                <p>Clasificacion Promedio de: $row1[clasificacion]</p>
+                                <p>Clasificacion Promedio de: ".round($data2['AVG(calificacion)'], 2)."</p>
                             </div>
                             <div class='card-reveal'>
                                 <span class='card-title grey-text text-darken-4'>$row1[nombre_producto] $$row1[precio_producto]<i class='material-icons right'>close</i></span>

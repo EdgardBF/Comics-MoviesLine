@@ -9,12 +9,12 @@ require_once '../../lib/Zebra_Pagination.php';
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
-	$sql = "SELECT id_comentario, registro.usuario, comentario, productos.nombre_producto, calificacion, tipo_comentario.tipo_comentario FROM comentarios, registro, productos, tipo_comentario  WHERE comentarios.id_registro = registro.id_registro AND comentarios.id_producto = productos.id_producto AND comentarios.id_tipo_comentario = tipo_comentario.id_tipo_comentario AND (registro.usuario LIKE ? OR comentarios.comentario LIKE ? OR productos.nombre_producto LIKE ? OR tipo_comentario.tipo_comentario LIKE ?) ORDER BY comentarios.fecha";
-	$params = array("%$search%", "%$search%", "%$search%", "%$search%");
+	$sql = "SELECT id_comentario, registro.usuario, comentario, productos.nombre_producto, calificacion, tipo_comentario.tipo_comentario FROM comentarios, registro, productos, tipo_comentario  WHERE comentarios.id_registro = registro.id_registro AND comentarios.id_producto = productos.id_producto AND comentarios.id_tipo_comentario = tipo_comentario.id_tipo_comentario AND (registro.usuario LIKE ? OR comentarios.comentario LIKE ? OR productos.nombre_producto LIKE ? OR tipo_comentario.tipo_comentario LIKE ? OR calificacion LIKE ?) ORDER BY comentarios.fecha";
+	$params = array("%$search%", "%$search%", "%$search%", "%$search%", "%$search%");
 }
 else
 {
-	$sql = "SELECT id_comentario, registro.usuario, comentario, productos.nombre_producto, calificacion, tipo_comentario.tipo_comentario  FROM comentarios, registro, productos, tipo_comentario  WHERE comentarios.id_registro = registro.id_registro AND comentarios.id_producto = productos.id_producto AND comentarios.id_tipo_comentario = tipo_comentario.id_tipo_comentario ORDER BY comentarios.fecha";
+	$sql = "SELECT id_comentario, registro.usuario, comentario, productos.nombre_producto, calificacion, tipo_comentario.tipo_comentario  FROM comentarios, registro, productos, tipo_comentario  WHERE comentarios.id_registro = registro.id_registro AND comentarios.id_producto = productos.id_producto AND comentarios.id_tipo_comentario = tipo_comentario.id_tipo_comentario AND id_producto IS [NOT] NULL ORDER BY comentarios.fecha";
 	$params = null;
 }
 ?>
@@ -27,7 +27,7 @@ else
 			<label for='buscar'>Buscar</label>
 		</div>
 		<div class='input-field col s6 m4'>
-			<button type='submit' class='btn waves-effect #00838f cyan darken-3'>Buscar<i class='material-icons left'>search</i></button> 	
+			<button type='submit' class='btn tooltipped waves-effect #00838f cyan darken-3' data-tooltip='Busca por Registro, Comentario, Producto, Tipo y Clasificacion'>Buscar<i class='material-icons left'>search</i></button> 	
 		</div>
 	</div>
 </form>
@@ -69,31 +69,7 @@ $mensaje = false;
 				<td>".$row['usuario']."</td>
                 <td>".$row['comentario']."</td>
                 <td>".$row['nombre_producto']."</td>
-                <td>");
-                 if ($row['calificacion'] == 0){
-                    print("<i class='material-icons'>star_border</i>");
-                    } else {
-                        if ($row['calificacion']==1)  {
-                            print("<i class='material-icons'>star</i>");
-                        } else {
-                            if ($row['calificacion']==2)  {
-                                print("<i class='material-icons'>star</i><i class='material-icons'>star</i>");
-                            } else {
-                                if ($row['calificacion']==3)  {
-                                    print("<i class='material-icons'>star</i><i class='material-icons'>star</i><i class='material-icons'>star</i>");
-                                } else {
-                                    if ($row['calificacion']==4)  {
-                                        print("<i class='material-icons'>star</i><i class='material-icons'>star</i><i class='material-icons'>star</i><i class='material-icons'>star</i>");
-                                    } else {
-                                        if ($row['calificacion']==5)  {
-                                        print("<i class='material-icons'>star</i><i class='material-icons'>star</i><i class='material-icons'>star</i><i class='material-icons'>star</i><i class='material-icons'>star</i>");
-                                    }
-                                    }
-                                }
-                            }
-                        }
-                    }              
-                print("</td>
+                <td>".$row['calificacion']."</td>
                 <td>".$row['tipo_comentario']."</td>
 			</tr>
 		");

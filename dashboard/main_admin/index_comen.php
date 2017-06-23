@@ -9,7 +9,7 @@ require_once '../../lib/Zebra_Pagination.php';
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
-	$sql = "SELECT ftarios.id_comentario, registro.usuario, comentarios.comentario, comentarios.calificacion, comentarios.id_tipo_comentario FROM comentarios, registro, productos WHERE registro.id_registro = comentarios.id_registro AND productos.id_producto = comentarios.id_producto AND comentarios.id_tipo_comentario = 3 AND (registro.usuario LIKE ? OR comentarios.comentario LIKE ? OR productos.nombre_producto LIKE ? OR comentarios.calificacion LIKE ?) ORDER BY comentarios.fecha";
+	$sql = "SELECT comentarios.id_comentario, registro.usuario, comentarios.comentario, comentarios.id_tipo_comentario FROM comentarios, registro WHERE registro.id_registro = comentarios.id_registro AND comentarios.id_tipo_comentario = 3 AND (registro.usuario LIKE ? OR comentarios.comentario LIKE ?) ORDER BY comentarios.fecha";
 	$params = array("%$search%", "%$search%", "%$search%", "%$search%");
 }
 else
@@ -28,7 +28,7 @@ $data = Database::getRows($sql, $params);
 			<label for='buscar'>Buscar</label>
 		</div>
             <div class='input-field col s6 m4'>
-                <button type='submit' class='btn waves-effect #00838f cyan darken-3'>Buscar<i class='material-icons left'>search</i></button> 	
+                <button type='submit' class='btn tooltipped waves-effect #00838f cyan darken-3' data-tooltip='Busca por Registro y Comentario'>Buscar<i class='material-icons left'>search</i></button> 	
             </div>
 	</div>
 </form>

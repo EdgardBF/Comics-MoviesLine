@@ -26,7 +26,7 @@ else
 			<label for='buscar'>Buscar</label>
 		</div>
             <div class='input-field col s6 m4'>
-                <button type='submit' class='btn waves-effect #00838f cyan darken-3'>Buscar<i class='material-icons left'>search</i></button> 	
+                <button type='submit' class='btn tooltipped waves-effect #00838f cyan darken-3' data-tooltip='Busca por Titulo y Descripción'>Buscar<i class='material-icons left'>search</i></button> 	
             </div>
             <div class='input-field col s12 m4'>
                 <a href='save_noticias.php' class='btn waves-effect #00838f cyan darken-3'>Agregar<i class='material-icons left'>add_circle_outline</i></a>

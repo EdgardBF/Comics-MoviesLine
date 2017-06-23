@@ -297,7 +297,7 @@ class master
                 $activo4 = null;
                 $activo5 = 'active';  
             }
- if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos"){
+ if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" ){
             print("
                 <div class='navbar-fixed z-depth-4' id='menu'>
                     <nav class='tipografia'>
@@ -343,9 +343,15 @@ class master
                         //se utiliza para validar la entrada
             if($documento !="login.php" && $documento != "registro_admin.php" && $documento != "registro.php")
 			{
-				self::showMessage(3, "¡Debe iniciar sesión!", "login.php");
-				self::footer("Restrict");
-				exit;
+				if($title !="Comentar.php") {
+                    self::showMessage(3, "¡Debe iniciar sesión!", "../dashboard/main_public/login.php");
+                    self::footer("Restrict");
+                    exit;
+                } else {
+                    self::showMessage(3, "¡Debe iniciar sesión!", "login.php");
+                    self::footer("Restrict");
+                    exit;
+                }
 			}
             }
 
