@@ -24,13 +24,14 @@ if(!empty($_POST))
                             $clave = password_hash($clave1, PASSWORD_DEFAULT);
                             $sql = "INSERT INTO registro(nombre, correo, usuario, clave, estado) VALUES(?, ?, ?, ?, ?)";
                             $params = array($nombre, $correo, $usuario, $clave, $estado);
-                            Database::executeRow($sql, $params);
+                            if (Database::executeRow($sql, $params))
+                            {
                             master::showMessage(1, "Operación satisfactoria", "login.php");
-                }                             
-                else
-                {
-                    throw new Exception(Database::$error[1]);
-                }
+                            }                             
+                            else
+                            {
+                                throw new Exception(Database::$error[1]);
+                            }
                         }
                         else
                         {

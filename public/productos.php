@@ -84,10 +84,6 @@ require_once '../lib/Zebra_Pagination.php';
                                                     <p>Distribuidor: $row[distribucion]</p>
                                                     <p>Tipo: $row[tipo_producto]</p>
                                                     <p><button type='submit' class='waves-effect waves-light btn  #00838f cyan darken-3 col s12' onclick='agrecar(".$row['id_producto'].")'><i class='material-icons right'>shopping_cart</i>Agregar al Carrito</button> </p>
-                                                    <div class='input-field col s12'>
-                                                        <input id='precio' type='number' name='cantidad' class='validate' required/>
-                                                        <label for='precio' class='cyan-text text-darken-3'>cantidad</label><!--El cuadro de texto donde se pondra el precio-->
-                                                    </div>
                                                 </div>
                                                 <div class='card-reveal'>
                                                     <span class='card-title grey-text text-darken-4'>$row[nombre_producto] $$row[precio_producto]<i class='material-icons right'>close</i></span>

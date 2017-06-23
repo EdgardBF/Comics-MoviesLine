@@ -112,8 +112,8 @@ class master
                 $activo5 = 'active';  
             }
             //condifcional que si se encuentra en esta paginas lo llevaran al nav publico de la pagina
-            if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" || $title=="Editar perfil" || $title=="Carrito" || $title=="Compras" ){
-                if($title=="Editar perfil" || $title=="Carrito" || $title=="Compras" )
+            if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" || $title=="Editar perfil" || $title=="Carrito" || $title=="Compras" || $title=="Comentar" ){
+                if($title=="Editar perfil" || $title=="Carrito" || $title=="Compras")
                 {
                     print("
                         <div class='navbar-fixed z-depth-4' id='menu'>
