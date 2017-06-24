@@ -78,7 +78,7 @@ else
     }
 }
 ?>
-<h5 class="center-align">Comentarios</h5>
+<h3 class="center-align">Comentarios</h3>
     <div class='container'>
         <div class='row'>
             <div class='col s12 m8 l8'>

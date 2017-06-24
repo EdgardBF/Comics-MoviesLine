@@ -111,7 +111,7 @@ else
                                     <div id='modal2-".$row['id_vista_carrito']."' class='modal'>
                                     <div class='modal-content'>
                                     <h4>¡CUIDADO!</h4>
-                                    <p>ESTA A PUNTO DE ELIMINAR UN USUARIO, ¿ESTA SEGURO?</p>
+                                    <p>ESTA A PUNTO DE ELIMINAR UN PRODUCTO, ¿ESTA SEGURO?</p>
                                     </div>
                                     <div class='modal-footer'>
                                     <a href='#!' onclick='eliminarCa(".$row['id_vista_carrito'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
@@ -139,9 +139,6 @@ else
                                 print ("
                                 <H1>TOTAL: $ $tot</H1>");
                         ?>
-                    <button class="btn waves-effect waves-light button-compra" type="submit" name="action">Siguiente
-                        <i class="material-icons right">keyboard_arrow_right</i>
-                    </button><br><br>
                 </div>
                 <div id="test-swipe-2" class="col s12 cyan darken-3 z-depth-4">
                     <div class="center-align">
@@ -199,7 +196,7 @@ else
                                     <div id='modal1-".$row['id_vista_carrito']."' class='modal'>
                                     <div class='modal-content'>
                                     <h4>¡CUIDADO!</h4>
-                                    <p>ESTA A PUNTO DE ELIMINAR UN USUARIO, ¿ESTA SEGURO?</p>
+                                    <p>ESTA A PUNTO DE ELIMINAR UN PRODUCTO, ¿ESTA SEGURO?</p>
                                     </div>
                                     <div class='modal-footer'>
                                     <a href='#!' onclick='eliminarCa(".$row['id_vista_carrito'].")' class='modal-action modal-close waves-effect waves-green btn-flat'>Si</a>
@@ -235,9 +232,10 @@ else
                         <button class="btn waves-effect waves-light button-compra" type="submit" name="action">Comprar
                         <i class="material-icons right">shopping_cart</i>
                     </button><br><br>
+                    <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Terminos y Condiciones</a>
                         </form>
                     </div>
-                    <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Terminos y Condiciones</a>
+                    
                     <!-- Modal Structure -->
                     <div id="modal1" class="modal modal-fixed-footer">
                         <div class="modal-content">
@@ -246,8 +244,7 @@ else
                             Esta Tienda solo es un medio por el cual se puede obtener el producto por un precio anteriormente estimado.</p>
                         </div>
                         <div class="modal-footer">
-                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Acepto</a>
-                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Rechazo</a>
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
                         </div>
                     </div>
                 </div>

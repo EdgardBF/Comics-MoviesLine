@@ -348,7 +348,7 @@ class master
             if($documento !="login.php" && $documento != "registro_admin.php" && $documento != "registro.php")
 			{
 				if($title !="Comentar.php") {
-                    self::showMessage(3, "¡Debe iniciar sesión!", "../dashboard/main_public/login.php");
+                    self::showMessage(3, "¡Debe iniciar sesión!", "../main_public/login.php");
                     self::footer("Restrict");
                     exit;
                 } else {

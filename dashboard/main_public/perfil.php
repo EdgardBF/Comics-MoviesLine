@@ -110,10 +110,10 @@ else
             <label for='clave2'>Confirmar contraseña</label>
         </div>
     </div>
-    <div class='row center-align'>
-        <a href='main.php' class='btn waves-effect grey'><i class='material-icons'>cancel</i></a>
-        <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
-    </div>
+            <div class='row center-align'>
+                <a href='../../public/index.php' class='btn waves-effect red'>Cancelar<i class='material-icons left'>highlight_off</i></a>
+                <button type='submit' class='btn waves-effect blue'>Guardar<i class='material-icons left'>add_circle_outline</i></button>
+            </div>
 </form>
 
 <?php

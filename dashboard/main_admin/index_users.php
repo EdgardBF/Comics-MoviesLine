@@ -55,7 +55,7 @@ else
 			<th>Nombres</th>
 			<th>Correos</th>
 			<th>Usuarios</th>
-      <th>Estados</th>
+      		<th>Estados</th>
 			<th>ACCIONES</th>
 		</tr>
 	</thead>
@@ -76,8 +76,8 @@ $mensaje = false;
 					print("<td>Desactivado</td>");
 				print ("
 				<td>
-					<a class='waves-effect waves-light' href='historialcu.php?id=".$row['id_registro']."'><i class='material-icons green-text text-darken-4'>highlight_off</i></a>
-					<a class='waves-effect waves-light' href='#modal1-".$row['id_registro']."'><i class='material-icons blue-text text-darken-4'>highlight_off</i></a>
+					<a class='waves-effect waves-light tooltipped' href='historialcu.php?id=".$row['id_registro']."' data-tooltip='Ver Compras'><i class='material-icons blue-text text-darken-4'>shopping_cart</i></a>
+					<a class='waves-effect waves-light tooltipped' href='#modal1-".$row['id_registro']."' data-tooltip='Activar'><i class='material-icons green-text text-darken-4'>check_circle</i></a>
 					<div id='modal1-".$row['id_registro']."' class='modal'>
 					<div class='modal-content'>
 					<h4>¡CUIDADO!</h4>
@@ -97,8 +97,8 @@ $mensaje = false;
 					print("<td>Activado</td>");
 								print ("
 				<td>
-					<a class='waves-effect waves-light' href='historialcu.php?id=".$row['id_registro']."'><i class='material-icons green-text text-darken-4'>highlight_off</i></a>
-					<a class='waves-effect waves-light' href='#modal1-".$row['id_registro']."'><i class='material-icons red-text text-darken-4'>highlight_off</i></a>
+					<a class='waves-effect waves-light tooltipped' href='historialcu.php?id=".$row['id_registro']."' data-tooltip='Ver Compras'><i class='material-icons blue-text text-darken-4'>shopping_cart</i></a>
+					<a class='waves-effect waves-light tooltipped' href='#modal1-".$row['id_registro']."' data-tooltip='Desactivar'><i class='material-icons red-text text-darken-4'>do_not_disturb_on</i></a>
 					<div id='modal1-".$row['id_registro']."' class='modal'>
 					<div class='modal-content'>
 					<h4>¡CUIDADO!</h4>

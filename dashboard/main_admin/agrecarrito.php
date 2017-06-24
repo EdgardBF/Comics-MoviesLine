@@ -1,6 +1,9 @@
 <?php
 require("../../lib/master.php");
 master::header("Carrito");
+?>
+<h3 class="center-align">Agregar a Carrito</h3>
+<?php
 //Revisa si el metodo get del id, no esta vacio
 if(!empty($_GET)){
     
@@ -94,71 +97,43 @@ else
     $sql = "SELECT *FROM productos WHERE id_producto = ?";
     $params = array($id);
     $carta = Database::getRow($sql, $params);
-        print("
-        <br>
-        <div class='row'>
-        <div class='col s12 m4 l6'> <!-- Note that 'm4 l3' was added -->
-                        
-                <div class='card carta'>
-                    <div class='card-image waves-effect waves-block waves-light'>
-                        <img class='materialboxed' src='data:image/*;base64,$carta[imagen]' width='300' height='300'>
-                    </div>
-                        <div class='card-content'>
-                            <span class='card-title activator grey-text text-darken-4'>$carta[nombre_producto] $ $carta[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
-                            <br>
-                            <span class='card-title activator grey-text text-darken-4'>En Existencia: $carta[cantidad]<i class='material-icons right'>keyboard_arrow_down</i></span>
-                            <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
-                            <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
-                            <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star</i></a>
-                            <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star_half</i></a>
-                            <a class='btn-floating btn-small waves-effect cyan darken-3'><i class='material-icons'>star_border</i></a>
-                        </div>
-                        <br>
-                        <br>
-                    <div class='card-reveal'>
-                        <span class='card-title grey-text text-darken-4'>$carta[nombre_producto] $$carta[precio_producto]<i class='material-icons right'>close</i></span>
-                        <p>$carta[descripcion]</p>
-                    </div>
-                    <div class='card-action'>
-                        <div class='center-align'>
-                                <a class='waves-effect waves-light btn cyan darken-3 separar' href='#modal1'> <span class='reponsivo'>comentarios</span> <i class='material-icons'><span class='icono-boton'>comment</span></i></a>
-                        </div>
-                        <!-- Modal Structure -->
-                        <div id='modal1' class='modal bottom-sheet modal-fixed-footer'>
-                            <div class='modal-content'>
-                            <h4>Comentarios</h4>
-                            <div class='input-field col s12'>
-                                <input id='last_name' type='text' class='validate'>
-                                <label for='last_name' class='cyan-text text-darken-3'>Comentario</label><!--El cuadro de texto donde se colocara el comentario-->
+                $sql2 = "SELECT AVG(calificacion) FROM comentarios WHERE id_producto = ?";
+                $params2 = array($carta['id_producto']);
+                $data2 = Database::getRow($sql2, $params2);
+                print("
+                <div class='row'>
+                    <div class='col s12 m2 l4'>
+                        <div class='card'>
+                            <div class='card-image waves-effect waves-block waves-light'>
+                                <img class='materialboxed' src='data:image/*;base64,$carta[imagen]' width='300' height='150'>
                             </div>
+                            <div class='card-content row'>
+                                <span class='card-title activator grey-text text-darken-4'>$carta[nombre_producto] $ $carta[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
+                                <p>Clasificacion Promedio de: ".round($data2['AVG(calificacion)'], 2)."</p>
                             </div>
-                            <div class='modal-footer'>
-                                <a href='#!' class=' modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4'>Enviar</a>
-                                <a href='../dashboard/main_public/registro.php' class=' modal-action modal-close waves-effect waves-green btn-flat grey-text text-darken-4'>Registrate</a>
+                            <div class='card-reveal'>
+                                <span class='card-title grey-text text-darken-4'>$carta[nombre_producto] $$carta[precio_producto]<i class='material-icons right'>close</i></span>
+                                <p>$carta[descripcion]</p>
                             </div>
                         </div>
-                        </div>
                     </div>
-                </div>
-        ");
+                ");
         ?>
     <div class='col s12 m8 l6'>
         
     <form form method='post'>
-    <div class='row'>
-        <div class='input-field col s12 m9'>
+        <div class='input-field col s12'>
           	<i class='material-icons prefix'>person</i>
           	<input id='tipo_producto' type='number' name='cantidad' class='validate' value='<?php print($cantidad); ?>' required/>
           	<label for='tipo_producto'>Cantidad</label>
         </div>
-    </div>
-    <div class='row center-align'>
-        <a href='tipo_producto.php' class='btn waves-effect red'><i class='material-icons'>cancel</i></a>
-        <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
-    </div>
+        <div class='row center-align'>
+            <a href='../../public/productos.php' class='btn waves-effect red'>Cancelar<i class='material-icons left'>highlight_off</i></a>
+            <button type='submit' class='btn waves-effect blue'>Guardar<i class='material-icons left'>add_circle_outline</i></button>
+        </div>
     </form>
-        </div>
-        </div>
+    </div>
+    </div>
         <?php
 
 
