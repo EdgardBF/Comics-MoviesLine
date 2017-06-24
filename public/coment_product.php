@@ -96,7 +96,7 @@ else
                             <label for="last_name" class="cyan-text text-darken-3">Comentario</label><!--El cuadro de texto donde se colocara el comentario-->
                         </div>
                         <div class="input-field col s12">
-                            <input id="calificacion" type="text" class="validate" name='calificacion' max='10' min='0' value='<?php print($calificacion); ?>' required/>
+                            <input id="calificacion" type="number" min='0' max='10' class="validate" name='calificacion' max='10' min='0' value='<?php print($calificacion); ?>' required/>
                             <label for="calificacion" class="cyan-text text-darken-3">Clasificación</label><!--El cuadro de texto donde se colocara el comentario-->
                         </div>
                         <div class="center-align  boton">

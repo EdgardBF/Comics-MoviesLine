@@ -347,12 +347,12 @@ class master
                         //se utiliza para validar la entrada
             if($documento !="login.php" && $documento != "registro_admin.php" && $documento != "registro.php")
 			{
-				if($title !="Comentar.php") {
+				if($documento !="coment_product.php") {
                     self::showMessage(3, "¡Debe iniciar sesión!", "../main_public/login.php");
                     self::footer("Restrict");
                     exit;
                 } else {
-                    self::showMessage(3, "¡Debe iniciar sesión!", "login.php");
+                    self::showMessage(3, "¡Debe iniciar sesión!", "../dashboard/main_public/login.php");
                     self::footer("Restrict");
                     exit;
                 }
