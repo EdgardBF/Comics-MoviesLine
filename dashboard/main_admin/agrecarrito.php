@@ -24,7 +24,7 @@ $id = $_GET['id'];
             $st = Database::getRow($sql, $params);
             $stock = $st['cantidad'];
             if($data != null){
-                if($cantidad <= $stock){
+                if($cantidad <= $stock && $cantidad >= 1){
                 $sql2 = "SELECT id_vista_carrito, productos.id_producto FROM vista_carrito, carrito, productos, registro WHERE carrito.id_registro = registro.id_registro AND vista_carrito.id_carrito = carrito.id_carrito AND productos.id_producto = vista_carrito.id_producto  AND  vista_carrito.id_producto = ? AND carrito.id_registro = ? ";
                 $params2 = array($id, $_SESSION['id_registro']);
                 $data2 = Database::getRow($sql2, $params2);
@@ -51,12 +51,12 @@ $id = $_GET['id'];
                 }
                 else
                 {
-                    throw new Exception("No puede escojer mas de lo que se tiene en cantidad");
+                    throw new Exception("No puede escojer mas o menos de lo que se tiene en cantidad");
                 }
             }
             else
             {
-                if($cantidad <= $stock){
+                if($cantidad <= $stock && $cantidad >= 1){
                 $sql = "INSERT INTO carrito(id_registro, fecha) VALUES(?, ?)";
                 $params = array($_SESSION['id_registro'], $fes);
                 Database::executeRow($sql, $params);
@@ -74,7 +74,7 @@ $id = $_GET['id'];
                 }
                 else
                 {
-                    throw new Exception("No puede escojer mas de lo que se tiene en cantidad");
+                    throw new Exception("No puede escojer mas o menos de lo que se tiene en cantidad");
                 }
 
 
@@ -110,6 +110,7 @@ else
                             <div class='card-content row'>
                                 <span class='card-title activator grey-text text-darken-4'>$carta[nombre_producto] $ $carta[precio_producto]<i class='material-icons right'>keyboard_arrow_down</i></span>
                                 <p>Clasificacion Promedio de: ".round($data2['AVG(calificacion)'], 2)."</p>
+                                <p>En Existencia: $carta[cantidad]</p>
                             </div>
                             <div class='card-reveal'>
                                 <span class='card-title grey-text text-darken-4'>$carta[nombre_producto] $$carta[precio_producto]<i class='material-icons right'>close</i></span>
