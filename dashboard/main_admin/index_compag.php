@@ -56,6 +56,7 @@ if($data != null)
 		<tr>
 			<th>Registros</th>
             <th>Comentarios</th>
+			<th>Productos</th>
 			<th>Calificación</th>
             <th>ACCIONES</th>
 		</tr>
@@ -70,6 +71,7 @@ $mensaje = false;
 			<tr>
 				<td>".$row['usuario']."</td>
                 <td>".$row['comentario']."</td>
+				<td>".$row['nombre_producto']."</td>
 				<td>".$row['calificacion']."</td>
                 <td>
 					<a class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Ingresar' href='#modal2-".$row['id_comentario']."'><i class='material-icons green-text text-darken-4'>playlist_add_check</i></a>

@@ -9,12 +9,12 @@ require_once '../../lib/Zebra_Pagination.php';
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
-	$sql = "SELECT id_comentario, registro.usuario, comentario, productos.nombre_producto, calificacion, tipo_comentario.tipo_comentario FROM comentarios, registro, productos, tipo_comentario  WHERE comentarios.id_registro = registro.id_registro AND comentarios.id_producto = productos.id_producto AND comentarios.id_tipo_comentario = tipo_comentario.id_tipo_comentario AND (registro.usuario LIKE ? OR comentarios.comentario LIKE ? OR productos.nombre_producto LIKE ? OR tipo_comentario.tipo_comentario LIKE ? OR calificacion LIKE ?) ORDER BY comentarios.fecha";
+	$sql = "Select C.id_comentario, R.usuario, C.comentario, P.nombre_producto, C.calificacion, T.tipo_comentario From comentarios C Join registro R On C.id_registro = R.id_registro LEFT Join productos P ON C.id_producto = P.id_producto Join tipo_comentario T ON C.id_tipo_comentario = T.id_tipo_comentario WHERE R.usuario LIKE ? OR C.comentario LIKE ? OR P.nombre_producto LIKE ? OR T.tipo_comentario LIKE ? OR C.calificacion LIKE ? ORDER BY C.fecha";
 	$params = array("%$search%", "%$search%", "%$search%", "%$search%", "%$search%");
 }
 else
 {
-	$sql = "SELECT id_comentario, registro.usuario, comentario, productos.nombre_producto, calificacion, tipo_comentario.tipo_comentario  FROM comentarios, registro, productos, tipo_comentario  WHERE comentarios.id_registro = registro.id_registro AND comentarios.id_producto = productos.id_producto AND comentarios.id_tipo_comentario = tipo_comentario.id_tipo_comentario AND id_producto IS [NOT] NULL ORDER BY comentarios.fecha";
+	$sql = "Select C.id_comentario, R.usuario, C.comentario, P.nombre_producto, C.calificacion, T.tipo_comentario From comentarios C Join registro R On C.id_registro = R.id_registro LEFT Join productos P ON C.id_producto = P.id_producto Join tipo_comentario T ON C.id_tipo_comentario = T.id_tipo_comentario ORDER BY C.fecha";
 	$params = null;
 }
 ?>
