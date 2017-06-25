@@ -1,6 +1,7 @@
 <?php
 require("../..//lib/master.php");
 master::header("main");
+//Revisa si hay comentarios a verificar
 $sql = "SELECT comentarios.id_comentario, registro.usuario, comentarios.comentario, productos.nombre_producto, comentarios.calificacion, comentarios.id_tipo_comentario FROM comentarios, registro, productos WHERE registro.id_registro = comentarios.id_registro AND productos.id_producto = comentarios.id_producto AND comentarios.id_tipo_comentario = 3 ORDER BY comentarios.fecha desc";
   
 	$params = null;

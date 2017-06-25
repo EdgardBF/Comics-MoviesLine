@@ -68,6 +68,7 @@ if(!empty($_POST))
 }
 else
 {
+    //Selecciona los datos del registro
     $sql = "SELECT * FROM registro WHERE id_registro = ?";
     $params = array($_SESSION['id_registro']);
     $data = Database::getRow($sql, $params);

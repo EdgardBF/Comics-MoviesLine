@@ -9,6 +9,7 @@ require_once '../../lib/Zebra_Pagination.php';
 if(!empty($_POST))
 {
 	$search = trim($_POST['buscar']);
+	//La siguiente linea de codigo busca los datos en la tabla de comentarios
 	$sql = "Select C.id_comentario, R.usuario, C.comentario, P.nombre_producto, C.calificacion, T.tipo_comentario From comentarios C Join registro R On C.id_registro = R.id_registro LEFT Join productos P ON C.id_producto = P.id_producto Join tipo_comentario T ON C.id_tipo_comentario = T.id_tipo_comentario WHERE R.usuario LIKE ? OR C.comentario LIKE ? OR P.nombre_producto LIKE ? OR T.tipo_comentario LIKE ? OR C.calificacion LIKE ? ORDER BY C.fecha";
 	$params = array("%$search%", "%$search%", "%$search%", "%$search%", "%$search%");
 }

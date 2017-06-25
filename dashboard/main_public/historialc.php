@@ -10,7 +10,7 @@ if(!empty($_POST))
     $fecha2 = $_POST['fecha1'];
     try 
     {
-      	
+            //Selecciona el Historial de Compras de un usuario
             $sql = "SELECT productos.nombre_producto, productos.precio_producto, compra.cantidad, compra.fecha FROM productos, registro, compra WHERE compra.fecha BETWEEN ? AND ? AND productos.id_producto = compra.id_producto AND registro.id_registro = compra.id_registro AND registro.id_registro = ?";
             $params = array($fecha, $fecha2, $_SESSION['id_registro']);
             $data = Database::getRows($sql, $params);

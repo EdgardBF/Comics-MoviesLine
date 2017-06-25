@@ -5,7 +5,7 @@ master::header("Comentarios");
 if(!empty($_GET)){
     try{
 			$id = $_GET['id'];
-            //ctualiza el tipo del comentario y muestra un mensaje
+            //Actualiza el tipo del comentario y muestra un mensaje
 			$sql = "UPDATE comentarios SET id_tipo_comentario = 1 WHERE id_comentario = ?";
 		    $params = array($id);
                 if(Database::executeRow($sql, $params))
