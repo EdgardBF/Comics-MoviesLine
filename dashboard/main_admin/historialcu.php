@@ -8,6 +8,7 @@ $sql1 = "SELECT nombre FROM registro WHERE id_registro = ?";
 $params1 = array($id);
 $data1 = Database::getRow($sql1, $params1);
 $nombre = $data1['nombre'];
+//aqui podemos revisar el historial de compra de un usuario
 if(!empty($_POST))
 {
     $_POST = Validator::validateForm($_POST);

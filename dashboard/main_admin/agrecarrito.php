@@ -8,6 +8,7 @@ master::header("Carrito");
 if(!empty($_GET)){
     
 $id = $_GET['id'];
+//lo que hacemos con todo este codigo es que a la hora de que el producto se agrege el carrito
     if(!empty($_POST))
 {
     $cantidad=$_POST['cantidad'];
@@ -15,6 +16,7 @@ $id = $_GET['id'];
     try{
             $time = time();
             $fes = date("Y-m-d ", $time);
+            //se va a buscar si el carrito del cliente ya existe
             $sql = "SELECT *FROM carrito WHERE id_registro = ?";
 	        $params = array($_SESSION['id_registro']);
             $data = Database::getRow($sql, $params);
@@ -23,7 +25,9 @@ $id = $_GET['id'];
 	        $params = array($id);
             $st = Database::getRow($sql, $params);
             $stock = $st['cantidad'];
+            //si existe entonces si se pasara a agregar al carrito
             if($data != null){
+                //luego se hace una validacion diciendo que la cantidad pedida no puede ser mayot a lo que se tiene ni menor que 1
                 if($cantidad <= $stock && $cantidad >= 1){
                 $sql2 = "SELECT id_vista_carrito, productos.id_producto FROM vista_carrito, carrito, productos, registro WHERE carrito.id_registro = registro.id_registro AND vista_carrito.id_carrito = carrito.id_carrito AND productos.id_producto = vista_carrito.id_producto  AND  vista_carrito.id_producto = ? AND carrito.id_registro = ? ";
                 $params2 = array($id, $_SESSION['id_registro']);
@@ -38,6 +42,7 @@ $id = $_GET['id'];
                 Database::executeRow($sql, $params);
                 master::showMessage(1, "Operación satisfactoria", "../../public/productos.php");
                 }
+                //si no existe entonces se procedera a crear el carrito
                 else
                 {
                     $sql = "UPDATE vista_carrito SET cantidad = cantidad+$cantidad WHERE id_vista_carrito = ?";
@@ -56,6 +61,7 @@ $id = $_GET['id'];
             }
             else
             {
+                //luego se hace una validacion diciendo que la cantidad pedida no puede ser mayot a lo que se tiene ni menor que 1
                 if($cantidad <= $stock && $cantidad >= 1){
                 $sql = "INSERT INTO carrito(id_registro, fecha) VALUES(?, ?)";
                 $params = array($_SESSION['id_registro'], $fes);
@@ -79,7 +85,6 @@ $id = $_GET['id'];
 
 
             }
-            //Elimina un registro y muestra un mensaje
                 
             
     }
@@ -94,6 +99,7 @@ else
 }
     
 }
+//en este pedazo muestra el producto seleccionado con la infomacion necesaria
     $sql = "SELECT *FROM productos WHERE id_producto = ?";
     $params = array($id);
     $carta = Database::getRow($sql, $params);
