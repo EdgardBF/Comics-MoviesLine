@@ -345,7 +345,7 @@ class master
                 <main>         
             ");
                         //se utiliza para validar la entrada
-            if($documento !="login.php" && $documento != "registro_admin.php" && $documento != "registro.php")
+            if($documento !="login.php" && $documento != "registro_admin.php" && $documento != "registro.php" && $documento != "recucontra.php")
 			{
 				if($documento !="coment_product.php") {
                     self::showMessage(3, "¡Debe iniciar sesión!", "../main_public/login.php");

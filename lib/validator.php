@@ -91,5 +91,16 @@ class Validator
 			return false;
 		}
 	}
+
+		public static function validatepass($pass)
+	{
+		if (ctype_alnum($pass)) { 
+      return true; 
+   } else { 
+      return false; 
+   } 
+
+		
+	}
 }
 ?>

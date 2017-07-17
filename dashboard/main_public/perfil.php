@@ -10,7 +10,11 @@ if(!empty($_POST))
     $alias = $_POST['usuario'];
     $clave1 = $_POST['clave1'];
     $clave2 = $_POST['clave2'];
-
+    $id = $_SESSION['id_registro'];
+    $sql = "SELECT clave FROM registro WHERE id_registro = ?";
+    $params = array($id);
+    $data1 = Database::getRow($sql, $params);
+    $clavea = $data1['clave'];
     try 
     {
       	if($nombres != "")
@@ -23,9 +27,16 @@ if(!empty($_POST))
                     {
                         if($clave1 == $clave2)
                         {
+                             if(password_verify($clave1, $clavea))
+                            {
+                                throw new Exception("La Contraseña debe ser diferente a la anterior");
+                            }
+                            else
+                            {  
                             $clave = password_hash($clave1, PASSWORD_DEFAULT);
                             $sql = "UPDATE registro SET nombre = ?, correo = ?, usuario = ?, clave = ? WHERE id_registro = ?";
                             $params = array($nombres, $correo, $alias, $clave, $_SESSION['id_registro']);
+                            }
                         }
                         else
                         {

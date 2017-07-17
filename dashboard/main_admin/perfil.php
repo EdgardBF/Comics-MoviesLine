@@ -12,7 +12,11 @@ if(!empty($_POST))
     $alias = $_POST['usuario'];
     $clave1 = $_POST['clave1'];
     $clave2 = $_POST['clave2'];
-
+    $id = $_SESSION['id_admin'];
+    $sql = "SELECT clave FROM administradores WHERE id_admin = ?";
+    $params = array($id);
+    $data1 = Database::getRow($sql, $params);
+    $clavea = $data1['clave'];
     try 
     {
       	if($nombres != "")
@@ -23,11 +27,33 @@ if(!empty($_POST))
                 {
                     if($clave1 != "" || $clave2 != "")
                     {
+
                         if($clave1 == $clave2)
                         {
-                            $clave = password_hash($clave1, PASSWORD_DEFAULT);
-                            $sql = "UPDATE administradores SET nombre = ?, correo = ?, usuario = ?, clave = ? WHERE id_admin = ?";
-                            $params = array($nombres, $correo, $alias, $clave, $_SESSION['id_admin']);
+                            if(strlen($clave1)>=8)
+                            {
+                                if(Validator::validatepass($clave1))
+                                {
+                            if(password_verify($clave1, $clavea))
+                            {
+                                throw new Exception("La Contraseña debe ser diferente a la anterior");
+                            }
+                            else
+                            {  
+                                $clave = password_hash($clave1, PASSWORD_DEFAULT);
+                                $sql = "UPDATE administradores SET nombre = ?, correo = ?, usuario = ?, clave = ? WHERE id_admin = ?";
+                                $params = array($nombres, $correo, $alias, $clave, $_SESSION['id_admin']);
+                            }
+                                }
+                                else
+                                {
+                                    throw new Exception("La contraseña debe tener numeros y letras");
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception("La contraseña debe ser de 8 o mas caracteres");
+                            }
                         }
                         else
                         {
