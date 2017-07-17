@@ -76,7 +76,7 @@ else
 				<td>".$row['usuario']."</td>
                 <td>".$row['tipo']."</td>
 				<td>
-					<a href='save_distribuciones.php?id=".$row['id_admin']."' class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Modificar'><i class='material-icons cyan-text text-darken-3'>edit</i></a>
+					<a href='per_admin.php?id=".$row['id_admin']."' class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Modificar'><i class='material-icons cyan-text text-darken-3'>edit</i></a>
 					<a class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar' href='#modal1-".$row['id_admin']."'><i class='material-icons red-text text-darken-4'>delete_forever</i></a>
 					<div id='modal1-".$row['id_admin']."' class='modal'>
 						<div class='modal-content'>

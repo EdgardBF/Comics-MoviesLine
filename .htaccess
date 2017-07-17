@@ -1,0 +1,26 @@
+﻿# Base de htaccess
+RewriteEngine On
+
+#Proteccion del archivo htaccess
+<files /Comics-MoviesLine/.htaccess>
+    order allow,deny
+    deny from all
+    #allow from 192.168.1.3
+</files>
+
+# Impide la Busqueda de Directorios
+Options All -Indexes
+
+# Proteccion anti hotlink
+RewriteCond %{HTTP_REFERER} !^/Comics-MoviesLine/ [NC]
+RewriteRule \.(jpg|png|gif|bmp) img/anti-hacking.jpg [L]
+
+
+# Personalizacion de errores
+ErrorDocument 400 /Comics-MoviesLine/errores/400.php
+ErrorDocument 401 /Comics-MoviesLine/errores/401.php
+ErrorDocument 403 /Comics-MoviesLine/errores/403.php
+ErrorDocument 404 /Comics-MoviesLine/errores/404.php
+ErrorDocument 500 /Comics-MoviesLine/errores/500.php
+
+

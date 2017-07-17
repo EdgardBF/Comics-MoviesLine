@@ -23,23 +23,29 @@ if(!empty($_POST))
                         {
                              if(strlen($clave1)>=8)
                             {
-                                 if(Validator::validatepass($clave1))
-                                {
-                            $clave = password_hash($clave1, PASSWORD_DEFAULT);
-                            $sql = "INSERT INTO registro(nombre, correo, usuario, clave, estado) VALUES(?, ?, ?, ?, ?)";
-                            $params = array($nombre, $correo, $usuario, $clave, $estado);
-                            if (Database::executeRow($sql, $params))
-                            {
-                            master::showMessage(1, "Operación satisfactoria", "login.php");
-                            }                             
-                            else
-                            {
-                                throw new Exception(Database::$error[1]);
-                            }
+                                if($clave1 != $usuario) {
+                                    if(Validator::validatepass($clave1))
+                                    {
+                                        $clave = password_hash($clave1, PASSWORD_DEFAULT);
+                                        $sql = "INSERT INTO registro(nombre, correo, usuario, clave, estado) VALUES(?, ?, ?, ?, ?)";
+                                        $params = array($nombre, $correo, $usuario, $clave, $estado);
+                                        if (Database::executeRow($sql, $params))
+                                        {
+                                        master::showMessage(1, "Operación satisfactoria", "login.php");
+                                        }                             
+                                        else
+                                        {
+                                            throw new Exception(Database::$error[1]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("La contraseña debe tener numeros y letras tanto mayusculas como minusculas y caracteres especiales");
+                                    }
                                 }
                                 else
                                 {
-                                    throw new Exception("La contraseña debe tener numeros y letras tanto mayusculas como minusculas y caracteres especiales");
+                                throw new Exception("El Usuario debe ser diferente a la Contraseña"); 
                                 }
                             }
                             else

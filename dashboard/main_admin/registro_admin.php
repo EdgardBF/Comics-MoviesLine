@@ -24,18 +24,24 @@ if(!empty($_POST))
                         {
                             if($clave1 == $clave2)
                             {
-                                $clave = password_hash($clave1, PASSWORD_DEFAULT);
-                                $sql = "INSERT INTO administradores(nombre, correo, usuario, clave, id_tipo_usuario) VALUES(?, ?, ?, ?, ?)";
-                                $params = array($nombre, $correo, $usuario, $clave, $permisos);
-                                if(Database::executeRow($sql, $params))
-                                {
-                                    $refer = $_SERVER['HTTP_REFERER'];
-                                        master::showMessage(1, "Operación satisfactoria", "login.php");
+                                if($clave1 != $usuario) {
+                                    $clave = password_hash($clave1, PASSWORD_DEFAULT);
+                                    $sql = "INSERT INTO administradores(nombre, correo, usuario, clave, id_tipo_usuario) VALUES(?, ?, ?, ?, ?)";
+                                    $params = array($nombre, $correo, $usuario, $clave, $permisos);
+                                    if(Database::executeRow($sql, $params))
+                                    {
+                                        $refer = $_SERVER['HTTP_REFERER'];
+                                            master::showMessage(1, "Operación satisfactoria", "login.php");
 
-                                }                             
+                                    }                             
+                                    else
+                                    {
+                                        throw new Exception(Database::$error[1]);
+                                    }
+                                }
                                 else
                                 {
-                                    throw new Exception(Database::$error[1]);
+                                throw new Exception("El Usuario debe ser diferente a la Contraseña"); 
                                 }
                             }
                             else
