@@ -27,6 +27,10 @@ if(!empty($_POST))
                     {
                         if($clave1 == $clave2)
                         {
+                            if(strlen($clave1)>=8)
+                            {
+                                if(Validator::validatepass($clave1))
+                                {
                              if(password_verify($clave1, $clavea))
                             {
                                 throw new Exception("La Contraseña debe ser diferente a la anterior");
@@ -36,6 +40,16 @@ if(!empty($_POST))
                             $clave = password_hash($clave1, PASSWORD_DEFAULT);
                             $sql = "UPDATE registro SET nombre = ?, correo = ?, usuario = ?, clave = ? WHERE id_registro = ?";
                             $params = array($nombres, $correo, $alias, $clave, $_SESSION['id_registro']);
+                            }
+                                }
+                                else
+                                {
+                                   throw new Exception("La contraseña debe tener numeros y letras tanto mayusculas como minusculas y caracteres especiales"); 
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception("La contraseña debe ser de 8 o mas caracteres");
                             }
                         }
                         else

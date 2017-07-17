@@ -63,7 +63,7 @@ if(!empty($_POST))
         <i class="material-icons"><a class="icono">person_pin</a></i><!--Icono de la parte superior del formulario-->
         </div>
         <div class="input-field col s12">
-          <input id="usuario" type="text" name="usuario" class="validate"  required/>
+          <input id="usuario" type="text" name="usuario" class="validate" autocomplete="off" required/>
           <label for="usuario" class="cyan-text text-darken-3">Usuario</label><!--El cuadro de texto donde se pondra el nombre de usuario-->
         </div>
         <div class="input-field col s12">

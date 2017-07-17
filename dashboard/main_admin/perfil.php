@@ -47,7 +47,7 @@ if(!empty($_POST))
                                 }
                                 else
                                 {
-                                    throw new Exception("La contraseña debe tener numeros y letras");
+                                    throw new Exception("La contraseña debe tener numeros y letras tanto mayusculas como minusculas y caracteres especiales");
                                 }
                             }
                             else

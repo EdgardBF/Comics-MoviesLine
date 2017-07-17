@@ -2,20 +2,20 @@
 //mandamos a llamar a nuestro archivo maestro
 require("../..//lib/master.php");
 //colocamos el metodo de header
-master::header("Login");
+master::header("Login public");
 //aqui colocamos una validacion la cual es que si no hay resgristro en admin entonces nos enviara a crear uno
-$sql = "SELECT * FROM administradores";
+$sql = "SELECT * FROM registro";
 $data = Database::getRows($sql, null);
 if($data == null)
 {
-    header("location: registro_admin.php");
+    header("location: registro.php");
 }
 //aqui mandamos a llamar al metodo post y colocamos la conficionales necesesarias
     try {
     if(!empty($_POST))
     {
         $usuario = $_POST['usuario'];
-        $sql = "SELECT correo FROM administradores WHERE usuario = ?";
+        $sql = "SELECT correo FROM registro WHERE usuario = ?";
         $params = array($usuario);
         $data = Database::getRow($sql, $params);
         $correo = $data['correo'];
@@ -25,10 +25,9 @@ if($data == null)
             $pass = new generar();
             $password = $pass->nueva(8);
             $clave = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "UPDATE administradores SET clave = ? WHERE usuario = ?";
+            $sql = "UPDATE registro SET clave = ? WHERE usuario = ?";
             $params = array($clave,$usuario);
-            echo $password;
-            mail($correo, 'Clave Comics&MovieLine', "Administrador aqui te colocamos una Clave que debe colocar para despues cambiarla por tu Clave, La cual es: $password", 'From:miguelrocker3@gmail.com');
+            mail($correo, 'Clave Comics&MovieLine', "Usuario aqui te colocamos una Clave que debe colocar para despues cambiarla por tu Clave, La cual es: $password", 'From:miguelrocker3@gmail.com');
             if(Database::executeRow($sql, $params))
             {
                 master::showMessage(1, "Nueva Contraseña enviada al correo", "login.php");
@@ -37,6 +36,7 @@ if($data == null)
             {
                 throw new Exception(Database::$error[1]);
             }
+
         }
         else
         {
@@ -72,5 +72,5 @@ if($data == null)
   </div>
   </section>
 <?php
-master::footer("Login");
+master::footer("Login public");
 ?>

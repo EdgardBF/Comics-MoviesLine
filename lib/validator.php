@@ -92,13 +92,21 @@ class Validator
 		}
 	}
 
-		public static function validatepass($pass)
+	public static function validatepass($pass)
 	{
-		if (ctype_alnum($pass)) { 
-      return true; 
-   } else { 
-      return false; 
-   } 
+		if (!preg_match('`[a-z]`',$pass)){
+		return false;
+		}
+		if (!preg_match('`[A-Z]`',$pass)){
+		return false;
+		}
+		if (!preg_match('`[0-9]`',$pass)){
+		return false;
+		}
+		if (!preg_match('`[$,-,_]`',$pass)){
+		return false;
+		}
+		return true;
 
 		
 	}

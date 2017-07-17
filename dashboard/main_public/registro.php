@@ -21,6 +21,10 @@ if(!empty($_POST))
                     {
                         if($clave1 == $clave2)
                         {
+                             if(strlen($clave1)>=8)
+                            {
+                                 if(Validator::validatepass($clave1))
+                                {
                             $clave = password_hash($clave1, PASSWORD_DEFAULT);
                             $sql = "INSERT INTO registro(nombre, correo, usuario, clave, estado) VALUES(?, ?, ?, ?, ?)";
                             $params = array($nombre, $correo, $usuario, $clave, $estado);
@@ -31,6 +35,16 @@ if(!empty($_POST))
                             else
                             {
                                 throw new Exception(Database::$error[1]);
+                            }
+                                }
+                                else
+                                {
+                                    throw new Exception("La contraseña debe tener numeros y letras tanto mayusculas como minusculas y caracteres especiales");
+                                }
+                            }
+                            else
+                            {
+                               throw new Exception("La contraseña debe ser de 8 o mas caracteres"); 
                             }
                         }
                         else
