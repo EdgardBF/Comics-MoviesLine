@@ -1,6 +1,6 @@
 <?php
 //mandamos a llamar a nuestro archivo maestro
-require("../../lib/master.php");
+require("../../lib/master_c.php");
 //colocamos el metodo de header
 master::header("Editar perfil");
 //hacemos una condicional diciendo que si el post esta vacio muestre los registros normales sino que los muestre solo los que se han pedido en el parametro

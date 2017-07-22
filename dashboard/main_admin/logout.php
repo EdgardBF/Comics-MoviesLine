@@ -1,6 +1,7 @@
 <?php
 require('../../lib/database.php');
 //utilizacion para deslogearse
+session_name("admin");
 session_start();
 $sql = "UPDATE administradores SET conexion = ? WHERE usuario = ?";
 $params = array(0, $_SESSION['usuario']);

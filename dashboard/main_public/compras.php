@@ -1,5 +1,5 @@
 <?php
-require("../../lib/master.php");
+require("../../lib/master_c.php");
 master::header("Compras");
 $sql = "SELECT id_vista_carrito, productos.id_producto, registro.nombre, registro.id_registro, registro.usuario, productos.nombre_producto, productos.precio_producto, vista_carrito.cantidad, productos.imagen FROM vista_carrito, carrito, productos, registro WHERE carrito.id_registro = registro.id_registro AND vista_carrito.id_carrito = carrito.id_carrito AND productos.id_producto = vista_carrito.id_producto  AND  carrito.id_registro = ?";
 $params = array($_SESSION['id_registro']);

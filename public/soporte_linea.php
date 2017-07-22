@@ -1,5 +1,5 @@
 <?php
-require("../lib/master.php");
+require("../lib/master_c.php");
 master::header("Soporte_Linea");
 $time = time();
 //Verifica que hayan datos a guardar, con el metodo Get,en el Id de la pagina

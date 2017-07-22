@@ -1,6 +1,6 @@
 <?php
 //mandamos a llamar a nuestro archivo maestro
-require("../..//lib/master.php");
+require("../..//lib/master_c.php");
 //colocamos el metodo de header
 master::header("Login public");
 //aqui colocamos una validacion la cual es que si no hay resgristro en admin entonces nos enviara a crear uno

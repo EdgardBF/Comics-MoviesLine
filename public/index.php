@@ -1,5 +1,5 @@
 <?php
-require("../lib/master.php");
+require("../lib/master_c.php");
 master::header("Inicio");
 if(isset($_SESSION['id_registro']))
 {

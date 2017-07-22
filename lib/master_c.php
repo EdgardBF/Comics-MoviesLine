@@ -7,7 +7,7 @@ class master
 {
     //mandamos a llamar un metodo de la clase llama header el cual tendra todos los archivos css de la pagina y nav de la pagina
     public static function header($title){
-        session_name("admin");
+        session_name("Cliente");
         session_start();    
         ini_set("date.timezone", "America/El_Salvador");
         //colocamos una condicional que si se esta en el sitio publico usara esa direccion 

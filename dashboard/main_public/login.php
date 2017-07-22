@@ -1,5 +1,5 @@
 <?php
-require("../../lib/master.php");
+require("../../lib/master_c.php");
 master::header("Login public");
 $time = time();
 $fecha = date("Y-m-d ", $time);

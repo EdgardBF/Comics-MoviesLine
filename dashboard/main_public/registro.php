@@ -1,5 +1,5 @@
 <?php
-require("../../lib/master.php");
+require("../../lib/master_c.php");
 master::header("Registro");
 // grab recaptcha library
 require_once "../../lib/recaptchalib.php";

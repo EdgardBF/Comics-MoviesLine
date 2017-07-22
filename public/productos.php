@@ -1,5 +1,5 @@
 <?php
-require("../lib/master.php");
+require("../lib/master_c.php");
 master::header("Productos");
 //Libreria Zebra IMPORTANTE para paginación
 require_once '../lib/Zebra_Pagination.php';
