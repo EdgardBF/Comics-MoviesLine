@@ -11,7 +11,35 @@ class master
         ini_set("date.timezone", "America/El_Salvador");
         //colocamos una condicional que si se esta en el sitio publico usara esa direccion 
         if($title=="Inicio" || $title=="Soporte_Linea" || $title=="Productos" || $title=="Comentar"){
+  if(isset($_SESSION['usuario']))
+        {
         print("
+            <!DOCTYPE html>
+            <html lang = 'es'>
+            <!--Aqui inicia el Head-->
+            <head>
+                <!--La siguiente linea de codigo sirve para poner las tildes-->
+                <meta charset='UTF-8'>
+                <meta name='viewport' content='width=device-width, user-scalable=no, initial-scale=1, maximun-scale=1, minimun-scale=1'>
+                <title>$title</title>
+                <!--Se llaman los archivos CSS-->
+                <link type='text/css' rel='stylesheet' href='../css/materialize.min.css'>
+                <link type='text/css' rel='stylesheet' href='../css/zebra_pagination.css'>
+                <link type='text/css' rel='stylesheet' href='../css/estilos.css'>
+                <link type='text/css' rel='stylesheet' href='../css/sweetalert2.min.css'/>
+                <link type='text/css' rel='stylesheet' href='../css/icon.css'>
+                <script type='text/javascript' src='../js/sweetalert2.min.js'></script>
+                <script type='text/javascript' src='../js/validator.js'></script>
+                <link rel='shortcut icon' href='../img/logo.png'>
+                <div id='fb-root'></div>
+            </head>
+            <!--Aqui comienza el body-->
+            <body onload='killerSession2()'>
+        ");
+        }
+        else
+        {
+             print("
             <!DOCTYPE html>
             <html lang = 'es'>
             <!--Aqui inicia el Head-->
@@ -34,10 +62,40 @@ class master
             <!--Aqui comienza el body-->
             <body>
         ");
+            
+        }
         }
         //sino esta en esas paginas estara en esta
         else{
+                    if(isset($_SESSION['usuario']))
+        {
             print("
+            <!DOCTYPE html>
+            <html lang = 'es'>
+            <!--Aqui inicia el Head-->
+            <head>
+                <!--La siguiente linea de codigo sirve para poner las tildes-->
+                <meta charset='UTF-8'>
+                <meta name='viewport' content='width=device-width, user-scalable=no, initial-scale=1, maximun-scale=1, minimun-scale=1'>
+                <title>$title</title>
+                <!--Se llaman los archivos CSS-->
+                <link type='text/css' rel='stylesheet' href='../../css/materialize.min.css'>
+                <link type='text/css' rel='stylesheet' href='../../css/estilos.css'>
+                <link type='text/css' rel='stylesheet' href='../../css/zebra_pagination.css'>
+                <link type='text/css' rel='stylesheet' href='../../css/sweetalert2.min.css'/>
+                <link type='text/css' rel='stylesheet' href='../../css/icon.css'>
+                <script type='text/javascript' src='../../js/sweetalert2.min.js'></script>
+                <script type='text/javascript' src='../../js/validator.js'></script>
+                <link rel='shortcut icon' href='../../img/logo.png'>
+                <div id='fb-root'></div>
+            </head>
+            <!--Aqui comienza el body-->
+            <body onload='killerSession()'>
+        ");
+        }
+        else
+        {
+        print("
             <!DOCTYPE html>
             <html lang = 'es'>
             <!--Aqui inicia el Head-->
@@ -60,6 +118,8 @@ class master
             <!--Aqui comienza el body-->
             <body>
         ");
+
+        }
         }
         if(isset($_SESSION['usuario']))
         {

@@ -1,6 +1,11 @@
 <?php
 require("../../lib/master.php");
 master::header("Registro");
+echo $_SESSION['crear'];
+if($_SESSION['crear'] == 0)
+{
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+}
 //Verifica que hayan datos a guardar
 if(!empty($_POST))
 {
@@ -24,19 +29,39 @@ if(!empty($_POST))
                         {
                             if($clave1 == $clave2)
                             {
+                            if(strlen($clave1)>=8)
+                            {
+                                if(Validator::validatepass($clave1))
+                                {
+
+                                $time = time();
+                                $fes = date("Y-m-d ", $time);
                                 $clave = password_hash($clave1, PASSWORD_DEFAULT);
-                                $sql = "INSERT INTO administradores(nombre, correo, usuario, clave, id_tipo_usuario) VALUES(?, ?, ?, ?, ?)";
-                                $params = array($nombre, $correo, $usuario, $clave, $permisos);
+                                $sql = "INSERT INTO administradores(nombre, correo, usuario, clave, id_tipo_usuario, fecha_cambio_contra) VALUES(?, ?, ?, ?, ?, ?)";
+                                $params = array($nombre, $correo, $usuario, $clave, $permisos, $fes);
                                 if(Database::executeRow($sql, $params))
                                 {
                                     $refer = $_SERVER['HTTP_REFERER'];
-                                        master::showMessage(1, "Operación satisfactoria", "login.php");
+                                    master::showMessage(1, "Operación satisfactoria", "login.php");
 
                                 }                             
                                 else
                                 {
                                     throw new Exception(Database::$error[1]);
                                 }
+                        
+                
+                                }
+                                else
+                                {
+                                     throw new Exception("La contraseña debe tener numeros y letras tanto mayusculas como minusculas y caracteres especiales");
+
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception("La contraseña debe ser de 8 o mas caracteres");
+                            }
                             }
                             else
                             {
@@ -96,15 +121,15 @@ else
             <i class="material-icons"><a class="icono">lock</a></i><!--Icono de la parte superior-->
             </div>
             <div class="input-field col s12">
-                <input id="nombre" type="text" name="nombre" class="validate" value='<?php print($nombre); ?>' required/>
+                <input id="nombre" type="text" name="nombre" autocomplete="off" class="validate" value='<?php print($nombre); ?>' required/>
                 <label for="nombre" class="cyan-text text-darken-3">Nombre completo</label><!--El cuadro de texto donde se pondra el nombre completo-->
             </div>
             <div class="input-field col s12">
-                <input id="correo" type="email" name='correo' pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"  class="validate"  value='<?php print($correo); ?>' required/>
+                <input id="correo" type="email" name='correo' autocomplete="off" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"  class="validate"  value='<?php print($correo); ?>' required/>
                 <label for="correo" class="cyan-text text-darken-3">Email</label><!--El cuadro de texto donde se pondra el Email-->
             </div>
             <div class="input-field col s12">
-                <input id="usuario" type="text" name="usuario" class="validate" value='<?php print($usuario); ?>' required/>
+                <input id="usuario" type="text" name="usuario" class="validate" autocomplete="off" value='<?php print($usuario); ?>' required/>
                 <label for="usuario" class="cyan-text text-darken-3">Usuario</label><!--El cuadro de texto donde se pondra el nombre de usuario-->
             </div>
             <div class="input-field col s12">

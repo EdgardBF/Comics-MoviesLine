@@ -2,6 +2,10 @@
 //se utiliza para saber cual es el tipo de usuario al que es y asi actulizarala 
 require("../../lib/master.php");
 master::header("Editar Administrador");
+    if($_SESSION['actualizar'] == 0)
+    {
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+    }
 if(empty($_GET['id'])) 
 {
     $id = null;
@@ -12,6 +16,8 @@ if(empty($_GET['id']))
 }
 else
 {
+                if(isset($_GET['id']) && ctype_digit($_GET['id'])) 
+{
     $id = $_GET['id'];
     $sql = "SELECT * FROM administradores WHERE id_admin = ?";
     $params = array($id);
@@ -20,6 +26,11 @@ else
     $correo = $data['correo'];
     $alias = $data['usuario'];
     $permisos = $data['id_tipo_usuario'];
+}
+else
+{
+    header("location: index_admin.php");
+}
 }
 if(!empty($_POST))
 {

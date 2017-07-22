@@ -101,11 +101,11 @@ else
                 <label for="nombre" class="cyan-text text-darken-3">Nombre completo</label><!--El cuadro de texto donde se pondra el nombre completo-->
             </div>
             <div class="input-field col s12">
-                <input id="correo" type="email" name='correo' pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"  class="validate"  value='<?php print($correo); ?>' required/>
+                <input id="correo" type="email" name='correo' autocomplete="off" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"  class="validate"  value='<?php print($correo); ?>' required/>
                 <label for="correo" class="cyan-text text-darken-3">Email</label><!--El cuadro de texto donde se pondra el Email-->
             </div>
             <div class="input-field col s12">
-                <input id="usuario" type="text" name="usuario" class="validate" value='<?php print($usuario); ?>' required/>
+                <input id="usuario" type="text" name="usuario" class="validate" value='<?php print($usuario); ?>' autocomplete="off" required/>
                 <label for="usuario" class="cyan-text text-darken-3">Usuario</label><!--El cuadro de texto donde se pondra el nombre de usuario-->
             </div>
             <div class="input-field col s12">

@@ -1,27 +1,37 @@
 <?php
 //mandamos a llamar a nuestro archivo maestro
 require("../../lib/master.php");
-
 //hacemos una condicional diciendo que si el get esta vacio muestre los registros normales sino que los muestre solo los que se han pedido en el parametro
 if(empty($_GET['id'])) 
 {
     //colocamos el metodo de header
     master::header("Agregar tipo");
+    if($_SESSION['crear'] == 0)
+{
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+}
     ?>
     <h3 class="center-align">Tipos de Usuarios</h3>
     <?php
     $id = null;
     $nombre = null;
-    $seleccionar = 0;
+    $seleccionar = 1;
     $crear = 0;
-    $leer=0;
+    $leer=1;
     $actu = 0;
     $eliminar = 0;
 }
 else
 {
+    
     //colocamos el metodo de header
     master::header("Modificar tipo");
+        if(isset($_GET['id']) && ctype_digit($_GET['id'])) 
+{
+    if($_SESSION['actualizar'] == 0)
+    {
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+    }
     ?>
     <h3 class="center-align">Tipos de Usuarios</h3>
     <?php
@@ -36,15 +46,20 @@ else
     $actu =$data['actualizar'];
     $eliminar =$data['eliminar'];
 }
+else
+{
+    header("location: index_types.php");
+}
+}
 //hacemos una condicional diciendo que si el post esta vacio muestre los registros normales sino que los muestre solo los que se han pedido en el parametro
 if(!empty($_POST))
 {
   	$nombre = $_POST['nombre'];
     $nombre = trim($nombre);
   	$numero=$_POST["numero"];
-    $seleccionar = 0;
+    $seleccionar = 1;
     $crear = 0;
-    $leer=0;
+    $leer=1;
     $actu = 0;
     $eliminar = 0;
     $count = count($numero);
@@ -118,12 +133,8 @@ if(!empty($_POST))
         </div>
         <div class='input-field col s12 m8 offset-m3'>
             <span>Permisos:</span>
-            <input type="checkbox" id="test" value="1" <?php print(($seleccionar)?"checked":""); ?> name="numero[]"/>
-            <label for="test">Seleccionar</label>
             <input type="checkbox" id="test1" value="2" <?php print(($crear)?"checked":""); ?> name="numero[]"/>
             <label for="test1">Crear</label>
-            <input type="checkbox" id="test2" value="3" <?php print(($leer)?"checked":""); ?> name="numero[]"/>
-            <label for="test2">Leer</label>
             <input type="checkbox" id="test3" value="4" <?php print(($actu)?"checked":""); ?> name="numero[]"/>
             <label for="test3">actualizar</label>
             <input type="checkbox" id="test4" value="5" <?php print(($eliminar)?"checked":""); ?> name="numero[]" />

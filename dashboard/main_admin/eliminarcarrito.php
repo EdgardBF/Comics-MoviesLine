@@ -3,6 +3,8 @@ require("../../lib/master.php");
 master::header("Usuarios");
 //Revisa si el metodo get del id, no esta vacio
 if(!empty($_GET)){
+                if(isset($_GET['id']) && ctype_digit($_GET['id'])) 
+{
     try{
         	$id = $_GET['id'];
             $sql = $sql = "SELECT id_vista_carrito, productos.id_producto, vista_carrito.cantidad FROM vista_carrito, carrito, productos, registro WHERE carrito.id_registro = registro.id_registro AND vista_carrito.id_carrito = carrito.id_carrito AND productos.id_producto = vista_carrito.id_producto  AND  id_vista_carrito = ?";
@@ -23,7 +25,13 @@ if(!empty($_GET)){
     {
             master::showMessage(1, $error->getMessage(), null);
     }
+}
+else
+{
+    header("location: ../main_public/compras.php");
+}
     
 }
+    
 master::footer("Usuarios");
 ?>

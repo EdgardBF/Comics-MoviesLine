@@ -12,6 +12,16 @@ $( document ).ready(function(){
     $('ul.tabs').tabs();
     $('.modal').modal();
 })
+
+function killerSession(){
+setTimeout("window.open('logout.php','_top');",60000);
+  console.log("FUNCIONA!");
+
+}
+function killerSession2(){
+setTimeout("window.open('../dashboard/main_public/logout.php','_top');",60000);
+  console.log("Funciona");
+}
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {zoom: 16});
   var geocoder = new google.maps.Geocoder;

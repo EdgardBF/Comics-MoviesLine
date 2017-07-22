@@ -26,7 +26,7 @@ else
 <form method='post'>
 	<div class='row'>
 			<div class='input-field col s6 m4'>
-			<input id='buscar' type='text' name='buscar'/>
+			<input id='buscar' type='text' name='buscar' />
 			<label for='buscar'>Buscar</label>
 		</div>
             <div class='input-field col s6 m4'>

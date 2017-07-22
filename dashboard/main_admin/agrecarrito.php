@@ -6,7 +6,8 @@ master::header("Carrito");
 <?php
 //Revisa si el metodo get del id, no esta vacio
 if(!empty($_GET)){
-    
+            if(isset($_GET['id']) && ctype_digit($_GET['id'])) 
+{
 $id = $_GET['id'];
 //lo que hacemos con todo este codigo es que a la hora de que el producto se agrege el carrito
     if(!empty($_POST))
@@ -97,6 +98,11 @@ else
 {
     $cantidad = null;
 }
+}
+else
+{
+    header("location: ../../public/productos.php");
+}
     
 }
 //en este pedazo muestra el producto seleccionado con la infomacion necesaria
@@ -131,7 +137,7 @@ else
     <form form method='post'>
         <div class='input-field col s12'>
           	<i class='material-icons prefix'>person</i>
-          	<input id='tipo_producto' type='number' name='cantidad' class='validate' value='<?php print($cantidad); ?>' required/>
+          	<input id='tipo_producto' type='number' name='cantidad' class='validate' value='<?php print($cantidad); ?>' autocomplete="off" required/>
           	<label for='tipo_producto'>Cantidad</label>
         </div>
         <div class='row center-align'>

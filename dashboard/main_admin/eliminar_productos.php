@@ -1,8 +1,16 @@
 <?php
 require("../../lib/master.php");
 master::header("ProductosAdmin");
+    if($_SESSION['eliminar'] == 0)
+    {
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+    }
+    else
+    {
 //Revisa si el metodo get del id, no esta vacio
 if(!empty($_GET)){
+            if(isset($_GET['id']) && ctype_digit($_GET['id'])) 
+{
     try{
 			$id = $_GET['id'];
             //Elimina un registro y muestra un mensaje
@@ -21,7 +29,13 @@ if(!empty($_GET)){
     {
             master::showMessage(2, $error->getMessage(), "productos_admin.php");
     }
+}
+else
+{
+    header("location: productos_admin.php");
+}
     
 }
+    }
 master::footer("ProductosAdmin");
 ?>

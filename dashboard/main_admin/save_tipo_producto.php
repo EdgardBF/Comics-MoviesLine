@@ -1,6 +1,10 @@
 <?php
 require("../../lib/master.php");
 master::header("tipo_producto");
+if($_SESSION['crear'] == 0)
+{
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+}
 ?>
 <h3 class="center-align">Tipo de Productos</h3>
 <?php
@@ -14,11 +18,22 @@ if(empty($_GET['id']))
 }
 else
 {
+    if(isset($_GET['id']) && ctype_digit($_GET['id'])) 
+{
+        if($_SESSION['actualizar'] == 0)
+    {
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+    }
     $id = $_GET['id'];
     $sql = "SELECT tipo_producto FROM tipo_producto WHERE id_tipo_producto = ?";
     $params = array($id);
     $data = Database::getRow($sql, $params);
     $tipo_producto = $data['tipo_producto'];
+}
+else
+{
+    header("location: tipo_producto.php");
+}
 }
 
 if(!empty($_POST))

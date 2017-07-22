@@ -1,6 +1,10 @@
 <?php
 require("../../lib/master.php");
 master::header("Distribuciones");
+if($_SESSION['crear'] == 0)
+{
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+}
 ?>
 <h3 class="center-align">Distribuidor</h3>
 <?php
@@ -14,11 +18,22 @@ if(empty($_GET['id']))
 }
 else
 {
+                if(isset($_GET['id']) && ctype_digit($_GET['id'])) 
+{
+    if($_SESSION['actualizar'] == 0)
+    {
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+    }
     $id = $_GET['id'];
     $sql = "SELECT distribucion FROM distribucion WHERE id_distribucion = ?";
     $params = array($id);
     $data = Database::getRow($sql, $params);
     $distribucion = $data['distribucion'];
+}
+else
+{
+    header("location: distribuidor.php");
+}
 }
 
 if(!empty($_POST))

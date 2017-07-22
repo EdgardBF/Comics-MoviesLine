@@ -153,23 +153,23 @@ else
                                 <label for="first_name" class="black-text">Nombre</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="cod" type="number" name = "postal" pattern="[0-9]" class="validate" value='<?php print($postal); ?>' required/>
+                                    <input id="cod" type="number" name = "postal" pattern="[0-9]" class="validate" value='<?php print($postal); ?>' autocomplete="off" required/>
                                     <label for="cod" class="black-text">Codigo Postal</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                <input id="number" type="tel" pattern="[0-9]{8}" class="validate" name = "numero" value='<?php print($numero); ?>' required/>
+                                <input id="number" type="tel" pattern="[0-9]{8}" class="validate" name = "numero" value='<?php print($numero); ?>'  autocomplete="off" required/>
                                 <label for="number" class="black-text">Telefono</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="cod" type="text" name = "direccion" class="validate" value='<?php print($direccion); ?>' required/>
+                                    <input id="cod" type="text" name = "direccion" class="validate" value='<?php print($direccion); ?>' autocomplete="off" required/>
                                     <label for="cod" class="black-text">Direccion</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                <input id="tarjeta" type="number" pattern="[0-9]{16}" class="validate" name = "credito" value='<?php print($credito); ?>' required/>
+                                <input id="tarjeta" type="number" pattern="[0-9]{16}" class="validate" name = "credito" value='<?php print($credito); ?>' autocomplete="off" required/>
                                 <label for="tarjeta" class="black-text">Tarjeta de Credito</label>
                                 </div>
                             </div>

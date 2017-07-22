@@ -25,8 +25,9 @@ if($data == null)
             $pass = new generar();
             $password = $pass->nueva(8);
             $clave = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "UPDATE registro SET clave = ? WHERE usuario = ?";
-            $params = array($clave,$usuario);
+            echo $password;
+            $sql = "UPDATE registro SET clave = ?, estado = ? WHERE usuario = ?";
+            $params = array($clave, 3, $usuario);
             mail($correo, 'Clave Comics&MovieLine', "Usuario aqui te colocamos una Clave que debe colocar para despues cambiarla por tu Clave, La cual es: $password", 'From:miguelrocker3@gmail.com');
             if(Database::executeRow($sql, $params))
             {
@@ -61,7 +62,7 @@ if($data == null)
         </div>
         <div class='input-field col s12 m12 '>
           	<i class='material-icons prefix'>person</i>
-          	<input id='nombre' type='text' name='usuario' class='validate' required/>
+          	<input id='nombre' type='text' name='usuario' class='validate' autocomplete="off" required/>
           	<label for='nombre'>Nombres de Usuario</label>
         </div>
         <div class="center-align  boton">
