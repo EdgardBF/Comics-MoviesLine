@@ -115,7 +115,7 @@ if(!empty($_POST))
 				else 
 				{
           $_SESSION['intetos'] =  $_SESSION['intetos']+1;
-					 echo $_SESSION['intetos'];
+					// echo $_SESSION['intetos'];
 					throw new Exception("La clave ingresada es incorrecta");
 				}
           }
@@ -128,7 +128,7 @@ if(!empty($_POST))
 						$_SESSION['intetos'] = 0;
 						$sql = "UPDATE registro SET estado = ?, clave = ? WHERE usuario = ?";
 						$params = array(2, $clave, $usuario);
-						 echo $password;
+						 //echo $password;
             mail($data['correo'], 'Clave Comics&MovieLine', "Usuario alguien ah exedido el numero de intetos para ingresar a tu cuenta por lo cual se a bloqueado puede desbloquearla
 						colocando la siguiente clave que debes ingresar en el login junto con tu nombre de usuario en vez de tu contraseña, La cual es: $password", 'From:miguelrocker3@gmail.com');
 						if(Database::executeRow($sql, $params))

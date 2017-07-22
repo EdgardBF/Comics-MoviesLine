@@ -33,17 +33,17 @@ if(!empty($_POST))
                             {
                                 if(Validator::validatepass($clave1))
                                 {
-                            if(password_verify($clave1, $clavea))
-                            {
-                                throw new Exception("La Contraseña debe ser diferente a la anterior");
-                            }
-                            else
-                            {   $time = time();
-                                $fes = date("Y-m-d ", $time);
-                                $clave = password_hash($clave1, PASSWORD_DEFAULT);
-                                $sql = "UPDATE administradores SET clave = ?, fecha_cambio_contra = ?, estado = ? WHERE id_admin = ?";
-                                $params = array($clave, $fes,0, $_SESSION['id_admin']);
-                            }
+                                    if(password_verify($clave1, $clavea))
+                                    {
+                                        throw new Exception("La Contraseña debe ser diferente a la anterior");
+                                    }
+                                    else
+                                    {   $time = time();
+                                        $fes = date("Y-m-d ", $time);
+                                        $clave = password_hash($clave1, PASSWORD_DEFAULT);
+                                        $sql = "UPDATE administradores SET clave = ?, fecha_cambio_contra = ?, estado = ? WHERE id_admin = ?";
+                                        $params = array($clave, $fes,0, $_SESSION['id_admin']);
+                                    }
                                 }
                                 else
                                 {
