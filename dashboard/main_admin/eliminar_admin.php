@@ -2,8 +2,16 @@
 //llamamos a nuestra clase maestra
 require("../../lib/master.php");
 master::header("Admin");
+    if($_SESSION['eliminar'] == 0)
+    {
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+    }
+    else
+    {
 //Revisa si el metodo get del id, no esta vacio
 if(!empty($_GET)){
+            if(isset($_GET['id']) && ctype_digit($_GET['id'])) 
+{
     try{
 			$id = $_GET['id'];
             //crea una condicional para que este no se borre a si mismo
@@ -33,7 +41,13 @@ if(!empty($_GET)){
     {
             master::showMessage(2, $error->getMessage(), "index_admin.php");
     }
+}
+else
+{
+    header("location: index_admin.php");
+}
     
 }
+    }
 master::footer("admin");
 ?>

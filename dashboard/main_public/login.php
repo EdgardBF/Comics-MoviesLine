@@ -11,9 +11,35 @@ if($data == null)
 }
 if(!empty($_POST))
 {
+  	if(isset($_SESSION['intetos']))
+	{
+
+	}
+	else
+	{
+		$_SESSION['intetos'] = 0;
+	}
+
 	$_POST = validator::validateForm($_POST);
   	$usuario = $_POST['usuario'];
   	$clave = $_POST['clave'];
+				if(isset($_SESSION['usu']))
+	{
+
+	}
+	else
+	{
+		$_SESSION['usu'] = $usuario;
+	}
+	if( $_SESSION['usu'] == $usuario)
+	{
+
+	}
+	else
+	{
+		$_SESSION['usu'] == $usuario;
+		$_SESSION['intetos'] = 0;
+	}
   	try
     {
       	if($usuario != "" && $clave != "")
@@ -24,6 +50,29 @@ if(!empty($_POST))
 		    if($data != null)
 		    {
 		    	$hash = $data['clave'];
+          if ($data['estado'] ==2)
+					{
+					if(password_verify($clave, $hash) && $data['estado'] ==2 ) 
+					{
+						$sql = "UPDATE registro SET estado = ? WHERE usuario = ?";
+						$params = array(3, $usuario);
+						if(Database::executeRow($sql, $params))
+						{
+							
+						}                             
+						else
+						{
+								throw new Exception(Database::$error[1]);
+						}
+
+					}
+					else
+					{
+						throw new Exception("el usuario es bloqueado");
+					}
+					}
+          if($_SESSION['intetos']<3)
+					{
 		    	if(password_verify($clave, $hash)) 
 		    	{
             if($data['estado'] != 0)
@@ -35,9 +84,17 @@ if(!empty($_POST))
                 if(Database::executeRow($sql, $params))
                 {
                   $_SESSION['id_registro'] = $data['id_registro'];
-                  $_SESSION['usuario'] = $data['usuario'];
-                  $_SESSION['key'] = 0;
-                  header("location: main_user.php");	
+                    $_SESSION['usuario'] = $data['usuario'];
+                    $_SESSION['key'] = 0;
+                    $_SESSION['estado'] = $data['estado'];
+                  if ($data['estado'] == 3)
+                  {
+                      master::showMessage(1, "Usuario activado", "main_user.php");
+                  }
+                  else
+                  {
+                     header("location: main_user.php");	
+                  }
                 }              
                 else
                 {
@@ -57,8 +114,33 @@ if(!empty($_POST))
 				}
 				else 
 				{
+          $_SESSION['intetos'] =  $_SESSION['intetos']+1;
+					 echo $_SESSION['intetos'];
 					throw new Exception("La clave ingresada es incorrecta");
 				}
+          }
+          else
+          {
+           include ('../../archivosmaestros/generar.php');
+            $pass = new generar();
+            $password = $pass->nueva(8);
+            $clave = password_hash($password, PASSWORD_DEFAULT);
+						$_SESSION['intetos'] = 0;
+						$sql = "UPDATE registro SET estado = ?, clave = ? WHERE usuario = ?";
+						$params = array(2, $clave, $usuario);
+						 echo $password;
+            mail($data['correo'], 'Clave Comics&MovieLine', "Usuario alguien ah exedido el numero de intetos para ingresar a tu cuenta por lo cual se a bloqueado puede desbloquearla
+						colocando la siguiente clave que debes ingresar en el login junto con tu nombre de usuario en vez de tu contraseña, La cual es: $password", 'From:miguelrocker3@gmail.com');
+						if(Database::executeRow($sql, $params))
+						{
+						 throw new Exception("Demasiados intentos");
+						}                             
+						else
+						{
+								throw new Exception(Database::$error[1]);
+						}
+
+          }
 		    }
 		    else
 		    {
@@ -84,7 +166,7 @@ if(!empty($_POST))
         <i class="material-icons"><a class="icono">person_pin</a></i><!--Icono de la parte superior del formulario-->
         </div>
         <div class="input-field col s12">
-          <input id="usuario" type="text" name="usuario" class="validate"  required/>
+          <input id="usuario" type="text" name="usuario" class="validate" autocomplete="off" required/>
           <label for="usuario" class="cyan-text text-darken-3">Usuario</label><!--El cuadro de texto donde se pondra el nombre de usuario-->
         </div>
         <div class="input-field col s12">

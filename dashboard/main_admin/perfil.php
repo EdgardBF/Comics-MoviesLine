@@ -35,16 +35,18 @@ if(!empty($_POST))
                                 if($clave1 != $alias) {
                                     if(Validator::validatepass($clave1))
                                     {
-                                        if(password_verify($clave1, $clavea))
-                                        {
-                                            throw new Exception("La Contraseña debe ser diferente a la anterior");
-                                        }
-                                        else
-                                        {  
-                                            $clave = password_hash($clave1, PASSWORD_DEFAULT);
-                                            $sql = "UPDATE administradores SET nombre = ?, correo = ?, usuario = ?, clave = ? WHERE id_admin = ?";
-                                            $params = array($nombres, $correo, $alias, $clave, $_SESSION['id_admin']);
-                                        }
+                                      if(password_verify($clave1, $clavea))
+                                      {
+                                          throw new Exception("La Contraseña debe ser diferente a la anterior");
+                                      }
+                                      else
+                                      {  
+                                          $time = time();
+                                          $fes = date("Y-m-d ", $time);
+                                          $clave = password_hash($clave1, PASSWORD_DEFAULT);
+                                          $sql = "UPDATE administradores SET nombre = ?, correo = ?, usuario = ?, clave = ?, fecha_cambio_contra=? WHERE id_admin = ?";
+                                          $params = array($nombres, $correo, $alias, $clave, $fes, $_SESSION['id_admin']);
+                                      }
                                     }
                                     else
                                     {
@@ -73,7 +75,7 @@ if(!empty($_POST))
                     }
                     if(Database::executeRow($sql, $params))
                     {
-                        master::showMessage(1, "Operación satisfactoria", "main.php");
+                        master::showMessage(1, "Operación satisfactoria, vuelve a loguearte para que se ejecuten los cambios", "logout.php");
                     }                             
                     else
                     {
@@ -116,17 +118,17 @@ else
     <div class='row'>
         <div class='input-field col s12 m6'>
           	<i class='material-icons prefix'>person</i>
-          	<input id='nombre' type='text' name='nombre' class='validate' value='<?php print($nombres); ?>' required/>
+          	<input id='nombre' type='text' name='nombre' class='validate' autocomplete="off" value='<?php print($nombres); ?>' required/>
           	<label for='nombre'>Nombres</label>
         </div>
         <div class='input-field col s12 m6'>
             <i class='material-icons prefix'>email</i>
-            <input id='correo' type='email' name='correo' class='validate' value='<?php print($correo); ?>' required/>
+            <input id='correo' type='email' name='correo' class='validate' autocomplete="off" value='<?php print($correo); ?>' required/>
             <label for='correo'>Correo</label>
         </div>
         <div class='input-field col s12 m6'>
             <i class='material-icons prefix'>person_pin</i>
-            <input id='usuario' type='text' name='usuario' class='validate' value='<?php print($alias); ?>' required/>
+            <input id='usuario' type='text' name='usuario' class='validate' autocomplete="off" value='<?php print($alias); ?>' required/>
             <label for='usuario'>Usuario</label>
         </div>
     </div>

@@ -1,6 +1,41 @@
 <?php
 require("../lib/master.php");
 master::header("Inicio");
+if(isset($_SESSION['id_registro']))
+{
+      if(	$_SESSION['estado'] == 3)
+    {
+      master::showMessage(3, "ingresar otra contraseña en vez de la enviada al correo", "cambio_contra.php");
+    }
+  $sql = "SELECT fecha_cambio_contra FROM registro  WHERE id_registro =?";
+      $params = array($_SESSION['id_registro']);
+      $data = Database::getRow($sql, $params);
+      if($data != null){
+      $time = time();
+      $fehca = $data['fecha_cambio_contra'];
+      $fes = date("Y-m-d ", $time);
+      $datetime1 = date_create($fehca);
+      $datetime2 = date_create($fes);
+      $interval = $datetime1->diff($datetime2);
+      $dias = $interval->format('%a');
+      if($dias >= 1)
+      {
+        master::showMessage(3, "Por cuestiones de seguridad debe ingresar otra contraseña", "../dashboard/main_public/cambio_contra.php");
+      }
+      else
+      {
+      }
+      }
+      else
+      {
+        
+      }
+
+}
+else
+{
+
+}
 ?>
     <!--Se manda a llamar un archivo maestro del Slider-->
     <section>

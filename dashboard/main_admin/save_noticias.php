@@ -1,6 +1,10 @@
 <?php
 require("../../lib/master.php");
 master::header("Noticias");
+if($_SESSION['crear'] == 0)
+{
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+}
 ?>
 <h3 class="center-align">Noticias</h3>
 <?php
@@ -19,6 +23,12 @@ if(empty($_GET['id']))
 }
 else
 {
+                if(isset($_GET['id']) && ctype_digit($_GET['id'])) 
+{
+    if($_SESSION['actualizar'] == 0)
+    {
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+    }
     $id = $_GET['id'];
     $sql = "SELECT * FROM noticia WHERE id_noticia = ?";
     $params = array($id);
@@ -28,6 +38,11 @@ else
     $descripcion = $data['descripcion_imagen'];
     $estado = $data['estado'];
     $fecha = $data['fecha']; 
+}
+else
+{
+    header("location: noticias.php");
+}
 }
 
 if(!empty($_POST))

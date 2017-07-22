@@ -1,6 +1,10 @@
 <?php
 require("../../lib/master.php");
 master::header("ProductosAdmin");
+if($_SESSION['crear'] == 0)
+{
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+}
 ?>
 <h3 class="center-align">Productos</h3>
 <?php
@@ -21,6 +25,12 @@ if(empty($_GET['id']))
 }
 else
 {
+                if(isset($_GET['id']) && ctype_digit($_GET['id'])) 
+{
+    if($_SESSION['actualizar'] == 0)
+    {
+    master::showMessage(2, "No tiene permisos para entrar", "main.php");
+    }
     $id = $_GET['id'];
     $sql = "SELECT * FROM productos WHERE id_producto = ?";
     $params = array($id);
@@ -33,6 +43,11 @@ else
     $cantidad = $data['cantidad'];
     $fecha = $data['fecha'];
     $imagen = $data['imagen'];
+}
+else
+{
+    header("location: productos_admin.php");
+}
 }
 
 if(!empty($_POST))
