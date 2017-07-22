@@ -83,7 +83,7 @@ if(!empty($_POST))
                     }
                     if(Database::executeRow($sql, $params))
                     {
-                        master::showMessage(1, "Operación satisfactoria", "../index.php");
+                        master::showMessage(1, "Operación satisfactoria, vuelvete a loguear", "logout.php");
                     }                             
                     else
                     {
