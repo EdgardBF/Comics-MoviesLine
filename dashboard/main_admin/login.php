@@ -3,6 +3,8 @@
 require("../..//lib/master.php");
 //colocamos el metodo de header
 master::header("Login");
+$time = time();
+$fecha = date("Y-m-d ", $time);
 //aqui colocamos una validacion la cual es que si no hay resgristro en admin entonces nos enviara a crear uno
 $sql = "SELECT * FROM administradores";
 $data = Database::getRows($sql, null);
@@ -28,16 +30,32 @@ if(!empty($_POST))
 		    	$hash = $data['clave'];
 		    	if(password_verify($clave, $hash)) 
 		    	{
-			    	  $_SESSION['id_admin'] = $data['id_admin'];
-			        $_SESSION['usuario'] = $data['usuario'];
-              $_SESSION['key'] = 1;
-              header("location: main.php");
-			      	
-				}
-				else 
-				{
-					throw new Exception("La clave ingresada es incorrecta");
-				}
+						if($data['conexion'] == 0)
+              {
+                $sql = "UPDATE administradores SET conexion = ? WHERE usuario = ?";
+                $params = array(1, $usuario);
+                if(Database::executeRow($sql, $params))
+                {
+                  $_SESSION['id_admin'] = $data['id_admin'];
+									$_SESSION['usuario'] = $data['usuario'];
+									$_SESSION['key'] = 1;
+									header("location: main.php");
+                }              
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
+              }
+              else
+              {
+                mail($data['correo'], 'Conexión Invalida de Usuario, Comics & Movies Line', "Administrador se le informa que el dia ".$fecha.", mientras estaba conectado, Una persona desconocida intento ingresar a su Cuenta", 'From:alexander21171015@gmail.com');
+                throw new Exception("El Administrador esta Conectado actualmente");
+              }
+					}
+					else 
+					{
+						throw new Exception("La clave ingresada es incorrecta");
+					}
 		    }
 		    else
 		    {

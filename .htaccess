@@ -5,14 +5,14 @@ RewriteEngine On
 <files /Comics-MoviesLine/.htaccess>
     order allow,deny
     deny from all
-    #allow from 192.168.1.3
+#allow from 192.168.1.3
 </files>
 
 # Impide la Busqueda de Directorios
 Options All -Indexes
 
 # Proteccion anti hotlink
-RewriteCond %{HTTP_REFERER} !^/Comics-MoviesLine/ [NC]
+RewriteCond %{HTTP_REFERER} !^http://localhost [NC]
 RewriteRule \.(jpg|png|gif|bmp) img/anti-hacking.jpg [L]
 
 
