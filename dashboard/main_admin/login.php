@@ -3,6 +3,8 @@
 require("../..//lib/master.php");
 //colocamos el metodo de header
 master::header("Login");
+$time = time();
+$fecha = date("Y-m-d ", $time);
 //aqui colocamos una validacion la cual es que si no hay resgristro en admin entonces nos enviara a crear uno
 $sql = "SELECT * FROM administradores";
 $data = Database::getRows($sql, null);
@@ -77,29 +79,44 @@ if(!empty($_POST))
 					if($_SESSION['intetos']<3)
 					{
 		    	if(password_verify($clave, $hash)) 
-					{
-						
-				$sql1 = "SELECT administradores.usuario, tipo_usuario.tipo , seleccionar, crear, leer, actualizar, eliminar FROM administradores, tipo_usuario WHERE administradores.id_tipo_usuario=tipo_usuario.id_tipo_usuario AND administradores.usuario = ?";
-		    $params1 = array($usuario);
-		    $data1 = Database::getRow($sql1, $params1);
-			    	  $_SESSION['id_admin'] = $data['id_admin'];
-			        $_SESSION['usuario'] = $data['usuario'];
-							$_SESSION['seleccionar'] = $data1['seleccionar'];
-							$_SESSION['crear'] = $data1['crear'];
-							$_SESSION['leer'] = $data1['leer'];
-							$_SESSION['actualizar'] = $data1['actualizar'];
-							$_SESSION['eliminar'] = $data1['eliminar'];
-              $_SESSION['key'] = 1;
-							$_SESSION['estado'] = $data['estado'];
-					if ($data['estado'] ==1)
-					{
-              master::showMessage(1, "Usuario activado", "main.php");
-					}
-					else
-					{
-							header("location: main.php");
-					}
-			      	
+		    	{
+						if($data['conexion'] == 0)
+              {
+                $sql = "UPDATE administradores SET conexion = ? WHERE usuario = ?";
+                $params = array(1, $usuario);
+                if(Database::executeRow($sql, $params))
+                {
+                    $sql1 = "SELECT administradores.usuario, tipo_usuario.tipo , seleccionar, crear, leer, actualizar, eliminar FROM administradores, tipo_usuario WHERE administradores.id_tipo_usuario=tipo_usuario.id_tipo_usuario AND administradores.usuario = ?";
+                    $params1 = array($usuario);
+                    $data1 = Database::getRow($sql1, $params1);
+                      $_SESSION['id_admin'] = $data['id_admin'];
+                      $_SESSION['usuario'] = $data['usuario'];
+                      $_SESSION['seleccionar'] = $data1['seleccionar'];
+                      $_SESSION['crear'] = $data1['crear'];
+                      $_SESSION['leer'] = $data1['leer'];
+                      $_SESSION['actualizar'] = $data1['actualizar'];
+                      $_SESSION['eliminar'] = $data1['eliminar'];
+                      $_SESSION['key'] = 1;
+                      $_SESSION['estado'] = $data['estado'];
+                  if ($data['estado'] ==1)
+                  {
+                      master::showMessage(1, "Usuario activado", "main.php");
+                  }
+                  else
+                  {
+                      header("location: main.php");
+                  }
+                }              
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
+              }
+              else
+              {
+                mail($data['correo'], 'Conexión Invalida de Usuario, Comics & Movies Line', "Administrador se le informa que el dia ".$fecha.", mientras estaba conectado, Una persona desconocida intento ingresar a su Cuenta", 'From:alexander21171015@gmail.com');
+                throw new Exception("El Administrador esta Conectado actualmente");
+              } 	
 				}
 				else 
 				{

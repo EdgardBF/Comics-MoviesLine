@@ -33,22 +33,26 @@ if(!empty($_POST))
                             {
                                 if(Validator::validatepass($clave1))
                                 {
-
-                                $time = time();
-                                $fes = date("Y-m-d ", $time);
-                                $clave = password_hash($clave1, PASSWORD_DEFAULT);
-                                $sql = "INSERT INTO administradores(nombre, correo, usuario, clave, id_tipo_usuario, fecha_cambio_contra) VALUES(?, ?, ?, ?, ?, ?)";
-                                $params = array($nombre, $correo, $usuario, $clave, $permisos, $fes);
-                                if(Database::executeRow($sql, $params))
-                                {
+                                  if($clave1 != $usuario) {
+                                    $time = time();
+                                    $fes = date("Y-m-d ", $time);
+                                    $clave = password_hash($clave1, PASSWORD_DEFAULT);
+                                    $sql = "INSERT INTO administradores(nombre, correo, usuario, clave, id_tipo_usuario, fecha_cambio_contra) VALUES(?, ?, ?, ?, ?, ?)";
+                                    $params = array($nombre, $correo, $usuario, $clave, $permisos, $fes);
+                                    if(Database::executeRow($sql, $params))
+                                    {
                                     $refer = $_SERVER['HTTP_REFERER'];
-                                    master::showMessage(1, "Operación satisfactoria", "login.php");
-
-                                }                             
-                                else
-                                {
-                                    throw new Exception(Database::$error[1]);
-                                }
+                                    master::showMessage(1, "Operación satisfactoria", "login.php")
+                                    }                             
+                                    else
+                                    {
+                                        throw new Exception(Database::$error[1]);
+                                    }
+                                  }
+                                  else
+                                  {
+                                  throw new Exception("El Usuario debe ser diferente a la Contraseña"); 
+                                  }
                         
                 
                                 }

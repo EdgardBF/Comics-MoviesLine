@@ -470,6 +470,7 @@ class master
             <script src='../../js/mapa.js' async defer></script>
             <script async src='../../js/tweet.js' charset='utf-8'></script>
             <script src='../../js/youtube.js'></script>
+            <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
            </body>
         </html>
         ");
@@ -518,6 +519,7 @@ class master
             <script src='../js/mapa.js' async defer></script>
             <script async src='../js/tweet.js' charset='utf-8'></script>
             <script src='../js/youtube.js'></script>
+            <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
            </body>
         </html>
         ");
@@ -554,6 +556,7 @@ class master
             <script src='../../js/mapa.js' async defer></script>
             <script async src='../../js/tweet.js' charset='utf-8'></script>
             <script src='../../js/youtube.js'></script>
+            <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
            </body>
         </html>
         ");

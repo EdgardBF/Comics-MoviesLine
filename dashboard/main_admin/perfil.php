@@ -32,24 +32,30 @@ if(!empty($_POST))
                         {
                             if(strlen($clave1)>=8)
                             {
-                                if(Validator::validatepass($clave1))
-                                {
-                            if(password_verify($clave1, $clavea))
-                            {
-                                throw new Exception("La Contraseña debe ser diferente a la anterior");
-                            }
-                            else
-                            {  
-                                $time = time();
-                                $fes = date("Y-m-d ", $time);
-                                $clave = password_hash($clave1, PASSWORD_DEFAULT);
-                                $sql = "UPDATE administradores SET nombre = ?, correo = ?, usuario = ?, clave = ?, fecha_cambio_contra=? WHERE id_admin = ?";
-                                $params = array($nombres, $correo, $alias, $clave, $fes, $_SESSION['id_admin']);
-                            }
+                                if($clave1 != $alias) {
+                                    if(Validator::validatepass($clave1))
+                                    {
+                                      if(password_verify($clave1, $clavea))
+                                      {
+                                          throw new Exception("La Contraseña debe ser diferente a la anterior");
+                                      }
+                                      else
+                                      {  
+                                          $time = time();
+                                          $fes = date("Y-m-d ", $time);
+                                          $clave = password_hash($clave1, PASSWORD_DEFAULT);
+                                          $sql = "UPDATE administradores SET nombre = ?, correo = ?, usuario = ?, clave = ?, fecha_cambio_contra=? WHERE id_admin = ?";
+                                          $params = array($nombres, $correo, $alias, $clave, $fes, $_SESSION['id_admin']);
+                                      }
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("La contraseña debe tener numeros y letras tanto mayusculas como minusculas y caracteres especiales");
+                                    }
                                 }
                                 else
                                 {
-                                    throw new Exception("La contraseña debe tener numeros y letras tanto mayusculas como minusculas y caracteres especiales");
+                                throw new Exception("El Usuario debe ser diferente a la Contraseña"); 
                                 }
                             }
                             else
@@ -142,8 +148,8 @@ else
         </div>
     </div>
     <div class='row center-align'>
-        <a href='main.php' class='btn waves-effect grey'><i class='material-icons'>cancel</i></a>
-        <button type='submit' class='btn waves-effect blue'><i class='material-icons'>save</i></button>
+        <a href='main.php' class='btn waves-effect red'>Cancelar<i class='material-icons left'>highlight_off</i></a>
+        <button type='submit' class='btn waves-effect blue'>Guardar<i class='material-icons left'>add_circle_outline</i></button>
     </div>
 </form>
 

@@ -1,6 +1,8 @@
 <?php
 require("../../lib/master.php");
 master::header("Login public");
+$time = time();
+$fecha = date("Y-m-d ", $time);
 $sql = "SELECT * FROM registro";
 $data = Database::getRows($sql, null);
 if($data == null)
@@ -75,19 +77,35 @@ if(!empty($_POST))
 		    	{
             if($data['estado'] != 0)
             {
-			      $_SESSION['id_registro'] = $data['id_registro'];
-			      $_SESSION['usuario'] = $data['usuario'];
-            $_SESSION['key'] = 0;
-						$_SESSION['estado'] = $data['estado'];
-          if ($data['estado'] == 3)
-					{
-              master::showMessage(1, "Usuario activado", "main_user.php");
-					}
-					else
-					{
-							            header("location: main_user.php");	
-					}
-
+              if($data['conexion'] == 0)
+              {
+                $sql = "UPDATE registro SET conexion = ? WHERE usuario = ?";
+                $params = array(1, $usuario);
+                if(Database::executeRow($sql, $params))
+                {
+                  $_SESSION['id_registro'] = $data['id_registro'];
+                    $_SESSION['usuario'] = $data['usuario'];
+                    $_SESSION['key'] = 0;
+                    $_SESSION['estado'] = $data['estado'];
+                  if ($data['estado'] == 3)
+                  {
+                      master::showMessage(1, "Usuario activado", "main_user.php");
+                  }
+                  else
+                  {
+                     header("location: main_user.php");	
+                  }
+                }              
+                else
+                {
+                    throw new Exception(Database::$error[1]);
+                }
+              }
+              else
+              {
+                mail($data['correo'], 'Conexión Invalida de Usuario, Comics & Movies Line', "Usuario se le informa que el dia ".$fecha.", mientras estaba conectado, Una persona desconocida intento ingresar a su Cuenta", 'From:alexander21171015@gmail.com');
+                throw new Exception("El usuario esta Conectado actualmente");
+              }	
             }
             else
             {

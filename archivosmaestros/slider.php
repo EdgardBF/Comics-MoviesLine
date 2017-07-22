@@ -13,7 +13,7 @@
               <li>
               <?php
                 $archivo_actual = basename($_SERVER['PHP_SELF']);
-                if($archivo_actual != "index_admin.php")
+                if($archivo_actual != "main.php")
                 {
                     print("<img src='../img/slider1.png'> <!--Imagen-->");
 
