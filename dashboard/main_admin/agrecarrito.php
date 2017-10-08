@@ -1,5 +1,5 @@
 <?php
-require("../../lib/master.php");
+require("../../lib/master_c.php");
 master::header("Carrito");
 ?>
 <h3 class="center-align">Agregar a Carrito</h3>

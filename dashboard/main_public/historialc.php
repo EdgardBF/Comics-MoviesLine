@@ -66,6 +66,81 @@ else
 
                         ");
                         }
+                    	$fech = date('d-m-Y');
+						$my_date = new DateTime(); 
+						$datetime1 = date_create($fech);
+		//instruccion para poner datos
+						$sql = "SELECT COUNT(compra.id_compra) AS compra, compra.id_registro, MONTH(fecha) FROM compra INNER JOIN registro ON compra.id_registro = registro.id_registro WHERE compra.id_registro = ?   AND YEAR(fecha)=? GROUP BY MONTH(fecha)";
+						$params = array($_SESSION['id_registro'], $datetime1->format('Y'));
+						$data = Database::getRows($sql, $params);
+		//se hizo un arreglo para colocar el nombre del mes
+						$numes = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+						$mes= array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+						?>
+							<div id="container" style="height: 400px"></div>
+<?php						
+			//instrucciones para crear un grafico utilizando el googlechart
+						print("
+<script src='../../lib/highcharts/code/highcharts.js'></script>
+<script src='../../lib/highcharts/code/highcharts-3d.js'></script>
+<script src='../../lib/highcharts/code/modules/exporting.js'></script>
+<script type='text/javascript'>
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+        }
+    },
+    title: {
+         text: 'Procentaje de Citas del ".$datetime1->format('Y')." por Mes'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>, Cantidad: <b>{point.y:.1f}</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            depth: 35,
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }
+    },
+    series: [{
+        type: 'pie',
+        name: 'Porcentaje',
+
+        data: [
+			");
+                foreach($data as $row2)
+                {
+                //se ponen lo que son los datos en el arreglo
+                    for($i=1; $i<13; $i++)
+                    {
+                        if($row2['MONTH(fecha)'] == $numes[$i])
+                        {
+                            $mese = $mes[$i];	
+                            $i=13;
+                        }
+                    }
+                    print ("['".$mese."', ".$row2['compra']."],");
+
+                }
+print("
+        ]
+    }]
+});
+		</script
+						</div>
+						</li>
+						</ul>
+						</main>");
                             }
                             else
                             {

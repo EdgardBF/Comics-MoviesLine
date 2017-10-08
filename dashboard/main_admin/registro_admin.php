@@ -42,7 +42,7 @@ if(!empty($_POST))
                                     if(Database::executeRow($sql, $params))
                                     {
                                     $refer = $_SERVER['HTTP_REFERER'];
-                                    master::showMessage(1, "Operación satisfactoria", "login.php")
+                                    master::showMessage(1, "Operación satisfactoria", "login.php");
                                     }                             
                                     else
                                     {

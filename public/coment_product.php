@@ -136,6 +136,58 @@ else
 
                 ");
             }
+            $sql = "SELECT productos.nombre_producto as nombre, COUNT(comentarios.id_comentario) as cantida FROM comentarios RIGHT JOIN productos ON comentarios.id_producto = productos.id_producto AND comentarios.id_tipo_comentario = 1 GROUP BY productos.nombre_producto";
+    $params = null;
+    $datoss = Database::getRows($sql, $params);
+    //instrucciones para crear un grafico utilizando el googlechart
+    print("
+    <div id='container1' style='min-width: 200px; height: 400px; max-width: 200px; margin: 0 auto'></div>
+    <script src='../js/jquery-3.1.1.min.js'></script>
+    <script src='../lib/highcharts/code/highcharts.js'></script>
+    <script src='../lib/highcharts/code/modules/exporting.js'></script>
+    <script type='text/javascript'>
+$(document).ready(function () {
+
+    // Build the chart
+    Highcharts.chart('container1', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Productos mas comentados'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y:.1f}</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Cantidad',
+            colorByPoint: true,
+            data: [
+                ");
+                            
+                foreach($datoss as $row2)
+				{
+            print ("{ name: '".$row2['nombre']."', y:".$row2['cantida']."},");
+			    }
+                print("
+        ]
+        }]
+    });
+});
+</script>");
         }
         else
         {

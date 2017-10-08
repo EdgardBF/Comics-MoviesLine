@@ -486,7 +486,6 @@ class master
                 <div class='row'>
                     <div class='col l6 s12'>
                     <h5 class='white-text'>Ubicación</h5>
-                        <p class='grey-text text-lighten-4'><div id='map'></div></p>
                     </div>
                     <div class='col l4 offset-l2 s12'>
                         <h5 class='white-text'>Dirección</h5>

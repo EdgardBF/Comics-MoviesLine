@@ -52,7 +52,125 @@ else
     <!--Se manda a llamar un archivo maestro del Slider-->
     <section>
       <?php
-        include ('../../archivosmaestros/slider.php')
+        include ('../../archivosmaestros/slider.php');
+    $sql = "SELECT distribucion.distribucion as nombre, SUM(cantidad) as cantida FROM productos RIGHT JOIN distribucion ON productos.id_distribucion = distribucion.id_distribucion GROUP BY distribucion.distribucion";
+    $params = null;
+    $datoss = Database::getRows($sql, $params);
+    //instrucciones para crear un grafico utilizando el googlechart
+    print("
+    <div id='container' style='min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto'></div>
+    <script src='../../js/jquery-3.1.1.min.js'></script>
+    <script src='../../lib/highcharts/code/highcharts.js'></script>
+    <script src='../../lib/highcharts/code/modules/exporting.js'></script>
+    <script type='text/javascript'>
+$(document).ready(function () {
+
+    // Build the chart
+    Highcharts.chart('container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Cantidad de productos por distribuidor'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y:.1f}</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Cantidad',
+            colorByPoint: true,
+            data: [
+                ");
+                            
+                foreach($datoss as $row2)
+				{
+          if($row2['cantida']=="")
+          {
+				    print ("{ name: '".$row2['nombre']."', y: 0},");
+          }
+          else
+          {
+            print ("{ name: '".$row2['nombre']."', y:".$row2['cantida']."},");
+          }
+			    }
+                print("
+        ]
+        }]
+    });
+});
+</script>");
+$sql = "SELECT tipo_producto.tipo_producto as nombre, SUM(cantidad) as cantida FROM productos RIGHT JOIN tipo_producto ON productos.id_tipo_producto = tipo_producto.id_tipo_producto GROUP BY tipo_producto.tipo_producto";
+    $params = null;
+    $datoss = Database::getRows($sql, $params);
+    //instrucciones para crear un grafico utilizando el googlechart
+    print("
+    <div id='container1' style='min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto'></div>
+    <script src='../../js/jquery-3.1.1.min.js'></script>
+    <script src='../../lib/highcharts/code/highcharts.js'></script>
+    <script src='../../lib/highcharts/code/modules/exporting.js'></script>
+    <script type='text/javascript'>
+$(document).ready(function () {
+
+    // Build the chart
+    Highcharts.chart('container1', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Cantidad de productos por tipo'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y:.1f}</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Cantidad',
+            colorByPoint: true,
+            data: [
+                ");
+                            
+                foreach($datoss as $row2)
+				{
+          if($row2['cantida']=="")
+          {
+				    print ("{ name: '".$row2['nombre']."', y: 0},");
+          }
+          else
+          {
+            print ("{ name: '".$row2['nombre']."', y:".$row2['cantida']."},");
+          }
+			    }
+                print("
+        ]
+        }]
+    });
+});
+</script>");
       ?>
     </section>
     <section>
