@@ -136,7 +136,7 @@ print("
         ]
     }]
 });
-		</script
+		</script>
 						</div>
 						</li>
 						</ul>

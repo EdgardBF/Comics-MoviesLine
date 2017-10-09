@@ -123,11 +123,12 @@ if(!empty($_POST))
           {
            include ('../../archivosmaestros/generar.php');
             $pass = new generar();
+						$fech = date('Y-m-d');
             $password = $pass->nueva(8);
             $clave = password_hash($password, PASSWORD_DEFAULT);
 						$_SESSION['intetos'] = 0;
-						$sql = "UPDATE registro SET estado = ?, clave = ? WHERE usuario = ?";
-						$params = array(2, $clave, $usuario);
+						$sql = "UPDATE registro SET estado = ?, clave = ?, fecha_baneo = ? WHERE usuario = ?";
+						$params = array(2, $clave, $fech, $usuario);
 						 //echo $password;
             mail($data['correo'], 'Clave Comics&MovieLine', "Usuario alguien ah exedido el numero de intetos para ingresar a tu cuenta por lo cual se a bloqueado puede desbloquearla
 						colocando la siguiente clave que debes ingresar en el login junto con tu nombre de usuario en vez de tu contraseña, La cual es: $password", 'From:miguelrocker3@gmail.com');
