@@ -51,21 +51,21 @@ else
 ?>
     <!--Se manda a llamar un archivo maestro del Slider-->
     <section>
+    <h3 class="center-align">BIENVENID@ <?php print(" ".strtoupper ($_SESSION['usuario'])."!") ?></h3>
       <?php
-        include ('../../archivosmaestros/slider.php');
         print("
         <div class='row'>
 
-        <div class='col s6'>
+        <div class='col s12 m6'>
         <div id='container2' style='height: 400px'></div>
         </div>
-        <div class='col s6'>
+        <div class='col s12 m6'>
         <div id='container1' style='min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto'></div>
         </div>
-        <div class='col s6'>
+        <div class='col s12 m6'>
         <div id='container' style='min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto'></div>
         </div>
-        <div class='col s6'>
+        <div class='col s12 m6'>
        <div id='container3' style='min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto'></div>
         </div>
         </div>
@@ -264,9 +264,9 @@ print("
     $datoss = Database::getRows($sql, $params);
     //instrucciones para crear un grafico utilizando el googlechart
     print("
-    <script src='../js/jquery-3.1.1.min.js'></script>
-    <script src='../lib/highcharts/code/highcharts.js'></script>
-    <script src='../lib/highcharts/code/modules/exporting.js'></script>
+    <script src='../../js/jquery-3.1.1.min.js'></script>
+    <script src='../../lib/highcharts/code/highcharts.js'></script>
+    <script src='../../lib/highcharts/code/modules/exporting.js'></script>
     <script type='text/javascript'>
 $(document).ready(function () {
 
@@ -311,6 +311,28 @@ $(document).ready(function () {
 });
 </script>");
       ?>
+      <h3 class="center-align">REPORTES</h3>
+        <div class='row center-align'>
+        <div class='col s12 m6'>
+        <a  href='crear_r3.php' class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Producto mas comentados</a>
+        </div>
+        <div class='col s12 m6'>
+        <a href='crear_r1.php' class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Producto mas vendidos</a>
+        </div>
+        <br>
+        <br>
+        <div class='col s12 m6'>
+        <a href='crear_r2.php' class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Usuarios con mas compras</a>
+        </div>
+        <div class='col s12 m6'>
+        <a href='../../lib/reportes.php' class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Administradores por permisos</a>
+        </div>
+        <br>
+        <br>
+        <div class='col s12 m6'>
+        <a href='../../lib/reportes2.php' class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Productos por tipo</a>
+        </div>
+        </div>
     </section>
     <section>
 <?php

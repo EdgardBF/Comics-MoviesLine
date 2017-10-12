@@ -18,6 +18,9 @@ if(!empty($_POST))
     $direccion = $_POST['direccion'];
      $valida = strlen($numero); 
      $valida1 = strlen($credito); 
+            include ('../../archivosmaestros/generar.php');
+            $pass = new generar();
+            $password = $pass->nueva(4);
         try{
         //Valida que los datos no esten vacios
             foreach ($data as $row)
@@ -36,13 +39,13 @@ if(!empty($_POST))
                     {
                         $fes = date("Y-m-d ", $time);
                         //Guarda los registros en la Base de Datos
-                        $sql = "INSERT INTO compra(id_producto, cantidad, tarjeta, id_registro, fecha, numero, codigo_postal, direccion, pagado) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                        $params = array($row['id_producto'], $row['cantidad'], $credito, $_SESSION['id_registro'], $fes, $numero, $postal, $direccion, $tot);
+                        $sql = "INSERT INTO compra(id_producto, cantidad, tarjeta, id_registro, fecha, numero, codigo_postal, direccion, pagado, id_reconocimiento) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        $params = array($row['id_producto'], $row['cantidad'], $credito, $_SESSION['id_registro'], $fes, $numero, $postal, $direccion, $tot, $password);
                         Database::executeRow($sql, $params);
                         $sql = "DELETE FROM vista_carrito WHERE id_vista_carrito = ?";
                         $params = array($row['id_vista_carrito']);
                         Database::executeRow($sql, $params);
-                        master::showMessage(1, "Operación satisfactoria", "../../lib/reporte.php?id=".$_SESSION['id_registro']);
+                        master::showMessage(1, "Operación satisfactoria", "../../lib/reporte.php?id=".$_SESSION['id_registro']."&reco=".$password);
 
                     }
                     else

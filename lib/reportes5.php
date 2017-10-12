@@ -6,12 +6,12 @@
     session_start();  
     ini_set("date.timezone", "America/El_Salvador");
     //validamos que si la variable de sesion no esta colocada entonces nos envie al login
-   /* if(isset($_SESSION['id_doctores']))
+   if(isset($_SESSION['usuario']))
     {}
     else
     {
-       header("location: ../dashboard/login.php");
-    }*/
+       header("location: ../dashboard/index.php");
+    }
     class PDF extends FPDF
     {
         // Cabecera de página
@@ -27,7 +27,7 @@
             // Título
             $this->Cell(0,1,utf8_decode('COMICS & MOVIES LINE'),0,3,'C',true);
             $this->SetFont('Arial','B',10);
-            $this->Cell(0,0.7,'Reporte de usuarios con mas compras realizadas',0,3,'C',true);
+            $this->Cell(0,0.7,'Reporte de producto mas comentado por mes',0,3,'C',true);
             // Logo
             $this->Image('../img/logo.png',0.5,0.90,4,2);
             $this->Ln(1);
@@ -63,7 +63,7 @@
     $pdf->AliasNbPages();
     $pdf->AddPage();
     $i = 5;
-    if(empty($_GET['id']) ) 
+    if(empty($_GET['ini'])) 
     {
     $fech = date('d-m-Y');
     $my_date = new DateTime(); 
@@ -72,6 +72,72 @@
     $param = array($datetime1->format('m'), $datetime1->format('Y'));
     $data = Database::getRows($sql, $param);
     foreach($data as $row2)
+            {
+            $sql1 = "SELECT registro.nombre, comentarios.comentario, fecha, comentarios.calificacion FROM registro INNER JOIN comentarios on comentarios.id_registro = registro.id_registro WHERE comentarios.id_producto = ? AND MONTH(comentarios.fecha) = ? AND YEAR(comentarios.fecha) = ? GROUP BY registro.nombre, fecha, comentario ";
+            $params1 = array($row2['id'], $datetime1->format('m'), $datetime1->format('Y'));
+            $data1 = Database::getRows($sql1, $params1);
+            //Colocación de los Headers, de los atributos
+            if($data1 != null){
+            $pdf->SetX(3);
+            $pdf->SetFont('Arial','',16);
+            $pdf->SetFillColor(0,131,143);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(16,1,utf8_decode($row2['nombre_producto']),1,0,'C',true);
+            $pdf->Ln(1);
+            $pdf->SetX(3);
+            $pdf->Cell(16,1,utf8_decode("Comentarios totales: ".$row2['total'].", Nota Promedio: ".$row2['canti']),1,0,'C',true);
+            $pdf->Ln(1);
+            foreach($data1 as $row3)
+            {
+                //cosa hermosa que hace los reportes
+            $pdf->SetX(3);
+            $pdf->SetTextColor(0,0,0);
+            $pdf->SetFillColor(241, 237, 232);
+            $pdf->SetFont('Arial','B',8);
+            $pdf->Cell(4,1,utf8_decode("Nombre: "),1,0,'C',true);
+            $pdf->SetFillColor(255,255,255);
+            $pdf->SetFont('Arial','',8);
+            $pdf->Cell(12,1,utf8_decode($row3['nombre']),1,0,'C',true);
+            $pdf->Ln(1);
+            $pdf->SetX(3);
+            $pdf->SetFillColor(241, 237, 232);
+            $pdf->SetFont('Arial','B',8);
+            $pdf->Cell(4,1,utf8_decode("Comentario: "),1,0,'C',true);
+            $pdf->SetFillColor(255,255,255);
+            $pdf->SetFont('Arial','',8);
+            $pdf->Cell(12,1,utf8_decode($row3['comentario']),1,0,'C',true);
+            $pdf->Ln(1);
+            $pdf->SetX(3);
+            $pdf->SetFillColor(241, 237, 232);
+            $pdf->SetFont('Arial','B',8);
+            $pdf->Cell(4,1,utf8_decode("Fecha: "),1,0,'C',true);
+            $pdf->SetFillColor(255,255,255);
+            $pdf->SetFont('Arial','',8);
+            $pdf->Cell(4,1,utf8_decode($row3['fecha']),1,0,'C',true);
+            $pdf->SetFillColor(241, 237, 232);
+            $pdf->SetFont('Arial','B',8);
+            $pdf->Cell(4,1,utf8_decode("Calificacion: "),1,0,'C',true);
+            $pdf->SetFillColor(255,255,255);
+            $pdf->SetFont('Arial','',8);
+            $pdf->Cell(4,1,utf8_decode($row3['calificacion']),1,0,'C',true);
+            $pdf->Ln(1);
+            }
+            $pdf->Ln(1.5);
+            }
+            
+
+            }
+
+    }
+    else
+    {
+    $inicio = $_GET['ini'];
+    $my_date = new DateTime(); 
+    $datetime1 = date_create($inicio);
+    $sql = "SELECT COUNT(id_comentario) as total, productos.id_producto as id, productos.nombre_producto, AVG(comentarios.calificacion) as canti FROM productos INNER JOIN comentarios ON comentarios.id_producto = productos.id_producto WHERE MONTH(comentarios.fecha) = ? AND YEAR(comentarios.fecha) = ? AND id_tipo_comentario = 1 GROUP BY productos.nombre_producto ORDER BY total desc";
+    $param = array($datetime1->format('m'), $datetime1->format('Y'));
+    $data = Database::getRows($sql, $param);
+        foreach($data as $row2)
             {
             $sql1 = "SELECT registro.nombre, comentarios.comentario, fecha, comentarios.calificacion FROM registro INNER JOIN comentarios on comentarios.id_registro = registro.id_registro WHERE comentarios.id_producto = ? AND MONTH(comentarios.fecha) = ? AND YEAR(comentarios.fecha) = ? GROUP BY registro.nombre, fecha, comentario ";
             $params1 = array($row2['id'], $datetime1->format('m'), $datetime1->format('Y'));

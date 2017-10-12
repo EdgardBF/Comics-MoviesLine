@@ -6,12 +6,12 @@
     session_start();  
     ini_set("date.timezone", "America/El_Salvador");
     //validamos que si la variable de sesion no esta colocada entonces nos envie al login
-   /* if(isset($_SESSION['id_doctores']))
+   if(isset($_SESSION['usuario']))
     {}
     else
     {
-       header("location: ../dashboard/login.php");
-    }*/
+       header("location: ../dashboard/index.php");
+    }
     class PDF extends FPDF
     {
         // Cabecera de página
@@ -27,7 +27,7 @@
             // Título
             $this->Cell(0,1,utf8_decode('COMICS & MOVIES LINE'),0,3,'C',true);
             $this->SetFont('Arial','B',10);
-            $this->Cell(0,0.7,'Reporte de los administradores por permisos',0,3,'C',true);
+            $this->Cell(0,0.7,'Reporte de los productos por tipo',0,3,'C',true);
             // Logo
             $this->Image('../img/logo.png',0.5,0.90,4,2);
             $this->Ln(1);

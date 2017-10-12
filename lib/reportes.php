@@ -6,12 +6,12 @@
     session_start();  
     ini_set("date.timezone", "America/El_Salvador");
     //validamos que si la variable de sesion no esta colocada entonces nos envie al login
-   /* if(isset($_SESSION['id_doctores']))
+   if(isset($_SESSION['usuario']))
     {}
     else
     {
-       header("location: ../dashboard/login.php");
-    }*/
+       header("location: ../dashboard/index.php");
+    }
     class PDF extends FPDF
     {
         // Cabecera de página

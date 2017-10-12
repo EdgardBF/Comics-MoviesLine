@@ -6,12 +6,12 @@
     session_start();  
     ini_set("date.timezone", "America/El_Salvador");
     //validamos que si la variable de sesion no esta colocada entonces nos envie al login
-   /* if(isset($_SESSION['id_doctores']))
+   if(isset($_SESSION['usuario']))
     {}
     else
     {
-       header("location: ../dashboard/login.php");
-    }*/
+       header("location: ../dashboard/index.php");
+    }
     class PDF extends FPDF
     {
         // Cabecera de página
@@ -63,7 +63,7 @@
     $pdf->AliasNbPages();
     $pdf->AddPage();
     $i = 5;
-    if(empty($_GET['id']) ) 
+    if(empty($_GET['ini'])) 
     {
     $fech = date('d-m-Y');
     $my_date = new DateTime(); 
@@ -120,6 +120,63 @@
 
             }
 
+    }
+    else
+    {
+    $inicio = $_GET['ini'];
+    $my_date = new DateTime(); 
+    $datetime1 = date_create($inicio);
+    $sql = "SELECT COUNT(id_compra) as total, registro.id_registro as id, registro.nombre, SUM(compra.cantidad) as canti FROM registro INNER JOIN compra  ON registro.id_registro = compra.id_registro WHERE MONTH(compra.fecha) = ? AND YEAR(compra.fecha) = ? GROUP BY registro.nombre ORDER BY total desc";
+    $param = array($datetime1->format('m'), $datetime1->format('Y'));
+    $data = Database::getRows($sql, $param);
+        foreach($data as $row2)
+            {
+            $sql1 = "SELECT productos.nombre_producto, compra.cantidad, compra.fecha FROM productos INNER JOIN compra on compra.id_producto = productos.id_producto WHERE compra.id_registro = ? AND MONTH(compra.fecha) = ? AND YEAR(compra.fecha) = ? GROUP BY productos.nombre_producto, fecha ";
+            $params1 = array($row2['id'], $datetime1->format('m'), $datetime1->format('Y'));
+            $data1 = Database::getRows($sql1, $params1);
+            //Colocación de los Headers, de los atributos
+            if($data1 != null){
+            $pdf->SetX(3);
+            $pdf->SetFont('Arial','',16);
+            $pdf->SetFillColor(0,131,143);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(16,1,utf8_decode($row2['nombre']),1,0,'C',true);
+            $pdf->Ln(1);
+            $pdf->SetX(3);
+            $pdf->Cell(16,1,utf8_decode("Total de compras: ".$row2['total'].", Cantidad comprada: ".$row2['canti']),1,0,'C',true);
+            $pdf->Ln(1);
+            foreach($data1 as $row3)
+            {
+                //cosa hermosa que hace los reportes
+            $pdf->SetX(3);
+            $pdf->SetTextColor(0,0,0);
+            $pdf->SetFillColor(241, 237, 232);
+            $pdf->SetFont('Arial','B',8);
+            $pdf->Cell(4,1,utf8_decode("Nombre del Producto: "),1,0,'C',true);
+            $pdf->SetFillColor(255,255,255);
+            $pdf->SetFont('Arial','',8);
+            $pdf->Cell(12,1,utf8_decode($row3['nombre_producto']),1,0,'C',true);
+            $pdf->Ln(1);
+            $pdf->SetX(3);
+            $pdf->SetFillColor(241, 237, 232);
+            $pdf->SetFont('Arial','B',8);
+            $pdf->Cell(4,1,utf8_decode("Cantidad: "),1,0,'C',true);
+            $pdf->SetFillColor(255,255,255);
+            $pdf->SetFont('Arial','',8);
+            $pdf->Cell(4,1,utf8_decode($row3['cantidad']),1,0,'C',true);
+            $pdf->SetFillColor(241, 237, 232);
+            $pdf->SetFont('Arial','B',8);
+            $pdf->Cell(4,1,utf8_decode("Fecha: "),1,0,'C',true);
+            $pdf->SetFillColor(255,255,255);
+            $pdf->SetFont('Arial','',8);
+            $pdf->Cell(4,1,utf8_decode($row3['fecha']),1,0,'C',true);
+            $pdf->Ln(1);
+            }
+            $pdf->Ln(1.5);
+            }
+            
+
+            }
     }
     $pdf->Output();
     ?>
