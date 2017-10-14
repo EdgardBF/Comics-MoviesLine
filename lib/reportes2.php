@@ -66,6 +66,7 @@
     if(empty($_GET['id']) ) 
     {
     $sql = "SELECT *FROM tipo_producto";
+      //se llama a la funcion para obtener los datos que sean necesarios en este caso el tipo de producto
     $data = Database::getRows($sql, null);
     foreach($data as $row2)
             {
@@ -82,7 +83,7 @@
             $pdf->Ln(1);
             foreach($data1 as $row3)
             {
-                //cosa hermosa que hace los reportes
+            //informacion utilizada obtenida que sera mostrada como talbal aqui abajo
             $pdf->SetX(3);
             $pdf->SetTextColor(0,0,0);
             $pdf->SetFillColor(241, 237, 232);

@@ -92,6 +92,7 @@ else
 			</tr>
 		");
 	}
+	//sentencias sql para la generacion del grafico
 							$sqls = "SELECT tipo_usuario.tipo as Nombre, COUNT(administradores.id_admin) as cantidad FROM tipo_usuario LEFT JOIN administradores ON administradores.id_tipo_usuario = tipo_usuario.id_tipo_usuario  GROUP BY tipo_usuario.tipo";
 							$datas = Database::getRows($sqls, null);
 						print("
@@ -147,7 +148,7 @@ Highcharts.chart('container', {
         colorByPoint: true,
         data: [
 			");
-
+			//se cargan los datos a mostrar
                 foreach($datas as $row2)
 				{
 				    print ("{ name: '".$row2['Nombre']."', y:".$row2['cantidad']."},");

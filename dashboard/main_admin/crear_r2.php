@@ -53,7 +53,7 @@ else
         if(isset($inicio) && isset($fin) ){
         print("
         Las fechas que se usaran para generar el reporte es de: ".$inicio1." a ".$fin1."<br>
-        <a href='../../lib/reporte4.php?ini=".$inicio."' class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='ver reporte de doctores de la especialidad'><i class='material-icons cyan-text text-darken-3'>description</i></a>");
+        <a href='../../lib/reporte4.php?ini=".$inicio."' class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='ver reporte'><i class='material-icons cyan-text text-darken-3'>description</i></a>");
         }
         else
         {

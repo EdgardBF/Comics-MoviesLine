@@ -65,11 +65,15 @@
     $i = 5;
     if(empty($_GET['ini'])) 
     {
+        //utilizacion de variable de fecha para obtener el mes y el año
     $fech = date('d-m-Y');
     $my_date = new DateTime(); 
     $datetime1 = date_create($fech);
+    //sentencia sql
     $sql = "SELECT COUNT(id_comentario) as total, productos.id_producto as id, productos.nombre_producto, AVG(comentarios.calificacion) as canti FROM productos INNER JOIN comentarios ON comentarios.id_producto = productos.id_producto WHERE MONTH(comentarios.fecha) = ? AND YEAR(comentarios.fecha) = ? AND id_tipo_comentario = 1 GROUP BY productos.nombre_producto ORDER BY total desc";
+    //parametros a cargar
     $param = array($datetime1->format('m'), $datetime1->format('Y'));
+    //funcion para cargar los datos
     $data = Database::getRows($sql, $param);
     foreach($data as $row2)
             {
@@ -89,7 +93,7 @@
             $pdf->Ln(1);
             foreach($data1 as $row3)
             {
-                //cosa hermosa que hace los reportes
+                //informacion utilizada obtenida que sera mostrada como talbal aqui abajo
             $pdf->SetX(3);
             $pdf->SetTextColor(0,0,0);
             $pdf->SetFillColor(241, 237, 232);
@@ -131,11 +135,15 @@
     }
     else
     {
+    //utilizacion de variable de fecha para obtener el mes y el año
     $inicio = $_GET['ini'];
     $my_date = new DateTime(); 
     $datetime1 = date_create($inicio);
+    //sentencia sql
     $sql = "SELECT COUNT(id_comentario) as total, productos.id_producto as id, productos.nombre_producto, AVG(comentarios.calificacion) as canti FROM productos INNER JOIN comentarios ON comentarios.id_producto = productos.id_producto WHERE MONTH(comentarios.fecha) = ? AND YEAR(comentarios.fecha) = ? AND id_tipo_comentario = 1 GROUP BY productos.nombre_producto ORDER BY total desc";
+    //parametros que se enviaran la funcion
     $param = array($datetime1->format('m'), $datetime1->format('Y'));
+    //funcion para obtener los datos necesarios
     $data = Database::getRows($sql, $param);
         foreach($data as $row2)
             {
@@ -155,7 +163,7 @@
             $pdf->Ln(1);
             foreach($data1 as $row3)
             {
-                //cosa hermosa que hace los reportes
+               //informacion utilizada obtenida que sera mostrada como talbal aqui abajo
             $pdf->SetX(3);
             $pdf->SetTextColor(0,0,0);
             $pdf->SetFillColor(241, 237, 232);

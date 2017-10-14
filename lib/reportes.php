@@ -65,10 +65,13 @@
     $i = 5;
     if(empty($_GET['id']) ) 
     {
+        //sentencia sql
     $sql = "SELECT *FROM tipo_usuario";
+    //se llama a la funcion para obtener los datos que sean necesarios en este caso el tipo de usuario
     $data = Database::getRows($sql, null);
     foreach($data as $row2)
             {
+            //sentencia sql para la obtencio de datos
             $sql1 = "SELECT nombre, correo, usuario FROM administradores INNER JOIN tipo_usuario ON administradores.id_tipo_usuario = tipo_usuario.id_tipo_usuario WHERE tipo_usuario.id_tipo_usuario = ?";
             $params1 = array($row2['id_tipo_usuario']);
             $data1 = Database::getRows($sql1, $params1);
@@ -80,9 +83,10 @@
             $pdf->SetTextColor(255,255,255);
             $pdf->Cell(16,1,utf8_decode($row2['tipo']),1,0,'C',true);
             $pdf->Ln(1);
+            //carga de los datos a mostrar en el pdf
             foreach($data1 as $row3)
             {
-                //cosa hermosa que hace los reportes
+            //informacion utilizada obtenida que sera mostrada como talbal aqui abajo
             $pdf->SetX(3);
             $pdf->SetTextColor(0,0,0);
             $pdf->SetFillColor(241, 237, 232);

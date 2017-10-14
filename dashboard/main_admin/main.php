@@ -53,6 +53,7 @@ else
     <section>
     <h3 class="center-align">BIENVENID@ <?php print(" ".strtoupper ($_SESSION['usuario'])."!") ?></h3>
       <?php
+      //aqui se cargan todos los graficos los cuales han sido creados con highchart
         print("
         <div class='row'>
 
@@ -73,7 +74,7 @@ else
     $sql = "SELECT distribucion.distribucion as nombre, SUM(cantidad) as cantida FROM productos RIGHT JOIN distribucion ON productos.id_distribucion = distribucion.id_distribucion GROUP BY distribucion.distribucion";
     $params = null;
     $datoss = Database::getRows($sql, $params);
-    //instrucciones para crear un grafico utilizando el googlechart
+    //instrucciones para crear un grafico utilizando el highchart
     print("
     <script src='../../js/jquery-3.1.1.min.js'></script>
     <script src='../../lib/highcharts/code/highcharts.js'></script>
@@ -110,7 +111,7 @@ $(document).ready(function () {
             colorByPoint: true,
             data: [
                 ");
-                            
+                //carga de datos que se mostraran en el grafico en el tooltip que tiene todos los graficos            
                 foreach($datoss as $row2)
 				{
           if($row2['cantida']=="")
@@ -131,7 +132,7 @@ $(document).ready(function () {
 $sql = "SELECT tipo_producto.tipo_producto as nombre, SUM(cantidad) as cantida FROM productos RIGHT JOIN tipo_producto ON productos.id_tipo_producto = tipo_producto.id_tipo_producto GROUP BY tipo_producto.tipo_producto";
     $params = null;
     $datoss = Database::getRows($sql, $params);
-    //instrucciones para crear un grafico utilizando el googlechart
+    //instrucciones para crear un grafico utilizando el highchart
     print("
     <script src='../../js/jquery-3.1.1.min.js'></script>
     <script src='../../lib/highcharts/code/highcharts.js'></script>
@@ -168,7 +169,7 @@ $(document).ready(function () {
             colorByPoint: true,
             data: [
                 ");
-                            
+                   //carga de datos que se mostraran en el grafico en el tooltip que tiene todos los graficos             
                 foreach($datoss as $row2)
 				{
           if($row2['cantida']=="")
@@ -216,7 +217,7 @@ Highcharts.chart('container2', {
         }
     },
     title: {
-         text: 'Procentaje de Citas del ".$datetime1->format('Y')." por Mes'
+         text: 'Procentaje de compras del ".$datetime1->format('Y')." por Mes'
     },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>, Cantidad: <b>{point.y:.1f}</b>'
@@ -238,6 +239,7 @@ Highcharts.chart('container2', {
 
         data: [
 			");
+            //carga de datos que se mostraran en el grafico en el tooltip que tiene todos los graficos    
                 foreach($data as $row2)
                 {
                 //se ponen lo que son los datos en el arreglo
@@ -299,7 +301,7 @@ $(document).ready(function () {
             colorByPoint: true,
             data: [
                 ");
-                            
+                //carga de datos que se mostraran en el grafico en el tooltip que tiene todos los graficos                
                 foreach($datoss as $row2)
 				{
             print ("{ name: '".$row2['nombre']."', y:".$row2['cantida']."},");
@@ -310,6 +312,7 @@ $(document).ready(function () {
     });
 });
 </script>");
+//aqui van a estar todos los reportes que se han creado para la pagina con diferentes datos cada uno
       ?>
       <h3 class="center-align">REPORTES</h3>
         <div class='row center-align'>

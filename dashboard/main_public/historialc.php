@@ -11,7 +11,7 @@ if(!empty($_POST))
     try 
     {
             //Selecciona el Historial de Compras de un usuario
-            $sql = "SELECT productos.nombre_producto, productos.precio_producto, compra.cantidad, compra.fecha FROM productos, registro, compra WHERE compra.fecha BETWEEN ? AND ? AND productos.id_producto = compra.id_producto AND registro.id_registro = compra.id_registro AND registro.id_registro = ?";
+            $sql = "SELECT productos.nombre_producto, productos.precio_producto, compra.cantidad, compra.fecha, compra.id_reconocimiento FROM productos, registro, compra WHERE compra.fecha BETWEEN ? AND ? AND productos.id_producto = compra.id_producto AND registro.id_registro = compra.id_registro AND registro.id_registro = ?";
             $params = array($fecha, $fecha2, $_SESSION['id_registro']);
             $data = Database::getRows($sql, $params);
     }
@@ -51,14 +51,14 @@ else
              foreach ($data as $row) 
                                 {
                     print("
-                    
                         <div class='col s12 m4 '>
                             <div class='card card-panel teal darken-2 white-text'>
                                 <div class='card-content'>
                                     <p class='grey-text text-darken-4'><h5>$row[nombre_producto] $ $row[precio_producto]</h5></p>
                                     <p class='grey-text text-darken-4'><h5>Cantidad: $row[cantidad]</h5></p>
                                     <p class='grey-text text-darken-4'><h5>Pagado: $ ".$row['cantidad']*$row['precio_producto']."</h5></p>
-                                    <p class='grey-text text-darken-4'><h5>Fecha de compra: $ ".$row['fecha']."</h5></p>
+                                    <p class='grey-text text-darken-4'><h5>Fecha de compra:".$row['fecha']."</h5></p>
+                                    <a href='../../lib/reporte.php?id=".$_SESSION['id_registro']."&reco=".$row['id_reconocimiento']."' class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='ver factura'><i class='material-icons white-text text-darken-3'>description</i></a>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@ Highcharts.chart('container', {
         }
     },
     title: {
-         text: 'Procentaje de Citas del ".$datetime1->format('Y')." por Mes'
+         text: 'Procentaje de Compras del ".$datetime1->format('Y')." por Mes'
     },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>, Cantidad: <b>{point.y:.1f}</b>'

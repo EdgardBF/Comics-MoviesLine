@@ -123,13 +123,19 @@
     $inicio = $_GET['ini'];
     $my_date = new DateTime(); 
     $datetime1 = date_create($inicio);
+    //sentencia sql
     $sql = "SELECT COUNT(id_compra) as total, productos.id_producto as id, productos.nombre_producto, SUM(compra.cantidad) as canti FROM productos INNER JOIN compra ON productos.id_producto = compra.id_producto WHERE MONTH(compra.fecha) = ? AND YEAR(compra.fecha) = ? GROUP BY productos.nombre_producto ORDER BY total desc";
+    //llamado de parmetros a travez de un arreglo
     $param = array($datetime1->format('m'), $datetime1->format('Y'));
+    //funcion para obtener los datos necesarios
     $data = Database::getRows($sql, $param);
         foreach($data as $row2)
             {
+            //sentencia sql
             $sql1 = "SELECT registro.nombre, compra.cantidad, fecha FROM registro INNER JOIN compra on compra.id_registro = registro.id_registro WHERE compra.id_producto = ? AND MONTH(compra.fecha) = ? AND YEAR(compra.fecha) = ? GROUP BY registro.nombre, fecha ";
+            //llamado de parmetros a travez de un arreglo
             $params1 = array($row2['id'], $datetime1->format('m'), $datetime1->format('Y'));
+            //funcion para obtener los datos necesarios
             $data1 = Database::getRows($sql1, $params1);
             //Colocación de los Headers, de los atributos
             if($data1 != null){
@@ -141,7 +147,7 @@
             $pdf->Ln(1);
             foreach($data1 as $row3)
             {
-                //cosa hermosa que hace los reportes
+            //informacion utilizada obtenida que sera mostrada como talbal aqui abajo
             $pdf->SetX(3);
             $pdf->SetTextColor(0,0,0);
             $pdf->SetFillColor(241, 237, 232);

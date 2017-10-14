@@ -65,11 +65,15 @@
     $i = 5;
     if(empty($_GET['ini'])) 
     {
+    //utilizacion de variable de fecha para obtener el mes y el año
     $fech = date('d-m-Y');
     $my_date = new DateTime(); 
-    $datetime1 = date_create($fech);
+    $datetime1 = date_create($fech)
+    //sentencia sql;
     $sql = "SELECT COUNT(id_compra) as total, registro.id_registro as id, registro.nombre, SUM(compra.cantidad) as canti FROM registro INNER JOIN compra  ON registro.id_registro = compra.id_registro WHERE MONTH(compra.fecha) = ? AND YEAR(compra.fecha) = ? GROUP BY registro.nombre ORDER BY total desc";
+    //llamado de parmetros a travez de un arreglo
     $param = array($datetime1->format('m'), $datetime1->format('Y'));
+    //funcion para obtener los datos necesarios
     $data = Database::getRows($sql, $param);
     foreach($data as $row2)
             {
@@ -89,7 +93,7 @@
             $pdf->Ln(1);
             foreach($data1 as $row3)
             {
-                //cosa hermosa que hace los reportes
+           //informacion utilizada obtenida que sera mostrada como talbal aqui abajo
             $pdf->SetX(3);
             $pdf->SetTextColor(0,0,0);
             $pdf->SetFillColor(241, 237, 232);
@@ -123,18 +127,22 @@
     }
     else
     {
+        //utilizacion de variable de fecha para obtener el mes y el año
     $inicio = $_GET['ini'];
     $my_date = new DateTime(); 
     $datetime1 = date_create($inicio);
+    //sentencia sql
     $sql = "SELECT COUNT(id_compra) as total, registro.id_registro as id, registro.nombre, SUM(compra.cantidad) as canti FROM registro INNER JOIN compra  ON registro.id_registro = compra.id_registro WHERE MONTH(compra.fecha) = ? AND YEAR(compra.fecha) = ? GROUP BY registro.nombre ORDER BY total desc";
+    //parametros a cargar que son el mes y el año de la fecha anterior
     $param = array($datetime1->format('m'), $datetime1->format('Y'));
+    //funcion para cargar los datos
     $data = Database::getRows($sql, $param);
         foreach($data as $row2)
             {
             $sql1 = "SELECT productos.nombre_producto, compra.cantidad, compra.fecha FROM productos INNER JOIN compra on compra.id_producto = productos.id_producto WHERE compra.id_registro = ? AND MONTH(compra.fecha) = ? AND YEAR(compra.fecha) = ? GROUP BY productos.nombre_producto, fecha ";
             $params1 = array($row2['id'], $datetime1->format('m'), $datetime1->format('Y'));
             $data1 = Database::getRows($sql1, $params1);
-            //Colocación de los Headers, de los atributos
+            //informacion utilizada obtenida que sera mostrada como talbal aqui abajo
             if($data1 != null){
             $pdf->SetX(3);
             $pdf->SetFont('Arial','',16);
@@ -147,7 +155,7 @@
             $pdf->Ln(1);
             foreach($data1 as $row3)
             {
-                //cosa hermosa que hace los reportes
+            //informacion utilizada obtenida que sera mostrada como talbal aqui abajo
             $pdf->SetX(3);
             $pdf->SetTextColor(0,0,0);
             $pdf->SetFillColor(241, 237, 232);
