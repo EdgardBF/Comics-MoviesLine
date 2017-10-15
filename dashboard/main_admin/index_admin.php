@@ -98,6 +98,9 @@ else
 						print("
 					</tbody>
 				</table>
+				");
+						$pagination->render();
+						print("
 				<ul class='collapsible popout' data-collapsible='accordion'>
 					<li>
 					<div class='collapsible-header'><i class='material-icons'>equalizer</i>Mostrar cantidad de usuarios por tipo de usuario</div>
@@ -114,7 +117,7 @@ Highcharts.chart('container', {
         type: 'column'
     },
     title: {
-        text: 'Cantidad de medicinas por tipo'
+        text: 'Cantidad de Administradores por tipo'
     },
     xAxis: {
         type: 'category'
@@ -163,7 +166,6 @@ print("
 					</ul>
 			</main>
 			");
-	$pagination->render();
 } //Fin de if que comprueba la existencia de registros. 
 else
 {

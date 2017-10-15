@@ -78,7 +78,7 @@ $mensaje = false;
 				<td>".$row['cantidad']."</td>
                 <td><img src='data:image/*;base64,".$row['imagen']."' class='materialboxed' width='300' height='100'></td>
 				<td>
-					<a href='save_distribuciones.php?id=".$row['id_producto']."' class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Modificar'><i class='material-icons cyan-text text-darken-3'>edit</i></a>
+					<a href='save_products.php?id=".$row['id_producto']."' class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Modificar'><i class='material-icons cyan-text text-darken-3'>edit</i></a>
 					<a class='waves-effect waves-light tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar' href='#modal1-".$row['id_producto']."'><i class='material-icons red-text text-darken-4'>delete_forever</i></a>
 					<div id='modal1-".$row['id_producto']."' class='modal'>
 						<div class='modal-content'>

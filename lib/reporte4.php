@@ -68,7 +68,7 @@
     //utilizacion de variable de fecha para obtener el mes y el año
     $fech = date('d-m-Y');
     $my_date = new DateTime(); 
-    $datetime1 = date_create($fech)
+    $datetime1 = date_create($fech);
     //sentencia sql;
     $sql = "SELECT COUNT(id_compra) as total, registro.id_registro as id, registro.nombre, SUM(compra.cantidad) as canti FROM registro INNER JOIN compra  ON registro.id_registro = compra.id_registro WHERE MONTH(compra.fecha) = ? AND YEAR(compra.fecha) = ? GROUP BY registro.nombre ORDER BY total desc";
     //llamado de parmetros a travez de un arreglo

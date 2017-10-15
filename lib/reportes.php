@@ -108,6 +108,7 @@
             $pdf->SetFillColor(255,255,255);
             $pdf->SetFont('Arial','',8);
             $pdf->Cell(4,1,utf8_decode($row3['usuario']),1,0,'C',true);
+            $pdf->Ln(1);
 
             }
             $pdf->Ln(1.5);

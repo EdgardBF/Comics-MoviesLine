@@ -1,11 +1,11 @@
 <?php
 require("../../lib/master.php");
 master::header("Registro");
-echo $_SESSION['crear'];
-if($_SESSION['crear'] == 0)
+//echo $_SESSION['crear'];
+/*if($_SESSION['crear'] == 0)
 {
     master::showMessage(2, "No tiene permisos para entrar", "main.php");
-}
+}*/
 //Verifica que hayan datos a guardar
 if(!empty($_POST))
 {

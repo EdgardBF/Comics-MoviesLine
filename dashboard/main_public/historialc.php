@@ -121,7 +121,7 @@ Highcharts.chart('container', {
                 foreach($data as $row2)
                 {
                 //se ponen lo que son los datos en el arreglo
-                    for($i=1; $i<13; $i++)
+                    for($i=0; $i<12; $i++)
                     {
                         if($row2['MONTH(fecha)'] == $numes[$i])
                         {
